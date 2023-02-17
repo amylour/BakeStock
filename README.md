@@ -4,9 +4,10 @@
 ![bakestock ascii art](assets/readme_images/bakestock_ascii.png)  
 
 
-BakeStock is a Python command line interface (CLI) application designed to be used by small batch bakeries or 'micro-bakeries'. The app will allow the user to keep track of the daily bakes and sales, calculate the next days bake batch numbers and keep track of ingredient inventory levels, alerting the user to any low ingredient levels.
+BakeStock is a Python command line interface (CLI) application designed to be used by small batch bakeries or 'micro-bakeries'. The application will allow the user to keep track of daily bakes and sales, calculate the next days bake batch numbers and keep track of ingredient inventory levels, alerting the user to any low ingredient levels.
 
-You can view the live application here.
+You can view the live application here. **
+Sales, stock, inventory data here. **
 
 
 ## Contents
@@ -14,8 +15,10 @@ You can view the live application here.
   * [App Goals](#app-goals)
   * [User Stories](#user-stories)
 * [**Creation process**](#creation-process)
+  * [Planning](#planning)
   * [Flowcharts](#flowcharts)
   * [Google API SetUp](#google-api-setup)
+  * [Google Sheets Data](#google-sheets-data)
   * [Python Logic](#python-logic)
   * [Design Choices](#design-choices)
 * [**Features**](#features)
