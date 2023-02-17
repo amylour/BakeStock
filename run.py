@@ -16,7 +16,7 @@ SCOPE = [
 CREDS = Credentials.from_service_account_file('creds.json')
 # const for credentials scope
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
-# const to allow authorisation of gspread client within these scoped credentials
+# const to allow auth of gspread client within these scoped credentials
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 # const for google sgeet
 SHEET = GSPREAD_CLIENT.open('bakestock')
