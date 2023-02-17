@@ -1,31 +1,29 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# ** BakeStock **
 
-Welcome USER_NAME,
+BakeStock is a Python command line interface (CLI) application designed to be used by small batch bakeries or 'micro-bakeries'. The app will allow the user to keep track of their daily bakes and sales, calculate the next days bake batch numbers and keep track of ingredient inventory levels, alerting the user to any low ingredient levels.
 
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **August 17, 2021**
+You can view the live application here.
 
-## Reminders
+![screenshot of application]()
 
-* Your code must be placed in the `run.py` file
-* Your dependencies must be placed in the `requirements.txt` file
-* Do not edit any of the other files or your code may not deploy properly
 
-## Creating the Heroku app
+## Contents
+* [**User Experience - UX**](#user-experience-ux)
+  * [App Goals](#app-goals)
+  * [User Stories](#user-stories)
+* [**Creation process**](#creation-process)
+  * [Flowcharts](#flowcharts)
+  * [Google API SetUp](#google-api-setup)
+  * [Python Logic](#python-logic)
+  * [Design Choices](#design-choices)
+* [**Features**](#features)
+  * [How to Use](#how-to-use)
+  * [Future Features](#future-features)
+* [**Technologies Used**](#technologies-used)
+* [**Python Packages**](#python-packages)
+* [**Testing**](#testing)
+  * [Bugs](#bugs)
+  * [Validator](#validator)
+* [**Deployment**](#deployment)
+* [**Credits**](#credits)
 
-When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
-
-1. `heroku/python`
-2. `heroku/nodejs`
-
-You must then create a _Config Var_ called `PORT`. Set this to `8000`
-
-If you have credentials, such as in the Love Sandwiches project, you must create another _Config Var_ called `CREDS` and paste the JSON into the value field.
-
-Connect your GitHub repository and deploy as normal.
-
-## Constraints
-
-The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
-
------
-Happy coding!
