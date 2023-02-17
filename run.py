@@ -46,7 +46,7 @@ def typeInput(text):
 
 def prog_start():
     """
-    Run opening screen for user and display menu options for user.
+    Run opening screen for user and display menu options for user
     """
     print('''
     **********************************************************************
@@ -63,4 +63,26 @@ def prog_start():
     **********************************************************************
     ''')
 
+def main():
+    """
+    Menu is displayed with options for user input
+    """
+    typePrint("Welcome to BakeStock.\n")
+    time.sleep(1) 
+    print("\n")
+    typePrint("Please choose from the menu below.\n")
+    time.sleep(1)
+    print("\n")
+    print("1. Add daily sales.\n")
+    print("2. Check next day batch numbers.\n")
+    print("3. Check ingredients inventory.\n")
+    print("4. Update ingredients inventory.\n")
+    print("5. Calculate profits.\n")
+    print("6. Exit.\n")  
+
+
 prog_start()
+main()
+
+
+
