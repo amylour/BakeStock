@@ -66,3 +66,5 @@ Sales, stock, inventory data here. **
   
 # Credits
 
+## Content References
+   - [Python typing text effect](https://www.101computing.net/python-typing-text-effect/)
