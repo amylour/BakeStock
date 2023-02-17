@@ -3,6 +3,9 @@
 import gspread
 from google.oauth2.service_account import Credentials
 
+# time and sys libraries to add typing effect/delay
+import time,sys
+
 
 # Scope for Google IAM auth for API program access
 SCOPE = [
@@ -22,21 +25,42 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('bakestock')
 
 
+# typing effect function with delay effect for print and input
+# print() replaced with typePrint() and input() replaced with typeInput()
+# time.sleep() used as a pause effect with seconds parameter
+# credit: https://www.101computing.net/python-typing-text-effect/
+def typePrint(text):
+    for character in text:
+        sys.stdout.write(character)
+        sys.stdout.flush()
+        time.sleep(0.05)
+
+def typeInput(text):
+    for charcater in text:
+        sys.stdout.write(character)
+        sys.stdout.flush()
+        time.sleep(0.05)
+    value = input()
+    return value
+
+
 def prog_start():
     """
     Run opening screen for user and display menu options for user.
     """
     print('''
-    *********************************************************************
+    **********************************************************************
     
-    88888b.          88              .d888b.   88                  88      
-    88  "88b         88             d88P  Y88b 88                  88      
-    88  .8P          88             Y88b.      88                  88      
-    88888K.    888b. 88  88  .d88b.  "Y88b.    8888 .d88b.  .d888b 88  88 
-    88  "Y8b    "88b 88 .8P d8P  Y8b   "Y88b.  88   d8""8b d8P"    88 .8P 
-    88    88 .d88888 88888K 8888888"     "888  88   88  88 88      88888K  
-    88   d8P 888  88 88 "8b Y8b.    Y88b  d88P Y8b. Y8..8P Y8b.    88 "8b 
-    888888P" "Y88888 88  88  "Y8888  "Y888P"   "Y88."Y88P"  "Y888P 88  88
+    888888b.          88              .d888b.   88                  88
+    888  "88b         88             d88P  Y88b 88                  88
+    888  .8P          88             Y88b.      88                  88
+    888888K.    888b. 88  88  .d88b.  "Y88b.    8888 .d88b.  .d888b 88  88
+    888  "Y8b    "88b 88 .8P d8P  Y8b   "Y88b.  88   d8""8b d8P"    88 .8P
+    888    88 .d88888 88888K 8888888"     "888  88   88  88 88      88888K
+    888   d8P 888  88 88 "8b Y8b.    Y88b  d88P Y8b. Y8..8P Y8b.    88 "8b
+    8888888P" "Y88888 88  88  "Y8888  "Y888P"   "Y88."Y88P"  "Y888P 88  88
 
-    *********************************************************************
+    **********************************************************************
     ''')
+
+prog_start()
