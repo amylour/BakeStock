@@ -27,6 +27,8 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 # const for google sgeet
 SHEET = GSPREAD_CLIENT.open('bakestock')
 
+# clear screen function C
+# Credit: https://www.101computing.net/python-typing-text-effect/
 def clearScreen():
     os.system("clear")
 
@@ -40,6 +42,7 @@ def typePrint(text):
         sys.stdout.write(character)
         sys.stdout.flush()
         time.sleep(0.05)
+
 
 def typeInput(text):
     for character in text:
@@ -56,7 +59,7 @@ def prog_start():
     """
     print('''
     **********************************************************************
-    
+    *                                                                    *
     888888b.          88              .d888b.   88                  88
     888  "88b         88             d88P  Y88b 88                  88
     888  .8P          88             Y88b.      88                  88
@@ -65,7 +68,7 @@ def prog_start():
     888    88 .d88888 88888K 8888888"     "888  88   88  88 88      88888K
     888   d8P 888  88 88 "8b Y8b.    Y88b  d88P Y8b. Y8..8P Y8b.    88 "8b
     8888888P" "Y88888 88  88  "Y8888  "Y888P"   "Y88."Y88P"  "Y888P 88  88
-
+    *                                                                    *
     **********************************************************************
     ''')
 
@@ -78,11 +81,8 @@ def add_sales():
     data_str = typeInput("Enter sales here: \n")
 
     sales_data = data_str.split(",")
-    
     typePrint(f"You have entered : {sales_data}\n")
     typeInput("Please confirm: Y or N\n")
-
-
 
 
 def check_batch():
@@ -92,7 +92,7 @@ def check_batch():
     typePrint("Please enter date in format DD-MM-YYYY...\n")
     data_str = typeInput("Enter date here: \n")
     print('data_str')
-    
+
 
 def check_invt():
     """
@@ -113,7 +113,7 @@ def update_invt():
     typePrint("Please choose ingredient from the list: \n")
     time.sleep(1)
     print("""
-          1. Flour 
+          1. Flour
           2. Sugar
           3. Butter
           4. Eggs
@@ -127,7 +127,7 @@ def update_invt():
           12. Vanilla Extract
           13. Unsalted Butter
           """)
-    
+
     choice = int(typeInput("Enter your choice: \n"))
 
 
@@ -151,15 +151,14 @@ def exit():
 
     prog_start()
     main()
-    
-
+ 
 
 def main():
     """
     Menu is displayed with options for user input
     """
     typePrint("Welcome to BakeStock.\n")
-    time.sleep(1) 
+    time.sleep(1)
     typePrint("Please choose from the menu below.\n")
     time.sleep(1)
     print("\n")
@@ -168,7 +167,7 @@ def main():
     print("3. Check ingredients inventory.\n")
     print("4. Update ingredients inventory.\n")
     print("5. Calculate profits.\n")
-    print("6. Exit.\n")  
+    print("6. Exit.\n")
 
     print('''
       *******************************************************
@@ -198,5 +197,3 @@ def main():
 
 prog_start()
 main()
-
-
