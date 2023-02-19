@@ -68,7 +68,7 @@ def add_sales():
     """
     User adds sales data for days sales.
     """
-    typePrint("Please enter days sales (7 numbers, separated by commas)... \n")
+    typePrint("Please enter days sales (6 numbers, separated by commas)... \n")
     data_str = typeInput("Enter sales here: \n")
 
     sales_data = data_str.split(",")
@@ -92,9 +92,38 @@ def check_invt():
     """
     Pull inventory data from google sheet-inventory
     """
-    typePrint("Checking inventory levels...\n")
+    typePrint("Checking inventory levels...")
     time.sleep(1)
-    typePrint("Current inventory levels are: \n")
+    print("\n")
+    typePrint("Current inventory levels are: ")
+    print("\n")
+
+
+def update_invt():
+    """
+    Allow user to add additional ingredient amounts to increase
+    inventory levels.
+    """
+    typePrint("Please choose ingredient from list: ")
+    time.sleep(1)
+    print("\n")
+    print("""
+          1. Flour 
+          2. Sugar
+          3. Butter
+          4. Eggs
+          5. Milk
+          6. Baking Powder
+          7. Salt
+          8. Icing Sugar
+          9. Chocolate
+          10. Strawberry Syrup
+          11. Cookies
+          12. Vanilla Extract
+          13. Unsalted Butter
+          """)
+    
+    choice = int(typeInput("Enter your choice: \n"))
 
 
 def main():
@@ -127,6 +156,8 @@ def main():
         check_batch()
     elif choice == 3:
         check_invt()
+    elif choice == 4:
+        update_invt()
 
 
 prog_start()
