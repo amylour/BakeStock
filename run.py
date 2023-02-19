@@ -112,19 +112,20 @@ def update_invt():
     typePrint("Please choose ingredient from the list: \n")
     time.sleep(1)
     print("""
-          1. Flour
-          2. Sugar
-          3. Butter
-          4. Eggs
-          5. Milk
-          6. Baking Powder
-          7. Salt
-          8. Icing Sugar
-          9. Chocolate
-          10. Strawberry Syrup
-          11. Cookies
-          12. Vanilla Extract
-          13. Unsalted Butter
+          1.  Flour
+          2.  Sugar
+          3.  Butter
+          4.  Eggs
+          5.  Milk
+          6.  Cream Cheese
+          7.  Icing Sugar
+          8.  Chocolate
+          9.  Cookies
+          10. Cocoa Powder
+          11. Vanilla Extract
+          12. Unsalted Butter
+          13. Strawberry Syrup
+          14. Caramel Syrup 
           """)
 
     choice = int(typeInput("Enter your choice: \n"))
