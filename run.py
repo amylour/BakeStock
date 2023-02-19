@@ -36,7 +36,7 @@ def typePrint(text):
         time.sleep(0.05)
 
 def typeInput(text):
-    for charcater in text:
+    for character in text:
         sys.stdout.write(character)
         sys.stdout.flush()
         time.sleep(0.05)
@@ -68,10 +68,24 @@ def add_sales():
     """
     User adds sales data for days sales.
     """
-    print("Please enter days sales (7 numbers, separated by commas): \n")
+    typePrint("Please enter days sales (7 numbers, separated by commas)... \n")
+    data_str = typeInput("Enter sales here: \n")
+
+    sales_data = data_str.split(",")
+    
+    typePrint(f"You have entered : {sales_data}\n")
+    typeInput("Please confirm: Y or N\n")
+
+    
 
 
-def 
+def check_batch():
+    """
+    Pull next day batch nums from google sheets
+    """
+    typePrint("Please enter date in format DD-MM-YYYY...")
+    data_str = typeInput("Enter date here: \n")
+    print('data_str')
     
 
 def main():
@@ -97,7 +111,7 @@ def main():
       *******************************************************
       ''')
     
-    choice = int(input("Enter your choice: \n"))
+    choice = int(typeInput("Enter your choice: \n"))
     if choice == 1:
         add_sales()
 
