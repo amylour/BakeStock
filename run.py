@@ -4,8 +4,11 @@ import gspread
 from google.oauth2.service_account import Credentials
 
 # time and sys libraries to add typing effect/delay
-import time,sys
+import time
+import sys
 
+# os library to clear screen
+import os
 
 # Scope for Google IAM auth for API program access
 SCOPE = [
@@ -23,6 +26,9 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 # const for google sgeet
 SHEET = GSPREAD_CLIENT.open('bakestock')
+
+def clearScreen():
+    os.system("clear")
 
 
 # typing effect function with delay effect for print and input
@@ -154,7 +160,6 @@ def main():
     """
     typePrint("Welcome to BakeStock.\n")
     time.sleep(1) 
-    print("\n")
     typePrint("Please choose from the menu below.\n")
     time.sleep(1)
     print("\n")
@@ -170,20 +175,25 @@ def main():
       * ALERT: Inventory levels normal.                     *
       *******************************************************
       ''')
-    
-    choice = int(typeInput("Enter your choice: \n"))
-    if choice == 1:
-        add_sales()
-    elif choice == 2:
-        check_batch()
-    elif choice == 3:
-        check_invt()
-    elif choice == 4:
-        update_invt()
-    elif choice == 5:
-        calc_pro()
-    elif choice == 6:
-        exit()
+    try:
+        choice = int(typeInput("Enter your choice: \n"))
+        if choice == 1:
+            add_sales()
+        elif choice == 2:
+            check_batch()
+        elif choice == 3:
+            check_invt()
+        elif choice == 4:
+            update_invt()
+        elif choice == 5:
+            calc_pro()
+        elif choice == 6:
+            exit()
+    except ValueError:
+        typePrint("Invalid input. Please choose a numbered menu item...")
+        time.sleep(1.5)
+        clearScreen()
+        main()
 
 
 prog_start()
