@@ -83,7 +83,7 @@ def check_batch():
     """
     Pull next day batch nums from google sheets-batch
     """
-    typePrint("Please enter date in format DD-MM-YYYY...")
+    typePrint("Please enter date in format DD-MM-YYYY...\n")
     data_str = typeInput("Enter date here: \n")
     print('data_str')
     
@@ -106,7 +106,6 @@ def update_invt():
     """
     typePrint("Please choose ingredient from list: ")
     time.sleep(1)
-    print("\n")
     print("""
           1. Flour 
           2. Sugar
@@ -124,6 +123,16 @@ def update_invt():
           """)
     
     choice = int(typeInput("Enter your choice: \n"))
+
+
+def calc_pro():
+    """
+    Calculate daily profits by subtracting total batch cost from
+    daily sales figure. Append profit worksheet to include days profits.
+    """
+    typePrint("Please enter date in format DD-MM-YYYY...\n")
+    data_str = typeInput("Enter date here: \n")
+    
 
 
 def main():
@@ -158,6 +167,8 @@ def main():
         check_invt()
     elif choice == 4:
         update_invt()
+    elif choice == 5:
+        calc_pro()
 
 
 prog_start()
