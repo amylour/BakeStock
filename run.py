@@ -104,7 +104,7 @@ def update_invt():
     Allow user to add additional ingredient amounts to increase
     inventory levels.
     """
-    typePrint("Please choose ingredient from list: ")
+    typePrint("Please choose ingredient from the list: \n")
     time.sleep(1)
     print("""
           1. Flour 
