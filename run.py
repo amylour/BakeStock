@@ -132,6 +132,19 @@ def calc_pro():
     """
     typePrint("Please enter date in format DD-MM-YYYY...\n")
     data_str = typeInput("Enter date here: \n")
+
+
+def exit():
+    """
+    return to program start screen
+    """
+    typePrint("Returning to program start...")
+    time.sleep(2)
+    print("\n")
+    print("\n")
+
+    prog_start()
+    main()
     
 
 
@@ -169,6 +182,8 @@ def main():
         update_invt()
     elif choice == 5:
         calc_pro()
+    elif choice == 6:
+        exit()
 
 
 prog_start()
