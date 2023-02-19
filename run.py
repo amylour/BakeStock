@@ -63,6 +63,17 @@ def prog_start():
     **********************************************************************
     ''')
 
+
+def add_sales():
+    """
+    User adds sales data for days sales.
+    """
+    print("Please enter days sales (7 numbers, separated by commas): \n")
+
+
+def 
+    
+
 def main():
     """
     Menu is displayed with options for user input
@@ -80,15 +91,18 @@ def main():
     print("5. Calculate profits.\n")
     print("6. Exit.\n")  
 
-
-prog_start()
-main()
-
-print('''
+    print('''
       *******************************************************
       * ALERT: Inventory levels normal.                     *
       *******************************************************
-      ''')    
+      ''')
+    
+    choice = int(input("Enter your choice: \n"))
+    if choice == 1:
+        add_sales()
 
+
+prog_start()
+main()
 
 
