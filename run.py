@@ -27,8 +27,7 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 # const for google sgeet
 SHEET = GSPREAD_CLIENT.open('bakestock')
 
-# clear screen function C
-# Credit: https://www.101computing.net/python-typing-text-effect/
+# clear screen function Credit: https://www.101computing.net/python-typing-text-effect/
 def clearScreen():
     os.system("clear")
 
