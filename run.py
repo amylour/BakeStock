@@ -72,10 +72,48 @@ def prog_start():
     ''')
 
 
-def add_sales():
+def day_sales():
     """
-    User adds sales data for days sales.
+    Go to sales menu
     """
+    clearScreen()
+    typePrint("Sales Menu")
+    time.sleep(1)
+    print("""
+          1. Check sales by date
+          2. Add days sales
+          """)
+    try:
+        choice = int(typeInput("Please choose from menu...\n"))
+        if choice == 1:
+            check_sales()
+        elif choice ==2:
+            rec_sales()
+        except ValueError:
+        typePrint("Invalid input. Please choose a numbered menu item...")
+        time.sleep(1.5)
+        clearScreen()
+        day_sales()
+
+
+def check_sales():
+    """
+    Check sales by date and print in terminal
+    """
+    clearScreen()
+    typePrint("Please enter date in the format DD-MM-YYYY... \n")
+    data_str = typeInput("Enter date here: \n")
+
+    date_data = data_str.split(" " + "-" + " " + "-" + " ")
+    typePrint(f"You have entered : {date_data}\n")
+    typeInput("Please confirm: Y or N\n")
+
+
+
+
+
+
+
     typePrint("Please enter days sales (6 numbers, separated by commas)... \n")
     data_str = typeInput("Enter sales here: \n")
 
