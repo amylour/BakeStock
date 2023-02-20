@@ -91,32 +91,41 @@ def rec_sales():
     """
     typePrint("Please enter date in the format DD-MM-YYYY... \n")
     data_str = typeInput("Enter date here: \n")
-
-    date_data = int(data_str.split(" " + "-" + " " + "-" + " "))
-    typePrint(f"You have entered : {date_data}\n")
-    choice = typeInput("Please confirm: Y or N\n")
-    try:
-        if choice == 'Y' or choice == 'y':
-            typePrint("Enter days sales (6 numbers, separated by commas)\n")
-            data_str = typeInput("Enter sales here: \n")
-            sales_data = data_str.split(",")
-            typePrint(f"You have entered : {sales_data}\n")
-            typeInput("Please confirm: Y or N\n")
-        elif choice == 'N' or choice == 'n':
-            rec_sales()
-    except ValueError:
-        typePrint("Invalid input. Please enter date in format DD-MM-YYYY")
-        clearScreen()
-        time.sleep(.5)
+    #date_data = data_str.split(" " + "-" + " " + "-" + " ")
+    if len(data_str) == 10:
+        try:
+            print("Valid Date")
+            typePrint(f"You have entered : {data_str}\n")
+            choice = typeInput("Please confirm: Y or N\n")
+            try:
+                if choice == 'Y' or choice == 'y':
+                    typePrint("Enter days sales (6 numbers, separated by commas)\n")
+                    data_str = typeInput("Enter sales here: \n")
+                    sales_data = data_str.split(",")
+                    typePrint(f"You have entered : {sales_data}\n")
+                    typeInput("Please confirm: Y or N\n")
+                elif choice == 'N' or choice == 'n':
+                    rec_sales()
+            except ValueError:
+                typePrint("Invalid input. Please enter date in format DD-MM-YYYY")
+                clearScreen()
+                time.sleep(.5)
+                rec_sales()
+        except ValueError:
+                print("Invalid Date")
+                clearScreen()
+                time.sleep(.5)
+                rec_sales()
+    else:
+        print("Invalid date format")
         rec_sales()
 
+    #typePrint("Please enter days sales (6 numbers, separated by commas)... \n")
+    #data_str = typeInput("Enter sales here: \n")
 
-    typePrint("Please enter days sales (6 numbers, separated by commas)... \n")
-    data_str = typeInput("Enter sales here: \n")
-
-    sales_data = data_str.split(",")
-    typePrint(f"You have entered : {sales_data}\n")
-    typeInput("Please confirm: Y or N\n")
+    #sales_data = data_str.split(",")
+    #typePrint(f"You have entered : {sales_data}\n")
+    #typeInput("Please confirm: Y or N\n")
 
 
 def day_sales():
@@ -134,7 +143,7 @@ def day_sales():
         choice = int(typeInput("Please choose from menu...\n"))
         if choice == 1:
             check_sales()
-        elif choice ==2:
+        elif choice == 2:
             rec_sales()
     except ValueError:
         typePrint("Invalid input. Please choose a numbered menu item...")
