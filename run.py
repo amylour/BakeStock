@@ -72,6 +72,31 @@ def prog_start():
     ''')
 
 
+def check_sales():
+    """
+    Check sales by date and print in terminal
+    """
+    clearScreen()
+    typePrint("Please enter date in the format DD-MM-YYYY... \n")
+    data_str = typeInput("Enter date here: \n")
+
+    date_data = data_str.split(" " + "-" + " " + "-" + " ")
+    typePrint(f"You have entered : {date_data}\n")
+    typeInput("Please confirm: Y or N\n")
+
+
+def rec_sales():
+    """
+    Record daily sales
+    """
+    typePrint("Please enter days sales (6 numbers, separated by commas)... \n")
+    data_str = typeInput("Enter sales here: \n")
+
+    sales_data = data_str.split(",")
+    typePrint(f"You have entered : {sales_data}\n")
+    typeInput("Please confirm: Y or N\n")
+
+
 def day_sales():
     """
     Go to sales menu
@@ -89,37 +114,11 @@ def day_sales():
             check_sales()
         elif choice ==2:
             rec_sales()
-        except ValueError:
+    except ValueError:
         typePrint("Invalid input. Please choose a numbered menu item...")
         time.sleep(1.5)
         clearScreen()
         day_sales()
-
-
-def check_sales():
-    """
-    Check sales by date and print in terminal
-    """
-    clearScreen()
-    typePrint("Please enter date in the format DD-MM-YYYY... \n")
-    data_str = typeInput("Enter date here: \n")
-
-    date_data = data_str.split(" " + "-" + " " + "-" + " ")
-    typePrint(f"You have entered : {date_data}\n")
-    typeInput("Please confirm: Y or N\n")
-
-
-
-
-
-
-
-    typePrint("Please enter days sales (6 numbers, separated by commas)... \n")
-    data_str = typeInput("Enter sales here: \n")
-
-    sales_data = data_str.split(",")
-    typePrint(f"You have entered : {sales_data}\n")
-    typeInput("Please confirm: Y or N\n")
 
 
 def check_batch():
@@ -200,7 +199,7 @@ def main():
     typePrint("Please choose from the menu below.\n")
     time.sleep(1)
     print("\n")
-    print("1. Add daily sales.\n")
+    print("1. Sales menu.\n")
     print("2. Check next day batch numbers.\n")
     print("3. Check ingredients inventory.\n")
     print("4. Update ingredients inventory.\n")
@@ -215,7 +214,7 @@ def main():
     try:
         choice = int(typeInput("Enter your choice: \n"))
         if choice == 1:
-            add_sales()
+            day_sales()
         elif choice == 2:
             check_batch()
         elif choice == 3:
