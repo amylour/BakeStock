@@ -381,6 +381,7 @@ def exit():
     time.sleep(2)
     print("\n")
     print("\n")
+    clearScreen()
 
     prog_start()
     main()
