@@ -100,7 +100,6 @@ def return_main():
         choice = input("""
                        \n
                        \n
-                       \n
                        To return to Main Menu, please enter 'M'.
                        \n
                        """)
@@ -110,7 +109,7 @@ def return_main():
             main()
             break
         else:
-            print("Invalid input, please try again")
+            print("Invalid input, please try again.")
             continue
 
 
@@ -118,7 +117,7 @@ def print_sales():
     """
     Print sales data by date to terminal
     """
-    print('you have reached print sales')
+    print('You have reached print sales.')
     time.sleep(2)
     return_main()
     
@@ -128,14 +127,13 @@ def check_sales():
     Check sales by date and print in terminal
     """
     clearScreen()
-    typePrint("Please enter date in the format DD-MM-YYYY... \n")
+    typePrint("Please enter date in the format DD-MM-YYYY.\n")
     data_str = typeInput("Enter date here: \n")
     if len(data_str) == 10:
         try:
-            print("Valid Date")
             typePrint(f"You have entered: {data_str}\n")
             while True:
-                choice = typeInput("Please confirm: Y or N\n")
+                choice = typeInput("Please confirm: Y or N.\n")
                 try:
                     if choice == 'Y' or choice == 'y':
                         print_sales()
@@ -144,10 +142,10 @@ def check_sales():
                         check_sales()
                         break
                     else:
-                        print("Invalid input, please try again")
+                        print("Invalid input, please try again.")
                         continue
                 except ValueError:
-                    typePrint("Invalid input. Please enter date in format DD-MM-YYYY")
+                    typePrint("Invalid input. Please enter date in format DD-MM-YYYY.")
                     clearScreen()
                     time.sleep(.5)
                     check_sales()
@@ -182,13 +180,13 @@ def validate_sales(values):
     return True
 
 def sales_input():
-    typePrint("Enter days sales (6 numbers, separated by commas)\n")
+    typePrint("Enter days sales (6 numbers, separated by commas).\n")
     data_str = typeInput("Enter sales here: \n")
     sales_data = data_str.split(",")
     validate_sales(sales_data)
     typePrint(f"You have entered : {data_str}\n")
     while True:
-        choice = typeInput("Please confirm: Y or N\n")
+        choice = typeInput("Please confirm: Y or N.\n")
         if choice == 'Y' or choice == 'y':
             typePrint(f"The sales figures {data_str} have been recorded.\n")
             time.sleep(1)
@@ -199,7 +197,7 @@ def sales_input():
             sales_input()
             break
         else:
-            print("Invalid input, please try again")
+            print("Invalid input, please try again.")
             continue
 
 
@@ -207,14 +205,13 @@ def rec_sales():
     """
     Record daily sales
     """
-    typePrint("Please enter date in the format DD-MM-YYYY... \n")
+    typePrint("Please enter date in the format DD-MM-YYYY.\n")
     data_str = typeInput("Enter date here: \n")
     if len(data_str) == 10:
         try:
-            print("Valid Date")
             typePrint(f"You have entered: {data_str}\n")
             while True:
-                choice = typeInput("Please confirm: Y or N\n")
+                choice = typeInput("Please confirm: Y or N.\n")
                 try:
                     if choice == 'Y' or choice == 'y':
                         sales_input()
@@ -223,15 +220,15 @@ def rec_sales():
                         rec_sales()
                         break
                     else:
-                        print("Invalid input, please try again")
+                        print("Invalid input, please try again.")
                         continue
                 except ValueError:
-                    typePrint("Invalid input. Please enter date in format DD-MM-YYYY")
+                    typePrint("Invalid input. Please enter date in format DD-MM-YYYY.")
                     clearScreen()
                     time.sleep(.5)
                     rec_sales()
         except ValueError:
-                print("Invalid Date")
+                print("Invalid Date.")
                 clearScreen()
                 time.sleep(.5)
                 rec_sales()
@@ -246,15 +243,19 @@ def day_sales():
     Go to sales menu
     """
     clearScreen()
-    typePrint("Sales Menu")
+    typePrint("""
+              \n
+              Sales Menu.
+              \n
+              """)
     time.sleep(1)
     while True:
         print("""
-            1. Check sales by date
-            2. Add days sales
+            1. Check sales by date.
+            2. Add days sales.
             """)
         try:
-            choice = int(typeInput("Please choose from menu...\n"))
+            choice = int(typeInput("Please choose from menu.\n"))
             if choice == 1:
                 check_sales()
                 break
@@ -271,7 +272,7 @@ def print_batch():
     """
     Print batch numbers from date input
     """
-    print("You have reached print batch")
+    print("You have reached print batch.")
     time.sleep(1)
     return_main()
 
@@ -282,11 +283,10 @@ def check_batch():
     """
     clearScreen()
     time.sleep(0.5)
-    typePrint("Please enter date in format DD-MM-YYYY...\n")
+    typePrint("Please enter date in format DD-MM-YYYY.\n")
     data_str = typeInput("Enter date here: \n")
     if len(data_str) == 10:
         try:
-            print("Valid Date")
             typePrint(f"You have entered: {data_str}\n")
             while True:
                 choice = typeInput("Please confirm: Y or N\n")
@@ -301,7 +301,7 @@ def check_batch():
                         print("Invalid input, please try again")
                         continue
                 except ValueError:
-                    typePrint("Invalid input. Please enter date in format DD-MM-YYYY")
+                    typePrint("Invalid input. Please enter date in format DD-MM-YYYY.")
                     clearScreen()
                     time.sleep(.5)
                     check_batch()
@@ -366,7 +366,7 @@ def calc_pro():
     Calculate daily profits by subtracting total batch cost from
     daily sales figure. Append profit worksheet to include days profits.
     """
-    typePrint("Please enter date in format DD-MM-YYYY...\n")
+    typePrint("Please enter date in format DD-MM-YYYY.\n")
     data_str = typeInput("Enter date here: \n")
     time.sleep(1)
     return_main()
@@ -385,7 +385,7 @@ def exit():
 
     prog_start()
     main()
- 
+
 
 def main():
     """
@@ -402,7 +402,6 @@ def main():
     print("4. Update ingredients inventory.\n")
     print("5. Calculate profits.\n")
     print("6. Exit.\n")
-
     print('''
       *******************************************************
       * ALERT: Inventory levels normal.                     *
