@@ -248,7 +248,11 @@ def check_invt():
     typePrint("Checking inventory levels...")
     time.sleep(1)
     print("\n")
-    print(f"Current inventory levels are: {ingInvt}\n")
+    typePrint(f"Current inventory levels are:")
+    print("\n")
+    for key, value in ingInvt.items():
+        print(key, ':', value)
+    
     
 
 
