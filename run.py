@@ -92,12 +92,36 @@ def prog_start():
     ''')
 
 
+def return_main():
+    """
+    Return to main menu
+    """
+    while True:
+        choice = input("""
+                       \n
+                       \n
+                       \n
+                       To return to Main Menu, please enter 'M'.
+                       \n
+                       """)
+        if choice == 'M' or choice == 'm':
+            time.sleep(1.5)
+            clearScreen()
+            main()
+            break
+        else:
+            print("Invalid input, please try again")
+            continue
+
+
 def print_sales():
     """
     Print sales data by date to terminal
     """
     print('you have reached print sales')
-
+    time.sleep(2)
+    return_main()
+    
 
 def check_sales():
     """
@@ -137,20 +161,6 @@ def check_sales():
         time.sleep(2)
         check_sales()
 
-    # date_data = data_str.split(" " + "-" + " " + "-" + " ")
-    # typePrint(f"You have entered : {date_data}\n")
-    # typeInput("Please confirm: Y or N\n")
-
-
-def sales_input():
-    typePrint("Enter days sales (6 numbers, separated by commas)\n")
-    data_str = typeInput("Enter sales here: \n")
-    sales_data = data_str.split(",")
-    validate_sales(sales_data)
-    typePrint(f"You have entered : {data_str}\n")
-    typeInput("Please confirm: Y or N\n")
-    
-
 
 def validate_sales(values):
     """
@@ -171,6 +181,27 @@ def validate_sales(values):
 
     return True
 
+def sales_input():
+    typePrint("Enter days sales (6 numbers, separated by commas)\n")
+    data_str = typeInput("Enter sales here: \n")
+    sales_data = data_str.split(",")
+    validate_sales(sales_data)
+    typePrint(f"You have entered : {data_str}\n")
+    while True:
+        choice = typeInput("Please confirm: Y or N\n")
+        if choice == 'Y' or choice == 'y':
+            typePrint(f"The sales figures {data_str} have been recorded.\n")
+            time.sleep(1)
+            print("\n")
+            return_main()
+            break
+        elif choice == 'N' or choice == 'n':
+            sales_input()
+            break
+        else:
+            print("Invalid input, please try again")
+            continue
+
 
 def rec_sales():
     """
@@ -186,7 +217,7 @@ def rec_sales():
                 choice = typeInput("Please confirm: Y or N\n")
                 try:
                     if choice == 'Y' or choice == 'y':
-                        print_sales()
+                        sales_input()
                         break
                     elif choice == 'N' or choice == 'n':
                         rec_sales()
@@ -241,6 +272,8 @@ def print_batch():
     Print batch numbers from date input
     """
     print("You have reached print batch")
+    time.sleep(1)
+    return_main()
 
 
 def check_batch():
@@ -286,6 +319,7 @@ def check_batch():
 def check_invt():
     """
     Pull inventory data from google sheet-inventory
+    Print list vertically credit: thispointer.com https://tinyurl.com/r5ctr7je
     """
     typePrint("Checking inventory levels...")
     time.sleep(1)
@@ -294,8 +328,8 @@ def check_invt():
     print("\n")
     for key, value in ingInvt.items():
         print(key, ':', value)
-    
-    
+    time.sleep(1)
+    return_main()
 
 
 def update_invt():
@@ -323,6 +357,8 @@ def update_invt():
           """)
 
     choice = int(typeInput("Enter your choice: \n"))
+    time.sleep(1)
+    return_main()
 
 
 def calc_pro():
@@ -332,6 +368,9 @@ def calc_pro():
     """
     typePrint("Please enter date in format DD-MM-YYYY...\n")
     data_str = typeInput("Enter date here: \n")
+    time.sleep(1)
+    return_main()
+
 
 
 def exit():
@@ -368,25 +407,33 @@ def main():
       * ALERT: Inventory levels normal.                     *
       *******************************************************
       ''')
-    try:
-        choice = int(typeInput("Enter your choice: \n"))
-        if choice == 1:
-            day_sales()
-        elif choice == 2:
-            check_batch()
-        elif choice == 3:
-            check_invt()
-        elif choice == 4:
-            update_invt()
-        elif choice == 5:
-            calc_pro()
-        elif choice == 6:
-            exit()
-    except ValueError:
-        typePrint("Invalid input. Please choose a numbered menu item...")
-        time.sleep(2)
-        clearScreen()
-        main()
+    while True:
+        try:
+            choice = int(typeInput("Please enter your choice: \n"))
+            if choice == 1:
+                day_sales()
+                break
+            elif choice == 2:
+                check_batch()#
+                break
+            elif choice == 3:
+                check_invt()
+                break
+            elif choice == 4:
+                update_invt()
+                break
+            elif choice == 5:
+                calc_pro()
+                break
+            elif choice == 6:
+                exit()
+                break
+        except ValueError:
+            typePrint("Invalid input. Please choose a numbered menu item...\n")
+            time.sleep(1)
+            continue
+            
+            
 
 
 prog_start()
