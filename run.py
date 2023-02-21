@@ -27,6 +27,26 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 # const for google sgeet
 SHEET = GSPREAD_CLIENT.open('bakestock')
 
+
+# Dictionary of inventory ingredients and levels
+ingInvt = {
+    "Flour": "10000g",
+    "Sugar": "12500g",
+    "Butter": "7500g",
+    "Eggs": "140",
+    "Milk": "7800ml",
+    "Cream Cheese": "4000g",
+    "Icing Sugar": "22500g",
+    "Chocolate": "2500g",
+    "Cookies": "2000g",
+    "Cocoa Powder": "2500g",
+    "Vanilla Extract": "700ml",
+    "Unsalted Butter": "11500g",
+    "Strawberry Syrup": "300ml",
+    "Caramel Syrup": "300ml"
+}
+
+
 # clear screen function Credit: https://www.101computing.net/python-typing-text-effect/
 def clearScreen():
     os.system("clear")
@@ -228,8 +248,8 @@ def check_invt():
     typePrint("Checking inventory levels...")
     time.sleep(1)
     print("\n")
-    typePrint("Current inventory levels are: ")
-    print("\n")
+    print(f"Current inventory levels are: {ingInvt}\n")
+    
 
 
 def update_invt():
