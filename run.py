@@ -10,6 +10,7 @@ import sys
 # os library to clear screen
 import os
 
+
 # Scope for Google IAM auth for API program access
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -128,10 +129,10 @@ def check_sales():
     """
     clearScreen()
     typePrint("Please enter date in the format DD-MM-YYYY.\n")
-    data_str = typeInput("Enter date here: \n")
-    if len(data_str) == 10:
+    sales_date_str = typeInput("Enter date here: \n")
+    if len(sales_date_str) == 10:
         try:
-            typePrint(f"You have entered: {data_str}\n")
+            typePrint(f"You have entered: {sales_date_str}\n")
             while True:
                 choice = typeInput("Please confirm: Y or N.\n")
                 try:
@@ -181,14 +182,16 @@ def validate_sales(values):
 
 def sales_input():
     typePrint("Enter days sales (6 numbers, separated by commas).\n")
-    data_str = typeInput("Enter sales here: \n")
-    sales_data = data_str.split(",")
+    sales_figs = typeInput("Enter sales here: \n")
+    sales_data = sales_figs.split(",")
     validate_sales(sales_data)
-    typePrint(f"You have entered : {data_str}\n")
+    typePrint(f"You have entered : {sales_data}\n")
     while True:
         choice = typeInput("Please confirm: Y or N.\n")
         if choice == 'Y' or choice == 'y':
-            typePrint(f"The sales figures {data_str} have been recorded.\n")
+            sales_sheet = SHEET.worksheet("sales")
+            sales_sheet.append_row(sales_data)
+            typePrint(f"The sales figures {sales_data} have been recorded.\n")
             time.sleep(1)
             print("\n")
             return_main()
@@ -199,6 +202,8 @@ def sales_input():
         else:
             print("Invalid input, please try again.")
             continue
+    
+
 
 
 def rec_sales():
@@ -206,14 +211,16 @@ def rec_sales():
     Record daily sales
     """
     typePrint("Please enter date in the format DD-MM-YYYY.\n")
-    data_str = typeInput("Enter date here: \n")
-    if len(data_str) == 10:
+    rec_date = typeInput("Enter date here: \n")
+    if len(rec_date) == 10:
         try:
-            typePrint(f"You have entered: {data_str}\n")
+            typePrint(f"You have entered: {rec_date}\n")
             while True:
                 choice = typeInput("Please confirm: Y or N.\n")
                 try:
                     if choice == 'Y' or choice == 'y':
+                        # sales_date = SHEET.worksheet("sales")
+                        # sales_date.insert_rows(rec_date)
                         sales_input()
                         break
                     elif choice == 'N' or choice == 'n':
@@ -223,7 +230,7 @@ def rec_sales():
                         print("Invalid input, please try again.")
                         continue
                 except ValueError:
-                    typePrint("Invalid input. Please enter date in format DD-MM-YYYY.")
+                    typePrint("Invalid input. Enter date in format DD-MM-YYYY.")
                     clearScreen()
                     time.sleep(.5)
                     rec_sales()
@@ -243,12 +250,7 @@ def day_sales():
     Go to sales menu
     """
     clearScreen()
-    typePrint("""
-              \n
-              Sales Menu.
-              \n
-              """)
-    time.sleep(1)
+    print("** Sales Menu **")
     while True:
         print("""
             1. Check sales by date.
@@ -327,7 +329,7 @@ def check_invt():
     typePrint(f"Current inventory levels are:")
     print("\n")
     for key, value in ingInvt.items():
-        print(key, ':', value)
+        print('- ', key, ':', value)
     time.sleep(1)
     return_main()
 
