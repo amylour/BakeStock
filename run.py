@@ -133,7 +133,8 @@ def check_sales():
                 time.sleep(.5)
                 check_sales()
     else:
-        print("Invalid date format")
+        print("Invalid date format, please try again.")
+        time.sleep(2)
         check_sales()
 
     # date_data = data_str.split(" " + "-" + " " + "-" + " ")
@@ -185,7 +186,7 @@ def rec_sales():
                 choice = typeInput("Please confirm: Y or N\n")
                 try:
                     if choice == 'Y' or choice == 'y':
-                        sprint_sales()
+                        print_sales()
                         break
                     elif choice == 'N' or choice == 'n':
                         rec_sales()
@@ -204,7 +205,8 @@ def rec_sales():
                 time.sleep(.5)
                 rec_sales()
     else:
-        print("Invalid date format")
+        print("Invalid date format, please try again.")
+        time.sleep(2)
         rec_sales()
 
     
@@ -234,14 +236,51 @@ def day_sales():
             clearScreen()
             continue
 
+def print_batch():
+    """
+    Print batch numbers from date input
+    """
+    print("You have reached print batch")
+
 
 def check_batch():
     """
-    Pull next day batch nums from google sheets-batch
+    Pull date of day batch nums data from google sheets-batch
     """
+    clearScreen()
+    time.sleep(0.5)
     typePrint("Please enter date in format DD-MM-YYYY...\n")
     data_str = typeInput("Enter date here: \n")
-    print('data_str')
+    if len(data_str) == 10:
+        try:
+            print("Valid Date")
+            typePrint(f"You have entered: {data_str}\n")
+            while True:
+                choice = typeInput("Please confirm: Y or N\n")
+                try:
+                    if choice == 'Y' or choice == 'y':
+                        print_batch()
+                        break
+                    elif choice == 'N' or choice == 'n':
+                        check_batch()
+                        break
+                    else:
+                        print("Invalid input, please try again")
+                        continue
+                except ValueError:
+                    typePrint("Invalid input. Please enter date in format DD-MM-YYYY")
+                    clearScreen()
+                    time.sleep(.5)
+                    check_batch()
+        except ValueError:
+                print("Invalid Date")
+                clearScreen()
+                time.sleep(.5)
+                check_batch()
+    else:
+        print("Invalid date format, please try again.")
+        time.sleep(2)
+        check_batch()
 
 
 def check_invt():
@@ -318,7 +357,7 @@ def main():
     time.sleep(1)
     print("\n")
     print("1. Sales menu.\n")
-    print("2. Check next day batch numbers.\n")
+    print("2. Check batch numbers.\n")
     print("3. Check ingredients inventory.\n")
     print("4. Update ingredients inventory.\n")
     print("5. Calculate profits.\n")
@@ -345,7 +384,7 @@ def main():
             exit()
     except ValueError:
         typePrint("Invalid input. Please choose a numbered menu item...")
-        time.sleep(1.5)
+        time.sleep(2)
         clearScreen()
         main()
 
