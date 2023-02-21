@@ -11,6 +11,8 @@ import sys
 import os
 
 
+import datetime
+
 # Scope for Google IAM auth for API program access
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -118,7 +120,8 @@ def print_sales():
     """
     Print sales data by date to terminal
     """
-    print('You have reached print sales.')
+    past_sales = SHEET.worksheet("sales").get_all_values()
+    print(past_sales)
     time.sleep(2)
     return_main()
     
@@ -204,14 +207,13 @@ def sales_input():
             continue
     
 
-
-
 def rec_sales():
     """
     Record daily sales
     """
     typePrint("Please enter date in the format DD-MM-YYYY.\n")
     rec_date = typeInput("Enter date here: \n")
+    #gs_date_rec = datetime.strftime(rec_date, '%d/%m/%Y')
     if len(rec_date) == 10:
         try:
             typePrint(f"You have entered: {rec_date}\n")
