@@ -215,21 +215,24 @@ def day_sales():
     clearScreen()
     typePrint("Sales Menu")
     time.sleep(1)
-    print("""
-          1. Check sales by date
-          2. Add days sales
-          """)
-    try:
-        choice = int(typeInput("Please choose from menu...\n"))
-        if choice == 1:
-            check_sales()
-        elif choice == 2:
-            rec_sales()
-    except ValueError:
-        typePrint("Invalid input. Please choose a numbered menu item...")
-        time.sleep(1.5)
-        clearScreen()
-        day_sales()
+    while True:
+        print("""
+            1. Check sales by date
+            2. Add days sales
+            """)
+        try:
+            choice = int(typeInput("Please choose from menu...\n"))
+            if choice == 1:
+                check_sales()
+                break
+            elif choice == 2:
+                rec_sales()
+                break
+        except ValueError:
+            typePrint("Invalid input. Please choose a numbered menu item.")
+            time.sleep(1.5)
+            clearScreen()
+            continue
 
 
 def check_batch():
