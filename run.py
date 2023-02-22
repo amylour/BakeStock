@@ -12,8 +12,6 @@ import os
 
 
 from datetime import datetime
-now = datetime.now()
-# date_str = now.strftime("%m-%d-%Y")
 
 
 # Scope for Google IAM auth for API program access
@@ -98,19 +96,6 @@ def prog_start():
     ''')
 
 
-def print_date_ws():
-    sales_sheet = SHEET.worksheet("sales")
-    row = 1
-
-    while sales_sheet.cell(row, 1).value != '':
-        row += 1
-
-    now = datetime.now()
-    sales_sheet.update_cell(row, 1, now.day)
-    sales_sheet.update_cell(row, 2, now.month)
-    sales_sheet.update_cell(row, 3, now.year)
-
-
 def return_main():
     """
     Return to main menu
@@ -188,7 +173,7 @@ def validate_sales(values):
     """
     try:
         [int(value) for value in values]
-        if len(values) != 6:
+        if len(values) != 9:
             raise ValueError(
                 f"6 values required, you provided {len(values)}"
             )
@@ -200,7 +185,8 @@ def validate_sales(values):
     return True
 
 def sales_input():
-    typePrint("Enter days sales (6 numbers, separated by commas).\n")
+    typePrint("Enter date & sales figures "
+              "(DD,MM,YY, sales figures, separated by commas).\n")
     sales_figs = typeInput("Enter sales here: \n")
     sales_data = sales_figs.split(",")
     validate_sales(sales_data)
@@ -223,7 +209,7 @@ def sales_input():
             print("Invalid input, please try again.")
             continue
     
-
+'''
 def rec_sales():
     """
     Record daily sales
@@ -237,13 +223,12 @@ def rec_sales():
     typePrint("Getting todays date...\n")
     time.sleep(1)
     now = datetime.now()
-    date_str = now.strftime("%m-%d-%Y")
+    date_str = now.strftime("%d-%m-%Y")
     print(f"Todays date is {date_str}\n")
     while True:
         choice = typeInput("Please confirm: Y or N.\n")
         try:
             if choice == 'Y' or choice == 'y':
-                print_date_ws()
                 sales_input()
                 break
             elif choice == 'N' or choice == 'n':
@@ -266,6 +251,7 @@ def rec_sales():
         #print("Invalid date format, please try again.")
         #time.sleep(2)
         #rec_sales()
+'''
 
     
 def day_sales():
@@ -285,7 +271,7 @@ def day_sales():
                 check_sales()
                 break
             elif choice == 2:
-                rec_sales()
+                sales_input()
                 break
         except ValueError:
             typePrint("Invalid input. Please choose a numbered menu item.")
