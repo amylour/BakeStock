@@ -327,41 +327,55 @@ def check_invt():
     """
     typePrint("Checking inventory levels...")
     time.sleep(1)
-    print("\n")
-    typePrint(f"Current inventory levels are:")
-    print("\n")
+    clearScreen()
+    typePrint(f"Current inventory levels are:\n")
     for key, value in ingInvt.items():
         print('- ', key, ':', value)
+    print("\n")
+    while True:
+        user_input = input("Would you like to update an item? Enter Y or N.\n")
+        if user_input == 'Y' or user_input == 'y':
+            clearScreen()
+            update_invt()
+            break
+        elif user_input == 'N' or user_input == 'n':
+            return_main()  
+            break 
     time.sleep(1)
     return_main()
 
-"""
+
 def user_update():
     while True:
         ing_name = input("Please choose ingredient from the list: \n")
         if ing_name in ingInvt:
-            updated_value = int(input("Enter the new value for the ingredient: \n"))
-            ingInvt[ing_name] = 'updated_value'
-            print(f"{ing_name} updated to {updated_value}")
+            updated_value = input("Enter new value for ingredient: \n")
+            ingInvt[ing_name] = updated_value
+            print(f"{ing_name} updated to {updated_value}\n")
             break
         else:
-            print(f"{ing_name} is not in this list.")
+            print(f"{ing_name} is not in this list.\n")
             continue
-"""
+    
 
 def update_invt():
     """
     Allow user to add additional ingredient amounts to increase
     inventory levels.
     """
-    typePrint("Current Inventory levels are:\n")
+    clearScreen()
+    typePrint("Update inventory levels.")
+    print("\n")
+    typePrint("Current Inventory levels are: ")
+    print("\n")
     time.sleep(1)
-    # user_update()
     for key, value in ingInvt.items():
         print('- ', key, ':', value)
-    ing_choice = typeInput("Enter your choice: \n")
-    ingInvt[ing_choice] = 'ing_value'
-    print(ingInvt)
+    user_update()
+    clearScreen()
+    typePrint("Updated inventory levels are: \n")
+    for key, value in ingInvt.items():
+        print('- ', key, ':', value)
     time.sleep(1)
     return_main()
 
