@@ -188,13 +188,14 @@ def sales_input():
     sales_figs = typeInput("Enter sales here: \n")
     sales_data = sales_figs.split(",")
     validate_sales(sales_data)
-    typePrint(f"You have entered : {sales_data}\n")
+    sales_str = ','.join(sales_data)
+    typePrint(f"You have entered : {sales_str}\n")
     while True:
         choice = typeInput("Please confirm: Y or N.\n")
         if choice == 'Y' or choice == 'y':
             sales_sheet = SHEET.worksheet("sales")
             sales_sheet.append_row(sales_data)
-            typePrint(f"The sales figures {sales_data} have been recorded.\n")
+            typePrint(f"The sales figures have been recorded.\n")
             time.sleep(1)
             print("\n")
             return_main()
