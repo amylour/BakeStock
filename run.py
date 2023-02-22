@@ -11,7 +11,10 @@ import sys
 import os
 
 
-import datetime
+from datetime import datetime
+now = datetime.now()
+# date_str = now.strftime("%m-%d-%Y")
+
 
 # Scope for Google IAM auth for API program access
 SCOPE = [
@@ -93,6 +96,19 @@ def prog_start():
     *                                                                    *
     **********************************************************************
     ''')
+
+
+def print_date_ws():
+    sales_sheet = SHEET.worksheet("sales")
+    row = 1
+
+    while sales_sheet.cell(row, 1).value != '':
+        row += 1
+
+    now = datetime.now()
+    sales_sheet.update_cell(row, 1, now.day)
+    sales_sheet.update_cell(row, 2, now.month)
+    sales_sheet.update_cell(row, 3, now.year)
 
 
 def return_main():
@@ -212,40 +228,44 @@ def rec_sales():
     """
     Record daily sales
     """
-    typePrint("Please enter date in the format DD-MM-YYYY.\n")
-    rec_date = typeInput("Enter date here: \n")
+    # typePrint("Please enter date in the format DD-MM-YYYY.\n")
+    # rec_date = typeInput("Enter date here: \n")
     #gs_date_rec = datetime.strftime(rec_date, '%d/%m/%Y')
-    if len(rec_date) == 10:
+    # if len(rec_date) == 10:
+         #try:
+    # typePrint(f"You have entered: {rec_date}\n")
+    typePrint("Getting todays date...\n")
+    time.sleep(1)
+    now = datetime.now()
+    date_str = now.strftime("%m-%d-%Y")
+    print(f"Todays date is {date_str}\n")
+    while True:
+        choice = typeInput("Please confirm: Y or N.\n")
         try:
-            typePrint(f"You have entered: {rec_date}\n")
-            while True:
-                choice = typeInput("Please confirm: Y or N.\n")
-                try:
-                    if choice == 'Y' or choice == 'y':
-                        # sales_date = SHEET.worksheet("sales")
-                        # sales_date.insert_rows(rec_date)
-                        sales_input()
-                        break
-                    elif choice == 'N' or choice == 'n':
-                        rec_sales()
-                        break
-                    else:
-                        print("Invalid input, please try again.")
-                        continue
-                except ValueError:
-                    typePrint("Invalid input. Enter date in format DD-MM-YYYY.")
-                    clearScreen()
-                    time.sleep(.5)
-                    rec_sales()
-        except ValueError:
-                print("Invalid Date.")
-                clearScreen()
-                time.sleep(.5)
+            if choice == 'Y' or choice == 'y':
+                print_date_ws()
+                sales_input()
+                break
+            elif choice == 'N' or choice == 'n':
                 rec_sales()
-    else:
-        print("Invalid date format, please try again.")
-        time.sleep(2)
-        rec_sales()
+                break
+            else:
+                print("Invalid input, please try again.")
+                continue
+        except ValueError:
+            typePrint("Invalid input. Enter date in format DD-MM-YYYY.")
+            clearScreen()
+            time.sleep(.5)
+            rec_sales()
+       # except ValueError:
+               # print("Invalid Date.")
+               # clearScreen()
+               # time.sleep(.5)
+               # rec_sales()
+    #else:
+        #print("Invalid date format, please try again.")
+        #time.sleep(2)
+        #rec_sales()
 
     
 def day_sales():
@@ -421,7 +441,7 @@ def main():
     print("3. Check ingredients inventory.\n")
     print("4. Update ingredients inventory.\n")
     print("5. Calculate profits.\n")
-    print("6. Exit.\n")
+    print("6. Exit.")
     print('''
       *******************************************************
       * ALERT: Inventory levels normal.                     *
