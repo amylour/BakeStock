@@ -121,12 +121,18 @@ def print_sales():
     """
     Print sales data by date to terminal
     """
-    past_sales = SHEET.worksheet("sales").get_all_values()
-    print(past_sales)
+    sales_sheet = SHEET.worksheet("sales").get_all_values()
+    # credit: https://stackoverflow.com/questions/4488570/how-do-i-write-a-tab-in-python
+    print("****************************************************************\n")
+    for row in sales_sheet:
+        print('\t'.join(row))
+    print("\n")
+    print("****************************************************************\n")  
     time.sleep(2)
     return_main()
-    
 
+    
+'''
 def check_sales():
     """
     Check sales by date and print in terminal
@@ -137,32 +143,36 @@ def check_sales():
     if len(sales_date_str) == 10:
         try:
             typePrint(f"You have entered: {sales_date_str}\n")
-            while True:
-                choice = typeInput("Please confirm: Y or N.\n")
-                try:
-                    if choice == 'Y' or choice == 'y':
-                        print_sales()
-                        break
-                    elif choice == 'N' or choice == 'n':
-                        check_sales()
-                        break
-                    else:
-                        print("Invalid input, please try again.")
-                        continue
-                except ValueError:
-                    typePrint("Invalid input. Please enter date in format DD-MM-YYYY.")
-                    clearScreen()
-                    time.sleep(.5)
-                    check_sales()
-        except ValueError:
-                print("Invalid Date")
-                clearScreen()
-                time.sleep(.5)
-                check_sales()
-    else:
-        print("Invalid date format, please try again.")
-        time.sleep(2)
+while True:
+    choice = typeInput("Please confirm: Y or N.\n")
+    try:
+        if choice == 'Y' or choice == 'y':
+            sales_sheet = SHEET.worksheet("sales").get_all_values()
+            # credit: https://stackoverflow.com/questions/4488570/how-do-i-write-a-tab-in-python
+            for row in sales_sheet:
+                print('\t'.join(row))                    
+            break
+        elif choice == 'N' or choice == 'n':
+            check_sales()
+            break
+        else:
+            print("Invalid input, please try again.")
+            continue
+    except ValueError:
+        typePrint("Invalid input. Please enter date in format DD-MM-YYYY.")
+        clearScreen()
+        time.sleep(.5)
         check_sales()
+        #except ValueError:
+                #print("Invalid Date")
+               # clearScreen()
+                #time.sleep(.5)
+                #check_sales()
+    #else:
+        #print("Invalid date format, please try again.")
+        #time.sleep(2)
+        #check_sales()
+'''
 
 
 def validate_sales(values):
@@ -262,13 +272,13 @@ def day_sales():
     print("** Sales Menu **")
     while True:
         print("""
-            1. Check sales by date.
+            1. View sales data.
             2. Add days sales.
             """)
         try:
             choice = int(typeInput("Please choose from menu.\n"))
             if choice == 1:
-                check_sales()
+                print_sales()
                 break
             elif choice == 2:
                 sales_input()
