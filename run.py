@@ -335,32 +335,33 @@ def check_invt():
     time.sleep(1)
     return_main()
 
+"""
+def user_update():
+    while True:
+        ing_name = input("Please choose ingredient from the list: \n")
+        if ing_name in ingInvt:
+            updated_value = int(input("Enter the new value for the ingredient: \n"))
+            ingInvt[ing_name] = 'updated_value'
+            print(f"{ing_name} updated to {updated_value}")
+            break
+        else:
+            print(f"{ing_name} is not in this list.")
+            continue
+"""
 
 def update_invt():
     """
     Allow user to add additional ingredient amounts to increase
     inventory levels.
     """
-    typePrint("Please choose ingredient from the list: \n")
+    typePrint("Current Inventory levels are:\n")
     time.sleep(1)
-    print("""
-          1.  Flour
-          2.  Sugar
-          3.  Butter
-          4.  Eggs
-          5.  Milk
-          6.  Cream Cheese
-          7.  Icing Sugar
-          8.  Chocolate
-          9.  Cookies
-          10. Cocoa Powder
-          11. Vanilla Extract
-          12. Unsalted Butter
-          13. Strawberry Syrup
-          14. Caramel Syrup 
-          """)
-
-    choice = int(typeInput("Enter your choice: \n"))
+    # user_update()
+    for key, value in ingInvt.items():
+        print('- ', key, ':', value)
+    ing_choice = typeInput("Enter your choice: \n")
+    ingInvt[ing_choice] = 'ing_value'
+    print(ingInvt)
     time.sleep(1)
     return_main()
 
