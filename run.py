@@ -11,9 +11,6 @@ import sys
 import os
 
 
-from datetime import datetime
-
-
 # Scope for Google IAM auth for API program access
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -31,7 +28,7 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 # const for google sgeet
 SHEET = GSPREAD_CLIENT.open('bakestock')
 
-
+'''
 # Dictionary of inventory ingredients and levels
 ingInvt = {
     "Flour": "10000g",
@@ -49,7 +46,7 @@ ingInvt = {
     "Strawberry Syrup": "300ml",
     "Caramel Syrup": "300ml"
 }
-
+'''
 
 # clear screen function Credit: https://www.101computing.net/python-typing-text-effect/
 def clearScreen():
@@ -136,57 +133,14 @@ def print_sales():
     for row in sales_sheet:
         print('\t'.join(row))
     print("\n")
-    print("****************************************************************\n")  
+    print("****************************************************************\n") 
     time.sleep(2)
     return_main()
-
-    
-'''
-def check_sales():
-    """
-    Check sales by date and print in terminal
-    """
-    clearScreen()
-    typePrint("Please enter date in the format DD-MM-YYYY.\n")
-    sales_date_str = typeInput("Enter date here: \n")
-    if len(sales_date_str) == 10:
-        try:
-            typePrint(f"You have entered: {sales_date_str}\n")
-while True:
-    choice = typeInput("Please confirm: Y or N.\n")
-    try:
-        if choice == 'Y' or choice == 'y':
-            sales_sheet = SHEET.worksheet("sales").get_all_values()
-            # credit: https://stackoverflow.com/questions/4488570/how-do-i-write-a-tab-in-python
-            for row in sales_sheet:
-                print('\t'.join(row))                    
-            break
-        elif choice == 'N' or choice == 'n':
-            check_sales()
-            break
-        else:
-            print("Invalid input, please try again.")
-            continue
-    except ValueError:
-        typePrint("Invalid input. Please enter date in format DD-MM-YYYY.")
-        clearScreen()
-        time.sleep(.5)
-        check_sales()
-        #except ValueError:
-                #print("Invalid Date")
-               # clearScreen()
-                #time.sleep(.5)
-                #check_sales()
-    #else:
-        #print("Invalid date format, please try again.")
-        #time.sleep(2)
-        #check_sales()
-'''
 
 
 def validate_sales(values):
     """
-    Convert string values into integers and raise ValueError if 
+    Convert string values into integers and raise ValueError if
     strings cannot be converted into int. Check for 6 values.
     Credit: Code Institute Love Sandwiches project
     """
@@ -202,6 +156,7 @@ def validate_sales(values):
         return False
 
     return True
+
 
 def sales_input():
     typePrint("Enter date & sales figures "
@@ -227,52 +182,8 @@ def sales_input():
         else:
             print("Invalid input, please try again.")
             continue
-    
-'''
-def rec_sales():
-    """
-    Record daily sales
-    """
-    # typePrint("Please enter date in the format DD-MM-YYYY.\n")
-    # rec_date = typeInput("Enter date here: \n")
-    #gs_date_rec = datetime.strftime(rec_date, '%d/%m/%Y')
-    # if len(rec_date) == 10:
-         #try:
-    # typePrint(f"You have entered: {rec_date}\n")
-    typePrint("Getting todays date...\n")
-    time.sleep(1)
-    now = datetime.now()
-    date_str = now.strftime("%d-%m-%Y")
-    print(f"Todays date is {date_str}\n")
-    while True:
-        choice = typeInput("Please confirm: Y or N.\n")
-        try:
-            if choice == 'Y' or choice == 'y':
-                sales_input()
-                break
-            elif choice == 'N' or choice == 'n':
-                rec_sales()
-                break
-            else:
-                print("Invalid input, please try again.")
-                continue
-        except ValueError:
-            typePrint("Invalid input. Enter date in format DD-MM-YYYY.")
-            clearScreen()
-            time.sleep(.5)
-            rec_sales()
-       # except ValueError:
-               # print("Invalid Date.")
-               # clearScreen()
-               # time.sleep(.5)
-               # rec_sales()
-    #else:
-        #print("Invalid date format, please try again.")
-        #time.sleep(2)
-        #rec_sales()
-'''
 
-    
+
 def day_sales():
     """
     Go to sales menu
@@ -297,6 +208,7 @@ def day_sales():
             time.sleep(1.5)
             clearScreen()
             continue
+
 
 def print_batch():
     """
@@ -331,7 +243,8 @@ def check_batch():
                         print("Invalid input, please try again")
                         continue
                 except ValueError:
-                    typePrint("Invalid input. Please enter date in format DD-MM-YYYY.")
+                    typePrint("Invalid input."
+                              " Please enter date in format DD-MM-YYYY.")
                     clearScreen()
                     time.sleep(.5)
                     check_batch()
@@ -373,6 +286,9 @@ def check_invt():
 
 
 def user_update():
+    """
+    Allow user input to update inventory levels
+    """
     while True:
         ing_name = input("Please choose ingredient from the list: \n")
         if ing_name in ingInvt:
@@ -433,7 +349,6 @@ def calc_pro():
     return_main()
 
 
-
 def exit():
     """
     return to program start screen
@@ -443,7 +358,6 @@ def exit():
     print("\n")
     print("\n")
     clearScreen()
-
     prog_start()
     main()
 
@@ -475,7 +389,7 @@ def main():
                 day_sales()
                 break
             elif choice == 2:
-                check_batch()#
+                check_batch()
                 break
             elif choice == 3:
                 check_invt()
@@ -493,9 +407,7 @@ def main():
             typePrint("Invalid input. Please choose a numbered menu item...\n")
             time.sleep(1)
             continue
-            
-            
 
-
+        
 prog_start()
 main()
