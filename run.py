@@ -52,6 +52,9 @@ ingInvt = {
 # clear screen function
 # Credit: https://www.101computing.net/python-typing-text-effect/
 def clearScreen():
+    """
+    Function for clearing CLI for new code
+    """
     os.system("clear")
 
 
@@ -153,7 +156,7 @@ def validate_sales(values):
                 f"6 values required, you provided {len(values)}"
             )
     except ValueError:
-        typePrint(f"Input invalid, please try again.\n")
+        typePrint("Input invalid, please try again.\n")
         sales_input()
         return False
 
@@ -173,7 +176,7 @@ def sales_input():
         if choice == 'Y' or choice == 'y':
             sales_sheet = SHEET.worksheet("sales")
             sales_sheet.append_row(sales_data)
-            typePrint(f"The sales figures have been recorded.\n")
+            typePrint("The sales figures have been recorded.\n")
             time.sleep(1)
             print("\n")
             return_main()
@@ -271,9 +274,14 @@ def check_invt():
     clearScreen()
     typePrint(f"** Current inventory levels are: **\n")
     print("\n")
-    for key, value in ingInvt.items():
-        print('- ', key, ':', value)
-    print("\n")
+    invt_sheet = SHEET.worksheet("inventory")
+    ing_list = invt_sheet.col_values(1)
+    q_list = invt_sheet.col_values(2)
+    # list/zip for parallel iteration
+    # credit: https://realpython.com/python-zip-function/
+    pairs = list(zip(ing_list, q_list))
+    for pair in pairs:
+        print('- ', pair[0], ': ', pair[1])
     while True:
         user_input = input("Would you like to update an item? Enter Y or N.\n")
         if user_input == 'Y' or user_input == 'y':
@@ -303,7 +311,7 @@ def user_update():
             print(f"{ing_name} is not in this list.\n")
             continue
 
-
+'''
 def print_invt_ws():
     """
     Print inventory levels to google sheet when updated
@@ -312,7 +320,7 @@ def print_invt_ws():
     # convert dictionary to list of lists
     invt_data = [value for value in ingInvt.items()]
     invt_sheet.append_row(invt_data)
-
+'''
 
 def update_invt():
     """
@@ -329,7 +337,7 @@ def update_invt():
         print('- ', key, ':', value)
     print("\n")
     user_update()
-    print_invt_ws()
+    # print_invt_ws()
     clearScreen()
     typePrint("** Updated inventory levels are: **\n")
     print("\n")
