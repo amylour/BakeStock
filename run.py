@@ -121,7 +121,16 @@ def print_sales():
     """
     Print sales data by date to terminal
     """
+    clearScreen()
     sales_sheet = SHEET.worksheet("sales").get_all_values()
+    typePrint("** Sales figures by date **\n")
+    print("""
+                       - FLAVOURS LIST -
+            Van -> Vanilla       Red V -> Red Velvet
+            Choc -> Chocolate    Strawb -> Strawberry
+            Cara -> Caramel      C&C -> Cookies & Cream\n
+          """)
+    # \t to format and display sales data from gsheet into terminal
     # credit: https://tinyurl.com/3h7nr24a
     print("****************************************************************\n")
     for row in sales_sheet:
