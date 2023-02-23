@@ -48,7 +48,9 @@ ingInvt = {
 }
 '''
 
-# clear screen function Credit: https://www.101computing.net/python-typing-text-effect/
+
+# clear screen function
+# Credit: https://www.101computing.net/python-typing-text-effect/
 def clearScreen():
     os.system("clear")
 
@@ -133,7 +135,7 @@ def print_sales():
     for row in sales_sheet:
         print('\t'.join(row))
     print("\n")
-    print("****************************************************************\n") 
+    print("****************************************************************\n")
     time.sleep(2)
     return_main()
 
@@ -249,10 +251,10 @@ def check_batch():
                     time.sleep(.5)
                     check_batch()
         except ValueError:
-                print("Invalid Date")
-                clearScreen()
-                time.sleep(.5)
-                check_batch()
+            print("Invalid Date")
+            clearScreen()
+            time.sleep(.5)
+            check_batch()
     else:
         print("Invalid date format, please try again.")
         time.sleep(2)
@@ -279,8 +281,8 @@ def check_invt():
             update_invt()
             break
         elif user_input == 'N' or user_input == 'n':
-            return_main()  
-            break 
+            return_main()
+            break
     time.sleep(1)
     return_main()
 
@@ -408,6 +410,6 @@ def main():
             time.sleep(1)
             continue
 
-        
+
 prog_start()
 main()
