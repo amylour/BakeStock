@@ -122,7 +122,7 @@ def print_sales():
     Print sales data by date to terminal
     """
     sales_sheet = SHEET.worksheet("sales").get_all_values()
-    # credit: https://stackoverflow.com/questions/4488570/how-do-i-write-a-tab-in-python
+    # credit: https://tinyurl.com/3h7nr24a
     print("****************************************************************\n")
     for row in sales_sheet:
         print('\t'.join(row))
@@ -196,7 +196,7 @@ def validate_sales(values):
 
 def sales_input():
     typePrint("Enter date & sales figures "
-              "(DD,MM,YY, sales figures, separated by commas).\n")
+              "(DD,MM,YYYY, sales figures, separated by commas).\n")
     sales_figs = typeInput("Enter sales here: \n")
     sales_data = sales_figs.split(",")
     validate_sales(sales_data)
