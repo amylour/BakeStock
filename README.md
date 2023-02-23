@@ -68,4 +68,4 @@ Sales, stock, inventory data here. **
 
 ## Content References
    - [Python typing text effect](https://www.101computing.net/python-typing-text-effect/)
-   
+   - [Adding tab for data formatting and display](https://stackoverflow.com/questions/4488570/how-do-i-write-a-tab-in-python)

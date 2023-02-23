@@ -345,7 +345,8 @@ def check_invt():
     typePrint("Checking inventory levels...")
     time.sleep(1)
     clearScreen()
-    typePrint(f"Current inventory levels are:\n")
+    typePrint(f"** Current inventory levels are: **\n")
+    print("\n")
     for key, value in ingInvt.items():
         print('- ', key, ':', value)
     print("\n")
@@ -369,11 +370,22 @@ def user_update():
             updated_value = input("Enter new value for ingredient: \n")
             ingInvt[ing_name] = updated_value
             print(f"{ing_name} updated to {updated_value}\n")
+            time.sleep(1.5)
             break
         else:
             print(f"{ing_name} is not in this list.\n")
             continue
-    
+
+
+def print_invt_ws():
+    """
+    Print inventory levels to google sheet when updated
+    """
+    invt_sheet = SHEET.worksheet("inventory")
+    # convert dictionary to list of lists
+    invt_data = [value for value in ingInvt.items()]
+    invt_sheet.append_row(invt_data)
+
 
 def update_invt():
     """
@@ -381,18 +393,22 @@ def update_invt():
     inventory levels.
     """
     clearScreen()
-    typePrint("Update inventory levels.")
+    typePrint("** Update inventory levels. **")
     print("\n")
-    typePrint("Current Inventory levels are: ")
+    typePrint("** Current Inventory levels are: **")
     print("\n")
     time.sleep(1)
     for key, value in ingInvt.items():
         print('- ', key, ':', value)
+    print("\n")
     user_update()
+    print_invt_ws()
     clearScreen()
-    typePrint("Updated inventory levels are: \n")
+    typePrint("** Updated inventory levels are: **\n")
+    print("\n")
     for key, value in ingInvt.items():
         print('- ', key, ':', value)
+    print("\n")
     time.sleep(1)
     return_main()
 
