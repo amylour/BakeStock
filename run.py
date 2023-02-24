@@ -199,51 +199,6 @@ def day_sales():
             continue
 
 
-def validate_batch(values):
-    """
-    Convert string values into integers and raise ValueError if
-    strings cannot be converted into int. Check for 6 values.
-    Credit: Code Institute Love Sandwiches project
-    """
-    try:
-        [int(value) for value in values]
-        if len(values) != 6:
-            raise ValueError(
-                f"6 values required, you provided {len(values)}"
-            )
-    except ValueError:
-        typePrint("Input invalid, please try again.\n")
-        update_batch()
-        return False
-
-    return True
-
-'''
-def update_batch():
-    """
-    Choose a day to amend batch numbers for that week.
-    User input updates figures and changes data in gsheet.
-    """
-    batch_sheet = SHEET.worksheet("batch")
-    #find_day = typeInput("Enter the name of the day you would like to update: \n")
-    #typePrint(f"You have chosen {find_day}.\n")
-    values = batch_sheet.row_values(2)
-    typePrint("Enter new values in format as example: 1,3,2,2,3,1 \n")
-    update_day = typeInput("Enter values here: \n")
-    batch_data = update_day.split(",")
-    new_values = batch_sheet.update('B2:G2', batch_data)
-    values = batch_sheet.row_values(2)
-    print(values)
-    
-    time.sleep(2)
-    clearScreen()
-    typePrint("** UPDATED BATCH NUMBERS **\n")
-    for row in batch_sheet:
-        print('\t'.join(row))
-    return_main()
- '''   
-
-
 def check_batch():
     """
     Pull day batch nums data from google sheets-batch
@@ -269,6 +224,7 @@ def check_batch():
     print("\n")
     print("****************************************************************\n")
     time.sleep(2)
+    update_batch()
     return_main()
 
 
