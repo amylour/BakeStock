@@ -103,12 +103,9 @@ def return_main():
     Return to main menu
     """
     while True:
-        choice = input("""
-                       \n
-                       \n
-                       To return to Main Menu, please enter 'M'.
-                       \n
-                       """)
+        print("\n")
+        print("\n")
+        choice = typeInput("To return to Main Menu, please enter 'M'.\n")
         if choice == 'M' or choice == 'm':
             time.sleep(1.5)
             clearScreen()
@@ -292,23 +289,30 @@ def user_update_ing():
     invt_sheet = SHEET.worksheet("inventory")
     records = invt_sheet.get_all_records()
     while True:
-        ing_choice = input("Enter ingredient name: \n")
+        ing_choice = input("Enter ingredient name as displayed above: \n")
         record_found = False
         for record in records:
             if record["Ingredient"] == ing_choice:
                 record_found = True
-                update_q = int(input(f"Enter value for {ing_choice}: \n"))
-                record["Quantity"] = update_q
-                # update with new data to inventory sheet
-                # credit: https://realpython.com/python-enumerate/
-                for i, record in enumerate(records, start=2):
-                    invt_sheet.update_cell(i,2,record["Quantity"]) 
-                typePrint("Inventory successfully updated.\n")
-                choice = input("Update another ingredient?Enter Y or N.\n")
-                if choice == 'Y' or choice == 'y':
-                    user_update_ing()
-                elif choice == 'N' or choice == 'n':
-                    return_main()
+                while True:
+                    try:
+                        update_q = int(input(f"Enter value for {ing_choice}: \n"))
+                        record["Quantity"] = update_q
+                        # update with new data to inventory sheet
+                        # credit: https://realpython.com/python-enumerate/
+                        for i, record in enumerate(records, start=2):
+                            invt_sheet.update_cell(i,2,record["Quantity"]) 
+                        typePrint("Inventory successfully updated.\n")
+                        choice = input("Update another ingredient? Enter Y or N.\n")
+                        if choice == 'Y' or choice == 'y':
+                            user_update_ing()
+                        elif choice == 'N' or choice == 'n':
+                            return_main()
+                    except ValueError:
+                        typePrint("Value must be numerical. Try again.\n")
+                        continue
+                    else:
+                        return update_q
         if not record_found:
             print("Ingredient not found in inventory.\n")
             continue
@@ -316,13 +320,13 @@ def user_update_ing():
 
 def check_invt():
     """
-    Pull inventory data from google sheet-inventory
-    Print list vertically credit: thispointer.com https://tinyurl.com/r5ctr7je
+    Pull inventory data from inventory google sheet and allow
+    user to update levels and amend worksheet
     """
     typePrint("Checking inventory levels...")
     time.sleep(1)
     clearScreen()
-    typePrint(f"** Current inventory levels are: **\n")
+    typePrint(f"** CURRENT INVENTORY LEVELS **")
     print("\n")
     invt_sheet = SHEET.worksheet("inventory")
     ing_list = invt_sheet.col_values(1)
@@ -344,7 +348,7 @@ def check_invt():
     time.sleep(1)
     return_main()
 
-
+'''
 def update_invt():
     """
     View inventory levels, update levels by user input
@@ -366,7 +370,7 @@ def update_invt():
     print("\n")
     typePrint("Please proceed in updating inventory levels...\n")
     user_update_ing()
-
+'''
 
 def calc_pro():
     """
@@ -402,11 +406,10 @@ def main():
     time.sleep(1)
     print("\n")
     print("1. Sales menu.\n")
-    print("2. Check batch numbers.\n")
-    print("3. Check ingredients inventory.\n")
-    print("4. Update ingredients inventory.\n")
-    print("5. Calculate profits.\n")
-    print("6. Exit.")
+    print("2. Batch numbers.\n")
+    print("3. Ingredients inventory.\n")
+    print("4. Profits.\n")
+    print("5. Exit.")
     print('''
       *******************************************************
       * ALERT: Inventory levels normal.                     *
@@ -425,12 +428,9 @@ def main():
                 check_invt()
                 break
             elif choice == 4:
-                update_invt()
-                break
-            elif choice == 5:
                 calc_pro()
                 break
-            elif choice == 6:
+            elif choice == 5:
                 exit()
                 break
         except ValueError:
