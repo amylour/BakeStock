@@ -223,7 +223,7 @@ def validate_batch(values):
     """
     try:
         [int(value) for value in values]
-        if len(values) != 9:
+        if len(values) != 6:
             raise ValueError(
                 f"6 values required, you provided {len(values)}"
             )
@@ -234,34 +234,30 @@ def validate_batch(values):
 
     return True
 
-
+'''
 def update_batch():
     """
     Choose a day to amend batch numbers for that week.
     User input updates figures and changes data in gsheet.
     """
     batch_sheet = SHEET.worksheet("batch")
-    cur_batch = batch_sheet.get_all_records()
-    find_day = typeInput("Enter the name of the day you would like to update: \n")
-    cell = batch_sheet.find(find_day)
-    typePrint(f"You have chosen {find_day}.\n")
+    #find_day = typeInput("Enter the name of the day you would like to update: \n")
+    #typePrint(f"You have chosen {find_day}.\n")
+    values = batch_sheet.row_values(2)
     typePrint("Enter new values in format as example: 1,3,2,2,3,1 \n")
-    update_day =typeInput("Enter values here: \n")
+    update_day = typeInput("Enter values here: \n")
     batch_data = update_day.split(",")
-    validate_batch(batch_data)
-    batch_str = ','.join(batch_data)
-    typePrint(f"You have entered : {batch_str}\n")
-    row_num = cell.row
-    values = update_day
-    batch_sheet.update('B:G', values)
-    typePrint("Batch numbers updated.\n")
+    new_values = batch_sheet.update('B2:G2', batch_data)
+    values = batch_sheet.row_values(2)
+    print(values)
+    
     time.sleep(2)
     clearScreen()
     typePrint("** UPDATED BATCH NUMBERS **\n")
     for row in batch_sheet:
         print('\t'.join(row))
     return_main()
-    
+ '''   
 
 
 def check_batch():
