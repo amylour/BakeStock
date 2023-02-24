@@ -291,22 +291,28 @@ def user_update_ing():
     """
     invt_sheet = SHEET.worksheet("inventory")
     records = invt_sheet.get_all_records()
-    ing_choice = input("Enter ingredient name: \n")
-    for record in records:
-        if record["Ingredient"] == ing_choice:
-            update_q = int(input("Enter value for {}: \n".format(ing_choice)))
-            record["Quantity"] = update_q
-            # update with new data to inventory sheet
-            for i, record in enumerate(records, start=2):
-                invt_sheet.update_cell(i,2,record["Quantity"])  
-                typePrint("Inventory updating...\n")
-            typePrint("Inventory successfully updated.\n")
-            break
-        else:
+    while True:
+        ing_choice = input("Enter ingredient name: \n")
+        record_found = False
+        for record in records:
+            if record["Ingredient"] == ing_choice:
+                record_found = True
+                update_q = int(input(f"Enter value for {ing_choice}: \n"))
+                record["Quantity"] = update_q
+                # update with new data to inventory sheet
+                # credit: https://realpython.com/python-enumerate/
+                for i, record in enumerate(records, start=2):
+                    invt_sheet.update_cell(i,2,record["Quantity"]) 
+                typePrint("Inventory successfully updated.\n")
+                choice = input("Update another ingredient?Enter Y or N.\n")
+                if choice == 'Y' or choice == 'y':
+                    user_update_ing()
+                elif choice == 'N' or choice == 'n':
+                    return_main()
+        if not record_found:
             print("Ingredient not found in inventory.\n")
             continue
-
-
+               
 
 def check_invt():
     """
