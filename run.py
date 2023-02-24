@@ -125,7 +125,7 @@ def print_sales():
     """
     clearScreen()
     sales_sheet = SHEET.worksheet("sales").get_all_values()
-    typePrint("** Sales figures by date **\n")
+    typePrint("** SALES FIGURES BY DATE **\n")
     print("""
                        - FLAVOURS LIST -
             Van -> Vanilla       Red V -> Red Velvet
@@ -215,53 +215,61 @@ def day_sales():
             continue
 
 
-def print_batch():
+def update_batch():
     """
-    Print batch numbers from date input
+    Choose a day to amend batch numbers for that week.
+    User input updates figures and changes data in gsheet.
     """
-    print("You have reached print batch.")
-    time.sleep(1)
+    batch_sheet = SHEET.worksheet("batch")
+    cur_batch = batch_sheet.get_all_records()
+    find_day = typeInput("Enter the name of the day you would like to update: \n")
+    cell = batch_sheet.find(find_day)
+    typePrint(f"You have chosen {find_day}.\n")
+    typePrint("Enter new values in format as example: 1,3,2,2,3,1 \n")
+    update_day =typeInput("Enter values here: \n")
+    batch_data = update_day.split(",")
+    validate_sales(batch_data)
+    batch_str = ','.join(batch_data)
+    typePrint(f"You have entered : {batch_str}\n")
+    row_num = cell.row
+    values = update_day
+    batch_sheet.update('B:G', values)
+    typePrint("Batch numbers updated.\n")
+    time.sleep(2)
+    clearScreen()
+    typePrint("** UPDATED BATCH NUMBERS **\n")
+    for row in batch_sheet:
+        print('\t'.join(row))
     return_main()
+    
 
 
 def check_batch():
     """
-    Pull date of day batch nums data from google sheets-batch
+    Pull day batch nums data from google sheets-batch
     """
     clearScreen()
     time.sleep(0.5)
-    typePrint("Please enter date in format DD-MM-YYYY.\n")
-    data_str = typeInput("Enter date here: \n")
-    if len(data_str) == 10:
-        try:
-            typePrint(f"You have entered: {data_str}\n")
-            while True:
-                choice = typeInput("Please confirm: Y or N\n")
-                try:
-                    if choice == 'Y' or choice == 'y':
-                        print_batch()
-                        break
-                    elif choice == 'N' or choice == 'n':
-                        check_batch()
-                        break
-                    else:
-                        print("Invalid input, please try again")
-                        continue
-                except ValueError:
-                    typePrint("Invalid input."
-                              " Please enter date in format DD-MM-YYYY.")
-                    clearScreen()
-                    time.sleep(.5)
-                    check_batch()
-        except ValueError:
-            print("Invalid Date")
-            clearScreen()
-            time.sleep(.5)
-            check_batch()
-    else:
-        print("Invalid date format, please try again.")
-        time.sleep(2)
-        check_batch()
+    batch_sheet = SHEET.worksheet("batch").get_all_values()
+    typePrint("** BATCH BY DAY **\n")
+    print("""
+                       - FLAVOURS LIST -
+            Van -> Vanilla       Red V -> Red Velvet
+            Choc -> Chocolate    Strawb -> Strawberry
+            Cara -> Caramel      C&C -> Cookies & Cream\n
+          """)
+    # \t to format and display sales data from gsheet into terminal
+    # credit: https://tinyurl.com/3h7nr24a
+    print("****************************************************************\n")
+    for row in batch_sheet:
+        print('\t'.join(row))
+    print("\n")
+    print("****************************************************************\n")
+    time.sleep(2)
+    update_batch()
+    
+
+    
 
 
 def check_invt():
