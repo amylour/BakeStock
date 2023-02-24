@@ -215,6 +215,26 @@ def day_sales():
             continue
 
 
+def validate_batch(values):
+    """
+    Convert string values into integers and raise ValueError if
+    strings cannot be converted into int. Check for 6 values.
+    Credit: Code Institute Love Sandwiches project
+    """
+    try:
+        [int(value) for value in values]
+        if len(values) != 9:
+            raise ValueError(
+                f"6 values required, you provided {len(values)}"
+            )
+    except ValueError:
+        typePrint("Input invalid, please try again.\n")
+        update_batch()
+        return False
+
+    return True
+
+
 def update_batch():
     """
     Choose a day to amend batch numbers for that week.
@@ -228,7 +248,7 @@ def update_batch():
     typePrint("Enter new values in format as example: 1,3,2,2,3,1 \n")
     update_day =typeInput("Enter values here: \n")
     batch_data = update_day.split(",")
-    validate_sales(batch_data)
+    validate_batch(batch_data)
     batch_str = ','.join(batch_data)
     typePrint(f"You have entered : {batch_str}\n")
     row_num = cell.row
