@@ -147,6 +147,10 @@ def validate_sales(values):
 
 
 def sales_input():
+    """
+    Allow user input of date and sales figures to be entered
+    and used to update sales worksheet.
+    """
     typePrint("Enter date & sales figures "
               "(DD,MM,YYYY, sales figures, separated by commas).\n")
     sales_figs = typeInput("Enter sales here: \n")
@@ -177,7 +181,6 @@ def day_sales():
     Go to sales menu
     """
     clearScreen()
-    print("\n")
     print("** SALES MENU **")
     while True:
         print("""
@@ -199,32 +202,73 @@ def day_sales():
             continue
 
 
+def user_update_batch():
+    """
+    Allow user input to update next day batch levels
+    """
+    batch_sheet = SHEET.worksheet("batch")
+    records = batch_sheet.get_all_records()
+    while True:
+        flav_choice = input("Enter flavour as displayed above: \n")
+        record_found = False
+        for record in records:
+            if record["Flavour"] == flav_choice:
+                record_found = True
+                while True:
+                    try:
+                        update_q = int(input(f"Enter value for {flav_choice}:\n"))
+                        record["Quantity"] = update_q
+                        # update with new data to inventory sheet
+                        # credit: https://realpython.com/python-enumerate/
+                        for i, record in enumerate(records, start=2):
+                            batch_sheet.update_cell(i,2,record["Quantity"]) 
+                        typePrint("Inventory successfully updated.\n")
+                        choice = input("Update another flavour? Enter Y or N.\n")
+                        if choice == 'Y' or choice == 'y':
+                            user_update_batch()
+                        elif choice == 'N' or choice == 'n':
+                            return_main()
+                    except ValueError:
+                        typePrint("Value must be numerical. Try again.\n")
+                        continue
+                    else:
+                        return update_q
+        if not record_found:
+            print("Flavour not found in inventory.\n")
+            continue
+
+
 def check_batch():
     """
-    Pull day batch nums data from google sheets-batch
+    Pull batch data from batch google sheet and allow
+    user to update quantity and amend worksheet
     """
-    clearScreen()
-    time.sleep(0.5)
-    batch_sheet = SHEET.worksheet("batch").get_all_values()
-    print("\n")
-    typePrint("** BATCH BY DAY **\n")
+    typePrint("Fetching batch numbers for today...")
     time.sleep(1)
-    print("""
-                        - FLAVOURS LIST -
-                        *****************
-            Van  ->  Vanilla      Red V  ->  Red Velvet
-            Choc ->  Chocolate    Strawb ->  Strawberry
-            Cara ->  Caramel      C&C    ->  Cookies & Cream\n
-          """)
-    # \t to format and display sales data from gsheet into terminal
-    # credit: https://tinyurl.com/3h7nr24a
-    print("****************************************************************\n")
-    for row in batch_sheet:
-        print('\t'.join(row))
+    clearScreen()
     print("\n")
-    print("****************************************************************\n")
-    time.sleep(2)
-    update_batch()
+    typePrint(f"** TODAYS BATCH NUMBERS **")
+    print("\n")
+    batch_sheet = SHEET.worksheet("batch")
+    batch_list = batch_sheet.col_values(1)
+    q_list = batch_sheet.col_values(2)
+    # list/zip for parallel iteration
+    # credit: https://realpython.com/python-zip-function/
+    pairs = list(zip(batch_list, q_list))
+    for pair in pairs:
+        print('- ', pair[0], ': ', pair[1])
+    print("\n")
+    typePrint("ATTN: Batch = 12 cupcakes.\n")
+    print("\n")
+    while True:
+        user_input = input("Would you like to update batches? Enter Y or N.\n")
+        if user_input == 'Y' or user_input == 'y':
+            user_update_batch()
+            break
+        elif user_input == 'N' or user_input == 'n':
+            return_main()
+            break
+    time.sleep(1)
     return_main()
 
 
@@ -242,7 +286,7 @@ def user_update_ing():
                 record_found = True
                 while True:
                     try:
-                        update_q = int(input(f"Enter value for {ing_choice}: \n"))
+                        update_q = int(input(f"Enter value for {ing_choice}:\n"))
                         record["Quantity"] = update_q
                         # update with new data to inventory sheet
                         # credit: https://realpython.com/python-enumerate/
@@ -324,7 +368,6 @@ def main():
     """
     Menu is displayed with options for user input
     """
-    print("\n")
     typePrint("*** WELCOME TO BAKESTOCK ***\n")
     print("\n")
     time.sleep(1)
@@ -336,11 +379,6 @@ def main():
     print("3. Ingredients inventory\n")
     print("4. Profits\n")
     print("5. Exit\n")
-    print('''
-      *******************************************************
-      * ALERT: Inventory levels normal.                     *
-      *******************************************************
-      ''')
     while True:
         try:
             choice = int(typeInput("Please enter your choice: \n"))
