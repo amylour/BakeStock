@@ -282,10 +282,30 @@ def check_batch():
     print("\n")
     print("****************************************************************\n")
     time.sleep(2)
-    update_batch()
-    
+    return_main()
 
-    
+
+def user_update_ing():
+    """
+    Allow user input to update inventory levels
+    """
+    invt_sheet = SHEET.worksheet("inventory")
+    records = invt_sheet.get_all_records()
+    ing_choice = input("Enter ingredient name: \n")
+    for record in records:
+        if record["Ingredient"] == ing_choice:
+            update_q = int(input("Enter value for {}: \n".format(ing_choice)))
+            record["Quantity"] = update_q
+            # update with new data to inventory sheet
+            for i, record in enumerate(records, start=2):
+                invt_sheet.update_cell(i,2,record["Quantity"])  
+                typePrint("Inventory updating...\n")
+            typePrint("Inventory successfully updated.\n")
+            break
+        else:
+            print("Ingredient not found in inventory.\n")
+            continue
+
 
 
 def check_invt():
@@ -306,68 +326,15 @@ def check_invt():
     pairs = list(zip(ing_list, q_list))
     for pair in pairs:
         print('- ', pair[0], ': ', pair[1])
+    print("\n")
     while True:
         user_input = input("Would you like to update an item? Enter Y or N.\n")
         if user_input == 'Y' or user_input == 'y':
-            clearScreen()
-            update_invt()
+            user_update_ing()
             break
         elif user_input == 'N' or user_input == 'n':
             return_main()
             break
-    time.sleep(1)
-    return_main()
-
-
-def user_update():
-    """
-    Allow user input to update inventory levels
-    """
-    while True:
-        ing_name = input("Please choose ingredient from the list: \n")
-        if ing_name in ingInvt:
-            updated_value = input("Enter new value for ingredient: \n")
-            ingInvt[ing_name] = updated_value
-            print(f"{ing_name} updated to {updated_value}\n")
-            time.sleep(1.5)
-            break
-        else:
-            print(f"{ing_name} is not in this list.\n")
-            continue
-
-'''
-def print_invt_ws():
-    """
-    Print inventory levels to google sheet when updated
-    """
-    invt_sheet = SHEET.worksheet("inventory")
-    # convert dictionary to list of lists
-    invt_data = [value for value in ingInvt.items()]
-    invt_sheet.append_row(invt_data)
-'''
-
-def update_invt():
-    """
-    Allow user to add additional ingredient amounts to increase
-    inventory levels.
-    """
-    clearScreen()
-    typePrint("** Update inventory levels. **")
-    print("\n")
-    typePrint("** Current Inventory levels are: **")
-    print("\n")
-    time.sleep(1)
-    for key, value in ingInvt.items():
-        print('- ', key, ':', value)
-    print("\n")
-    user_update()
-    # print_invt_ws()
-    clearScreen()
-    typePrint("** Updated inventory levels are: **\n")
-    print("\n")
-    for key, value in ingInvt.items():
-        print('- ', key, ':', value)
-    print("\n")
     time.sleep(1)
     return_main()
 
