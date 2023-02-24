@@ -345,6 +345,29 @@ def check_invt():
     return_main()
 
 
+def update_invt():
+    """
+    View inventory levels, update levels by user input
+    and update inventory worksheet.
+    """
+    typePrint("Checking inventory levels...")
+    time.sleep(1)
+    clearScreen()
+    typePrint(f"** CURRENT INVENTORY LEVELS: **\n")
+    print("\n")
+    invt_sheet = SHEET.worksheet("inventory")
+    ing_list = invt_sheet.col_values(1)
+    q_list = invt_sheet.col_values(2)
+    # list/zip for parallel iteration
+    # credit: https://realpython.com/python-zip-function/
+    pairs = list(zip(ing_list, q_list))
+    for pair in pairs:
+        print('- ', pair[0], ': ', pair[1])
+    print("\n")
+    typePrint("Please proceed in updating inventory levels...\n")
+    user_update_ing()
+
+
 def calc_pro():
     """
     Calculate daily profits by subtracting total batch cost from
