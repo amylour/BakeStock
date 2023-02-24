@@ -28,26 +28,6 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 # const for google sgeet
 SHEET = GSPREAD_CLIENT.open('bakestock')
 
-'''
-# Dictionary of inventory ingredients and levels
-ingInvt = {
-    "Flour": "10000g",
-    "Sugar": "12500g",
-    "Butter": "7500g",
-    "Eggs": "140",
-    "Milk": "7800ml",
-    "Cream Cheese": "4000g",
-    "Icing Sugar": "22500g",
-    "Chocolate": "2500g",
-    "Cookies": "2000g",
-    "Cocoa Powder": "2500g",
-    "Vanilla Extract": "700ml",
-    "Unsalted Butter": "11500g",
-    "Strawberry Syrup": "300ml",
-    "Caramel Syrup": "300ml"
-}
-'''
-
 
 # clear screen function
 # Credit: https://www.101computing.net/python-typing-text-effect/
@@ -82,6 +62,7 @@ def prog_start():
     """
     Run opening screen for user and display menu options for user
     """
+    print("\n")
     print('''
     **********************************************************************
     *                                                                    *
@@ -96,6 +77,10 @@ def prog_start():
     *                                                                    *
     **********************************************************************
     ''')
+    print("\n")
+    print("    (Created for educational purposes - Copyright: Amy Richardson)")
+    time.sleep(3)
+    clearScreen()
 
 
 def return_main():
@@ -103,7 +88,6 @@ def return_main():
     Return to main menu
     """
     while True:
-        print("\n")
         print("\n")
         choice = typeInput("To return to Main Menu, please enter 'M'.\n")
         if choice == 'M' or choice == 'm':
@@ -123,11 +107,13 @@ def print_sales():
     clearScreen()
     sales_sheet = SHEET.worksheet("sales").get_all_values()
     typePrint("** SALES FIGURES BY DATE **\n")
+    time.sleep(1)
     print("""
-                       - FLAVOURS LIST -
-            Van -> Vanilla       Red V -> Red Velvet
-            Choc -> Chocolate    Strawb -> Strawberry
-            Cara -> Caramel      C&C -> Cookies & Cream\n
+                        - FLAVOURS LIST -
+                        *****************
+            Van  ->  Vanilla       Red V  ->  Red Velvet
+            Choc ->  Chocolate     Strawb ->  Strawberry
+            Cara ->  Caramel       C&C    ->  Cookies & Cream\n
           """)
     # \t to format and display sales data from gsheet into terminal
     # credit: https://tinyurl.com/3h7nr24a
@@ -191,11 +177,12 @@ def day_sales():
     Go to sales menu
     """
     clearScreen()
-    print("** Sales Menu **")
+    print("\n")
+    print("** SALES MENU **")
     while True:
         print("""
-            1. View sales data.
-            2. Add days sales.
+            1. View sales data\n
+            2. Add days sales
             """)
         try:
             choice = int(typeInput("Please choose from menu.\n"))
@@ -264,12 +251,15 @@ def check_batch():
     clearScreen()
     time.sleep(0.5)
     batch_sheet = SHEET.worksheet("batch").get_all_values()
+    print("\n")
     typePrint("** BATCH BY DAY **\n")
+    time.sleep(1)
     print("""
-                       - FLAVOURS LIST -
-            Van -> Vanilla       Red V -> Red Velvet
-            Choc -> Chocolate    Strawb -> Strawberry
-            Cara -> Caramel      C&C -> Cookies & Cream\n
+                        - FLAVOURS LIST -
+                        *****************
+            Van  ->  Vanilla      Red V  ->  Red Velvet
+            Choc ->  Chocolate    Strawb ->  Strawberry
+            Cara ->  Caramel      C&C    ->  Cookies & Cream\n
           """)
     # \t to format and display sales data from gsheet into terminal
     # credit: https://tinyurl.com/3h7nr24a
@@ -326,6 +316,7 @@ def check_invt():
     typePrint("Checking inventory levels...")
     time.sleep(1)
     clearScreen()
+    print("\n")
     typePrint(f"** CURRENT INVENTORY LEVELS **")
     print("\n")
     invt_sheet = SHEET.worksheet("inventory")
@@ -348,29 +339,6 @@ def check_invt():
     time.sleep(1)
     return_main()
 
-'''
-def update_invt():
-    """
-    View inventory levels, update levels by user input
-    and update inventory worksheet.
-    """
-    typePrint("Checking inventory levels...")
-    time.sleep(1)
-    clearScreen()
-    typePrint(f"** CURRENT INVENTORY LEVELS: **\n")
-    print("\n")
-    invt_sheet = SHEET.worksheet("inventory")
-    ing_list = invt_sheet.col_values(1)
-    q_list = invt_sheet.col_values(2)
-    # list/zip for parallel iteration
-    # credit: https://realpython.com/python-zip-function/
-    pairs = list(zip(ing_list, q_list))
-    for pair in pairs:
-        print('- ', pair[0], ': ', pair[1])
-    print("\n")
-    typePrint("Please proceed in updating inventory levels...\n")
-    user_update_ing()
-'''
 
 def calc_pro():
     """
@@ -400,16 +368,18 @@ def main():
     """
     Menu is displayed with options for user input
     """
-    typePrint("Welcome to BakeStock.\n")
+    print("\n")
+    typePrint("*** WELCOME TO BAKESTOCK ***\n")
+    print("\n")
     time.sleep(1)
     typePrint("Please choose from the menu below.\n")
     time.sleep(1)
     print("\n")
-    print("1. Sales menu.\n")
-    print("2. Batch numbers.\n")
-    print("3. Ingredients inventory.\n")
-    print("4. Profits.\n")
-    print("5. Exit.")
+    print("1. Sales menu\n")
+    print("2. Batch numbers\n")
+    print("3. Ingredients inventory\n")
+    print("4. Profits\n")
+    print("5. Exit\n")
     print('''
       *******************************************************
       * ALERT: Inventory levels normal.                     *
