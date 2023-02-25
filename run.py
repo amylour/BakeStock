@@ -85,7 +85,11 @@ def prog_start():
     **********************************************************************
     ''')
     print("\n")
-    print("    (Created for educational purposes - Copyright: Amy Richardson)")
+    print(Fore.CYAN + "             Sales & Inventory Management "
+          "for Micro Bakeries.\n")
+    time.sleep(1)
+    print(Fore.CYAN + "        (Created for Educational Purposes -"
+          " Copyright: Amy Richardson)")
     time.sleep(3)
     clearScreen()
 
@@ -103,7 +107,7 @@ def return_main():
             main()
             break
         else:
-            print("Invalid input, please try again.")
+            print(Fore.RED + "Invalid input, please try again.")
             continue
 
 
@@ -113,9 +117,9 @@ def print_sales():
     """
     clearScreen()
     sales_sheet = SHEET.worksheet("sales").get_all_values()
-    typePrint("** SALES FIGURES BY DATE **\n")
+    print(Back.MAGENTA + Fore.WHITE + "*** SALES FIGURES BY DATE ***\n")
     time.sleep(1)
-    print("""
+    print(Fore.CYAN + """
                         - FLAVOURS LIST -
                         *****************
             Van  ->  Vanilla       Red V  ->  Red Velvet
@@ -146,7 +150,7 @@ def validate_sales(values):
                 f"6 values required, you provided {len(values)}"
             )
     except ValueError:
-        typePrint("Input invalid, please try again.\n")
+        print(Fore.RED + "Input invalid, please try again.\n")
         sales_input()
         return False
 
@@ -158,13 +162,14 @@ def sales_input():
     Allow user input of date and sales figures to be entered
     and used to update sales worksheet.
     """
+    print(Back.MAGENTA + Fore.WHITE + "*** SALES INPUT ***\n")
     typePrint("Enter date & sales figures "
               "(DD,MM,YYYY, sales figures, separated by commas).\n")
     sales_figs = typeInput("Enter sales here: \n")
     sales_data = sales_figs.split(",")
     validate_sales(sales_data)
     sales_str = ','.join(sales_data)
-    typePrint(f"You have entered : {sales_str}\n")
+    print(Fore.GREEN + f"You have entered : {sales_str}\n")
     while True:
         choice = typeInput("Please confirm: Y or N.\n")
         if choice == 'Y' or choice == 'y':
@@ -179,7 +184,7 @@ def sales_input():
             sales_input()
             break
         else:
-            print("Invalid input, please try again.")
+            print(Fore.RED + "Invalid input, please try again.")
             continue
 
 
@@ -188,8 +193,7 @@ def clear_sales():
     Clear all sales data from sales worksheet
     """
     clearScreen()
-    typePrint("*** CLEAR ALL SALES DATA ***")
-    print("\n")
+    print(Back.MAGENTA + Fore.WHITE + "*** CLEAR ALL SALES DATA ***\n")
     choice = typeInput("To clear all Sales Data please enter 'CLEAR DATA'.\n")
     if choice == 'CLEAR DATA':
         typePrint("Please confirm Y or N to clear all data:\n")
@@ -200,24 +204,24 @@ def clear_sales():
             # Credit: https://tinyurl.com/y3dfpe5v
             sales_sheet.batch_clear(["A2:J10000"])
             time.sleep(1)
-            typePrint("Sales sheet successfully cleared.")
+            print(Fore.GREEN + "Sales sheet successfully cleared.")
             day_sales()
         elif final_c == 'N' or final_c == 'n':
-            typePrint("Abort data delete.")
+            print(Fore.YELLOW + "Abort data delete.")
             day_sales()
         else:
-            typePrint("Invalid input. Returning to Sales menu.")
+            print(Fore.RED + "Invalid input. Returning to Sales menu.")
             time.sleep(1.5)
             day_sales()
     else:
-        typePrint("Invalid input.\n")
+        print(Fore.RED + "Invalid input.\n")
         check_c = typeInput("Please enter 'C' to continue or 'X' to exit.\n")
         if check_c == 'C' or check_c == 'c':
             clear_sales()
         elif check_c == 'X' or check_c == 'x':
             day_sales()
         else:
-            typePrint("Invalid input. Returning to main menu.")
+            print(Fore.RED + "Invalid input. Returning to main menu.")
             time.sleep(1.5)
             return_main()
 
@@ -227,9 +231,9 @@ def day_sales():
     Go to sales menu
     """
     clearScreen()
-    print("** SALES MENU **")
+    print(Back.MAGENTA + Fore.WHITE + "*** SALES MENU ***")
     while True:
-        print("""
+        print(Fore.CYAN + """
             1. View sales data\n
             2. Add days sales\n
             3. Clear data\n
@@ -278,19 +282,19 @@ def user_update_batch():
                         # https://www.youtube.com/watch?v=-MZiQaNI0QA
                         for i, record in enumerate(records, start=2):
                             batch_sheet.update_cell(i,2,record["Quantity"]) 
-                        typePrint("Inventory successfully updated.\n")
+                        print(Fore.GREEN + "Inventory successfully updated.\n")
                         choice = input("Update another flavour? Enter Y or N.\n")
                         if choice == 'Y' or choice == 'y':
                             user_update_batch()
                         elif choice == 'N' or choice == 'n':
                             return_main()
                     except ValueError:
-                        typePrint("Value must be numerical. Try again.\n")
+                        print(Fore.RED + "Value must be numerical.\n")
                         continue
                     else:
                         return update_q
         if not record_found:
-            print("Flavour not found in inventory.\n")
+            print(Fore.RED + "Flavour not found in inventory.\n")
             continue
 
 
@@ -300,11 +304,9 @@ def check_batch():
     user to update quantity and amend worksheet
     """
     typePrint("Fetching batch numbers for today...")
-    time.sleep(1)
+    time.sleep(1.5)
     clearScreen()
-    print("\n")
-    typePrint(f"** TODAYS BATCH NUMBERS **")
-    print("\n")
+    print(Back.MAGENTA + Fore.WHITE + "** TODAYS BATCH NUMBERS **\n")
     batch_sheet = SHEET.worksheet("batch")
     batch_list = batch_sheet.col_values(1)
     q_list = batch_sheet.col_values(2)
@@ -313,10 +315,9 @@ def check_batch():
     # credit: Tech with Tim-https://www.youtube.com/watch?v=-MZiQaNI0QA
     pairs = list(zip(batch_list, q_list))
     for pair in pairs:
-        print('- ', pair[0], ': ', pair[1])
+        print(Fore.CYAN + '- ', pair[0], ': ', pair[1])
     print("\n")
-    typePrint("ATTN: Batch = 12 cupcakes.\n")
-    print("\n")
+    print(Fore.YELLOW + "ATTN: Batch = 12 cupcakes.\n")
     while True:
         user_input = input("Would you like to update batches? Enter Y or N.\n")
         if user_input == 'Y' or user_input == 'y':
@@ -349,19 +350,19 @@ def user_update_ing():
                         # credit: https://realpython.com/python-enumerate/
                         for i, record in enumerate(records, start=2):
                             invt_sheet.update_cell(i,2,record["Quantity"]) 
-                        typePrint("Inventory successfully updated.\n")
+                        print(Fore.GREEN + "Inventory successfully updated.\n")
                         choice = input("Update another ingredient? Enter Y or N.\n")
                         if choice == 'Y' or choice == 'y':
                             user_update_ing()
                         elif choice == 'N' or choice == 'n':
                             return_main()
                     except ValueError:
-                        typePrint("Value must be numerical. Try again.\n")
+                        print(Fore.RED + "Value must be numerical.\n")
                         continue
                     else:
                         return update_q
         if not record_found:
-            print("Ingredient not found in inventory.\n")
+            print(Fore.RED + "Ingredient not found in inventory.\n")
             continue
                
 
@@ -373,9 +374,7 @@ def check_invt():
     typePrint("Checking inventory levels...")
     time.sleep(1)
     clearScreen()
-    print("\n")
-    typePrint(f"** CURRENT INVENTORY LEVELS **")
-    print("\n")
+    print(Back.MAGENTA + Fore.WHITE + "*** CURRENT INVENTORY LEVELS ***\n")
     invt_sheet = SHEET.worksheet("inventory")
     ing_list = invt_sheet.col_values(1)
     q_list = invt_sheet.col_values(2)
@@ -383,7 +382,7 @@ def check_invt():
     # credit: https://realpython.com/python-zip-function/
     pairs = list(zip(ing_list, q_list))
     for pair in pairs:
-        print('- ', pair[0], ': ', pair[1])
+        print(Fore.CYAN + '- ', pair[0], Fore.CYAN + ': ', pair[1])
     print("\n")
     while True:
         user_input = input("Would you like to update an item? Enter Y or N.\n")
@@ -402,7 +401,6 @@ def calc_pro():
     Calculate daily profits by subtracting total batch cost from
     daily sales figure. Append profit worksheet to include days profits.
     """
-    typePrint("Please enter date in format DD-MM-YYYY.\n")
     data_str = typeInput("Enter date here: \n")
     time.sleep(1)
     return_main()
@@ -425,17 +423,16 @@ def main():
     """
     Menu is displayed with options for user input
     """
-    typePrint("*** WELCOME TO BAKESTOCK ***\n")
-    print("\n")
+    print(Back.MAGENTA + Fore.WHITE + "*** WELCOME TO BAKESTOCK ***\n")
     time.sleep(1)
     typePrint("Please choose from the menu below.\n")
     time.sleep(1)
     print("\n")
-    print("1. Sales menu\n")
-    print("2. Batch numbers\n")
-    print("3. Ingredients inventory\n")
-    print("4. Profits\n")
-    print("5. Exit\n")
+    print(Fore.CYAN + "1. Sales menu\n")
+    print(Fore.CYAN + "2. Batch numbers\n")
+    print(Fore.CYAN + "3. Ingredients inventory\n")
+    print(Fore.CYAN + "4. Profits\n")
+    print(Fore.CYAN + "5. Exit\n")
     while True:
         try:
             choice = int(typeInput("Please enter your choice: \n"))
@@ -455,7 +452,7 @@ def main():
                 exit()
                 break
         except ValueError:
-            typePrint("Invalid input. Please choose a numbered menu item...\n")
+            print(Fore.RED + "Invalid input. Enter number for menu choice.\n")
             time.sleep(1)
             continue
 
