@@ -88,8 +88,8 @@ def prog_start():
     print(Fore.CYAN + "             Sales & Inventory Management "
           "for Micro Bakeries.\n")
     time.sleep(1)
-    print(Fore.CYAN + "        (Created for Educational Purposes -"
-          " Copyright: Amy Richardson)")
+    print(Fore.CYAN + "      (Created for Educational Purposes -"
+          " Copyright: Amy Richardson '23)")
     time.sleep(3)
     clearScreen()
 
@@ -315,7 +315,7 @@ def check_batch():
     # credit: Tech with Tim-https://www.youtube.com/watch?v=-MZiQaNI0QA
     pairs = list(zip(batch_list, q_list))
     for pair in pairs:
-        print(Fore.CYAN + '- ', pair[0], ': ', pair[1])
+        print(Fore.CYAN + '- ', pair[0], Fore.CYAN + ': ', pair[1])
     print("\n")
     print(Fore.YELLOW + "ATTN: Batch = 12 cupcakes.\n")
     while True:
@@ -356,11 +356,12 @@ def user_update_ing():
                             user_update_ing()
                         elif choice == 'N' or choice == 'n':
                             return_main()
+                        else:
+                            print(Fore.RED + "Invalid input.\n")
+                            check_invt()
                     except ValueError:
                         print(Fore.RED + "Value must be numerical.\n")
                         continue
-                    else:
-                        return update_q
         if not record_found:
             print(Fore.RED + "Ingredient not found in inventory.\n")
             continue
@@ -385,13 +386,17 @@ def check_invt():
         print(Fore.CYAN + '- ', pair[0], Fore.CYAN + ': ', pair[1])
     print("\n")
     while True:
-        user_input = input("Would you like to update an item? Enter Y or N.\n")
-        if user_input == 'Y' or user_input == 'y':
-            user_update_ing()
-            break
-        elif user_input == 'N' or user_input == 'n':
-            return_main()
-            break
+        try:
+            user_input = input("Would you like to update an item? Enter Y or N.\n")
+            if user_input == 'Y' or user_input == 'y':
+                user_update_ing()
+                break
+            elif user_input == 'N' or user_input == 'n':
+                return_main()
+                break
+        except ValueError:
+            print(Fore.RED + "Value must be numerical.\n")
+            continue
     time.sleep(1)
     return_main()
 
