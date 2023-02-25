@@ -10,6 +10,13 @@ import sys
 # os library to clear screen
 import os
 
+# colorama for text formatting
+# tutorial: https://linuxhint.com/colorama-python/
+import colorama
+from colorama import Fore, Back, Style
+
+# initialize colorama
+colorama.init(autoreset=True)
 
 # Scope for Google IAM auth for API program access
 SCOPE = [
@@ -63,7 +70,7 @@ def prog_start():
     Run opening screen for user and display menu options for user
     """
     print("\n")
-    print('''
+    print(Fore.CYAN + '''
     **********************************************************************
     *                                                                    *
     888888b.          88              .d888b.   88                  88
@@ -189,6 +196,8 @@ def clear_sales():
         final_c = typeInput("Enter choice here: \n")
         if final_c == 'Y' or final_c == 'y':
             sales_sheet = SHEET.worksheet("sales")
+            # Clear a certain range
+            # Credit: https://tinyurl.com/y3dfpe5v
             sales_sheet.batch_clear(["A2:J10000"])
             time.sleep(1)
             typePrint("Sales sheet successfully cleared.")
