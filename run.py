@@ -113,7 +113,7 @@ def print_sales():
                         *****************
             Van  ->  Vanilla       Red V  ->  Red Velvet
             Choc ->  Chocolate     Strawb ->  Strawberry
-            Cara ->  Caramel       C&C    ->  Cookies & Cream\n
+            Cara ->  Caramel       C&C    ->  Cookies & Cream
           """)
     # \t to format and display sales data from gsheet into terminal
     # credit: https://tinyurl.com/3h7nr24a
@@ -166,7 +166,7 @@ def sales_input():
             typePrint("The sales figures have been recorded.\n")
             time.sleep(1)
             print("\n")
-            return_main()
+            day_sales()
             break
         elif choice == 'N' or choice == 'n':
             sales_input()
@@ -174,6 +174,43 @@ def sales_input():
         else:
             print("Invalid input, please try again.")
             continue
+
+
+def clear_sales():
+    """
+    Clear all sales data from sales worksheet
+    """
+    clearScreen()
+    typePrint("*** CLEAR ALL SALES DATA ***")
+    print("\n")
+    choice = typeInput("To clear all Sales Data please enter 'CLEAR DATA'.\n")
+    if choice == 'CLEAR DATA':
+        typePrint("Please confirm Y or N to clear all data:\n")
+        final_c = typeInput("Enter choice here: \n")
+        if final_c == 'Y' or final_c == 'y':
+            sales_sheet = SHEET.worksheet("sales")
+            sales_sheet.batch_clear(["A2:J10000"])
+            time.sleep(1)
+            typePrint("Sales sheet successfully cleared.")
+            day_sales()
+        elif final_c == 'N' or final_c == 'n':
+            typePrint("Abort data delete.")
+            day_sales()
+        else:
+            typePrint("Invalid input. Returning to Sales menu.")
+            time.sleep(1.5)
+            day_sales()
+    else:
+        typePrint("Invalid input.\n")
+        check_c = typeInput("Please enter 'C' to continue or 'X' to exit.\n")
+        if check_c == 'C' or check_c == 'c':
+            clear_sales()
+        elif check_c == 'X' or check_c == 'x':
+            day_sales()
+        else:
+            typePrint("Invalid input. Returning to main menu.")
+            time.sleep(1.5)
+            return_main()
 
 
 def day_sales():
@@ -185,7 +222,9 @@ def day_sales():
     while True:
         print("""
             1. View sales data\n
-            2. Add days sales
+            2. Add days sales\n
+            3. Clear data\n
+            4. Main menu
             """)
         try:
             choice = int(typeInput("Please choose from menu.\n"))
@@ -195,12 +234,18 @@ def day_sales():
             elif choice == 2:
                 sales_input()
                 break
+            elif choice == 3:
+                clear_sales()
+                break
+            elif choice == 4:
+                return_main()
+                break
         except ValueError:
             typePrint("Invalid input. Please choose a numbered menu item.")
             time.sleep(1.5)
             clearScreen()
             continue
-
+    
 
 def user_update_batch():
     """
@@ -220,6 +265,8 @@ def user_update_batch():
                         record["Quantity"] = update_q
                         # update with new data to inventory sheet
                         # credit: https://realpython.com/python-enumerate/
+                        # credit: Tech with Tim->
+                        # https://www.youtube.com/watch?v=-MZiQaNI0QA
                         for i, record in enumerate(records, start=2):
                             batch_sheet.update_cell(i,2,record["Quantity"]) 
                         typePrint("Inventory successfully updated.\n")
@@ -254,6 +301,7 @@ def check_batch():
     q_list = batch_sheet.col_values(2)
     # list/zip for parallel iteration
     # credit: https://realpython.com/python-zip-function/
+    # credit: Tech with Tim-https://www.youtube.com/watch?v=-MZiQaNI0QA
     pairs = list(zip(batch_list, q_list))
     for pair in pairs:
         print('- ', pair[0], ': ', pair[1])
