@@ -133,8 +133,17 @@ def print_sales():
         print('\t'.join(row))
     print("\n")
     print("****************************************************************\n")
-    time.sleep(2)
-    return_main()
+    print("\n")
+    while True:
+        choice = typeInput("To return to Sales Menu, please enter 'S'.\n")
+        if choice == 'S' or choice == 's':
+            time.sleep(1.5)
+            clearScreen()
+            day_sales()
+            break
+        else:
+            print(Fore.RED + "Invalid input, please try again.")
+            continue
 
 
 def validate_sales(values):
@@ -162,6 +171,7 @@ def sales_input():
     Allow user input of date and sales figures to be entered
     and used to update sales worksheet.
     """
+    clearScreen()
     print(Back.MAGENTA + Fore.WHITE + "*** SALES INPUT ***\n")
     typePrint("Enter date & sales figures "
               "(DD,MM,YYYY, sales figures, separated by commas).\n")
