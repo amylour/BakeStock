@@ -60,6 +60,7 @@ Sales, stock, inventory data here. **
 # Testing  
   
 ## Bugs
+- Colorama not working [Install pip colorama](https://tinyurl.com/msk3uknk)
 ## Validator  
   
 # Deployment  
