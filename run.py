@@ -293,6 +293,18 @@ def user_update_batch():
                         for i, record in enumerate(records, start=2):
                             batch_sheet.update_cell(i,2,record["Quantity"]) 
                         print(Fore.GREEN + "Inventory successfully updated.\n")
+                        print(Back.MAGENTA + Fore.WHITE + "** TODAYS BATCH NUMBERS **\n")
+                        batch_sheet = SHEET.worksheet("batch")
+                        batch_list = batch_sheet.col_values(1)
+                        q_list = batch_sheet.col_values(2)
+                        # list/zip for parallel iteration
+                        # credit: https://realpython.com/python-zip-function/
+                        # credit: Tech with Tim-https://www.youtube.com/watch?v=-MZiQaNI0QA
+                        pairs = list(zip(batch_list, q_list))
+                        for pair in pairs:
+                            print(Fore.CYAN + '- ', pair[0], Fore.CYAN + ': ', pair[1])
+                        print("\n")
+                        print(Fore.YELLOW + "ATTN: Batch = 12 cupcakes.\n")
                         choice = input("Update another flavour? Enter Y or N.\n")
                         if choice == 'Y' or choice == 'y':
                             user_update_batch()
