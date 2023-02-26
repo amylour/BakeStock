@@ -428,16 +428,6 @@ def check_invt():
     return_main()
 
 
-def calc_pro():
-    """
-    Calculate daily profits by subtracting total batch cost from
-    daily sales figure. Append profit worksheet to include days profits.
-    """
-    data_str = typeInput("Enter date here: \n")
-    time.sleep(1)
-    return_main()
-
-
 def exit():
     """
     return to program start screen
@@ -463,8 +453,7 @@ def main():
     print(Fore.CYAN + "1. Sales menu\n")
     print(Fore.CYAN + "2. Batch numbers\n")
     print(Fore.CYAN + "3. Ingredients inventory\n")
-    print(Fore.CYAN + "4. Profits\n")
-    print(Fore.CYAN + "5. Exit\n")
+    print(Fore.CYAN + "4. Exit\n")
     while True:
         try:
             choice = int(typeInput("Please enter your choice: \n"))
@@ -478,9 +467,6 @@ def main():
                 check_invt()
                 break
             elif choice == 4:
-                calc_pro()
-                break
-            elif choice == 5:
                 exit()
                 break
         except ValueError:
