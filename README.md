@@ -61,7 +61,7 @@ Sales, stock, inventory data here. **
   
 ## Bugs
 - Colorama not working [Install pip colorama](https://tinyurl.com/msk3uknk)
-- Colorama prventing app working in Heroku [requirements.txt](https://tinyurl.com/3bxmr4kj)
+- Colorama preventing app working in Heroku [requirements.txt](https://tinyurl.com/3bxmr4kj)
 ## Validator  
   
 # Deployment  
