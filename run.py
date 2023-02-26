@@ -293,8 +293,6 @@ def user_update_batch():
                         for i, record in enumerate(records, start=2):
                             batch_sheet.update_cell(i, 2, record["Quantity"])
                         print(Fore.GREEN + "Inventory successfully updated.\n")
-                        print(Back.MAGENTA + Fore.WHITE +
-                              "** TODAYS BATCH NUMBERS **\n")
                         batch_sheet = SHEET.worksheet("batch")
                         batch_list = batch_sheet.col_values(1)
                         q_list = batch_sheet.col_values(2)
