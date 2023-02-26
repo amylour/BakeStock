@@ -268,7 +268,7 @@ def day_sales():
             time.sleep(1.5)
             clearScreen()
             continue
-    
+
 
 def user_update_batch():
     """
@@ -277,35 +277,39 @@ def user_update_batch():
     batch_sheet = SHEET.worksheet("batch")
     records = batch_sheet.get_all_records()
     while True:
-        flav_choice = input("Enter flavour as displayed above: \n")
+        flav = input("Enter flavour as displayed above: \n")
         record_found = False
         for record in records:
-            if record["Flavour"] == flav_choice:
+            if record["Flavour"] == flav:
                 record_found = True
                 while True:
                     try:
-                        update_q = int(input(f"Enter value for {flav_choice}:\n"))
+                        update_q = int(input(f"Enter value for {flav}:\n"))
                         record["Quantity"] = update_q
                         # update with new data to inventory sheet
                         # credit: https://realpython.com/python-enumerate/
                         # credit: Tech with Tim->
                         # https://www.youtube.com/watch?v=-MZiQaNI0QA
                         for i, record in enumerate(records, start=2):
-                            batch_sheet.update_cell(i,2,record["Quantity"]) 
+                            batch_sheet.update_cell(i, 2, record["Quantity"])
                         print(Fore.GREEN + "Inventory successfully updated.\n")
-                        print(Back.MAGENTA + Fore.WHITE + "** TODAYS BATCH NUMBERS **\n")
+                        print(Back.MAGENTA + Fore.WHITE +
+                              "** TODAYS BATCH NUMBERS **\n")
                         batch_sheet = SHEET.worksheet("batch")
                         batch_list = batch_sheet.col_values(1)
                         q_list = batch_sheet.col_values(2)
                         # list/zip for parallel iteration
                         # credit: https://realpython.com/python-zip-function/
-                        # credit: Tech with Tim-https://www.youtube.com/watch?v=-MZiQaNI0QA
+                        # credit: Tech with Tim
+                        # https://www.youtube.com/watch?v=-MZiQaNI0QA
                         pairs = list(zip(batch_list, q_list))
                         for pair in pairs:
-                            print(Fore.CYAN + '- ', pair[0], Fore.CYAN + ': ', pair[1])
+                            print(Fore.CYAN + '- ', pair[0],
+                                  Fore.CYAN + ': ', pair[1])
                         print("\n")
                         print(Fore.YELLOW + "ATTN: Batch = 12 cupcakes.\n")
-                        choice = input("Update another flavour? Enter Y or N.\n")
+                        choice = input("Update another flavour?"
+                                       " Enter Y or N.\n")
                         if choice == 'Y' or choice == 'y':
                             user_update_batch()
                         elif choice == 'N' or choice == 'n':
@@ -359,24 +363,25 @@ def user_update_ing():
     invt_sheet = SHEET.worksheet("inventory")
     records = invt_sheet.get_all_records()
     while True:
-        ing_choice = input("Enter ingredient name as displayed above: \n")
+        ing_c = input("Enter ingredient name as displayed above: \n")
         record_found = False
         for record in records:
-            if record["Ingredient"] == ing_choice:
+            if record["Ingredient"] == ing_c:
                 record_found = True
                 while True:
                     try:
-                        update_q = int(input(f"Enter value for {ing_choice}:\n"))
+                        update_q = int(input(f"Enter value for {ing_c}:\n"))
                         record["Quantity"] = update_q
                         # update with new data to inventory sheet
                         # credit: https://realpython.com/python-enumerate/
                         for i, record in enumerate(records, start=2):
-                            invt_sheet.update_cell(i,2,record["Quantity"]) 
+                            invt_sheet.update_cell(i, 2, record["Quantity"])
                         print(Fore.GREEN + "Inventory successfully updated.\n")
-                        choice = input("Update another ingredient? Enter Y or N.\n")
-                        if choice == 'Y' or choice == 'y':
+                        cho = input("Update another ingredient? Enter Y or N.")
+                        print("\n")
+                        if cho == 'Y' or cho == 'y':
                             user_update_ing()
-                        elif choice == 'N' or choice == 'n':
+                        elif cho == 'N' or cho == 'n':
                             return_main()
                         else:
                             print(Fore.RED + "Invalid input.\n")
@@ -387,7 +392,7 @@ def user_update_ing():
         if not record_found:
             print(Fore.RED + "Ingredient not found in inventory.\n")
             continue
-               
+
 
 def check_invt():
     """
@@ -409,11 +414,11 @@ def check_invt():
     print("\n")
     while True:
         try:
-            user_input = input("Would you like to update an item? Enter Y or N.\n")
-            if user_input == 'Y' or user_input == 'y':
+            u_input = input("Would you like to update an item? Enter Y or N\n")
+            if u_input == 'Y' or u_input == 'y':
                 user_update_ing()
                 break
-            elif user_input == 'N' or user_input == 'n':
+            elif u_input == 'N' or u_input == 'n':
                 return_main()
                 break
         except ValueError:
