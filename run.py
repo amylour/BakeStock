@@ -181,18 +181,19 @@ def sales_input():
     """
     clearScreen()
     print(Back.MAGENTA + Fore.WHITE + "*** SALES INPUT ***\n")
-    typePrint("Enter date & abbreviated baked items (max 4 letters), "
-              "(DD,MM,YYYY, six baked items, separated by commas).\n")
+    typePrint("Enter date & abbreviated baked items (max 4 letters)\n")
+    typePrint("(DD,MM,YYYY, six baked items, separated by commas).\n")
     sales_figs = input(Fore.YELLOW + "Enter here: \n")
     sales_data = sales_figs.split(",")
     sales_str = ','.join(sales_data)
-    typePrint("Enter date & sales numbers "
-              "(DD,MM,YYYY, six sales numbers, separated by commas).\n")
+    typePrint("Enter date & sales numbers\n")
+    typePrint("(DD,MM,YYYY, six sales numbers, separated by commas).\n")
     sales_nums = input(Fore.YELLOW + "Enter here: \n")
     sales_num_data = sales_nums.split(",")
     validate_sales(sales_num_data)
     sales_num_str = ','.join(sales_num_data)
-    print(Fore.GREEN + f"You have entered : {sales_str, sales_num_str}\n")
+    print(Fore.GREEN + f"You have entered : {sales_str}\n")
+    print(Fore.GREEN + f"You have entered : {sales_num_str}\n")
     while True:
         choice = typeInput("Please confirm: Y or N.\n")
         if choice == 'Y' or choice == 'y':
@@ -227,7 +228,7 @@ def clear_sales():
             sales_sheet = SHEET.worksheet("sales")
             # Clear a certain range
             # Credit: https://tinyurl.com/y3dfpe5v
-            # sales_sheet.batch_clear(["A2:J10000"])
+            sales_sheet.clear()
             time.sleep(1)
             print(Fore.GREEN + "Sales sheet successfully cleared.")
             day_sales()
@@ -276,6 +277,7 @@ def day_sales():
                 clear_sales()
                 break
             elif choice == 4:
+                clearScreen()
                 main()
                 break
         except ValueError:
