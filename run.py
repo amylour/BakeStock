@@ -392,6 +392,20 @@ def user_update_ing():
             continue
 
 
+def change_inv_item():
+    """
+    Change item in inventory.
+    """
+    invt_sheet = SHEET.worksheet("inventory")
+    ing_o = input("Enter ingredient name as displayed above: \n")
+    ing_n = input("Enter the new ingredient: \n")
+    values = invt_sheet.col_values(1)
+    for i, value in enumerate(values):
+        if value == ing_o:
+            invt_sheet.update_cell(i+1, 1, ing_n)
+
+       
+
 def check_invt():
     """
     Pull inventory data from inventory google sheet and allow
@@ -414,7 +428,7 @@ def check_invt():
         try:
             u_input = input("Would you like to update an item? Enter Y or N\n")
             if u_input == 'Y' or u_input == 'y':
-                user_update_ing()
+                change_inv_item()
                 break
             elif u_input == 'N' or u_input == 'n':
                 return_main()
