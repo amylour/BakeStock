@@ -117,15 +117,21 @@ def print_sales():
     """
     clearScreen()
     sales_sheet = SHEET.worksheet("sales").get_all_values()
+    '''
+    batch_sheet = SHEET.worksheet("batch")
+    batch_list = batch_sheet.col_values(1)
+    batch_one = batch_sheet.cell(2,1).value
     print(Back.MAGENTA + Fore.WHITE + "*** SALES FIGURES BY DATE ***\n")
     time.sleep(1)
-    print(Fore.CYAN + """
+    print(Fore.CYAN + f"""
                         - FLAVOURS LIST -
                         *****************
-            Van  ->  Vanilla       Red V  ->  Red Velvet
+            Van  ->  {batch_one}      Red V  ->  Red Velvet
             Choc ->  Chocolate     Strawb ->  Strawberry
             Cara ->  Caramel       C&C    ->  Cookies & Cream
           """)
+    '''
+    print(Back.MAGENTA + Fore.WHITE + "*** SALES FIGURES BY DATE ***\n")
     # \t to format and display sales data from gsheet into terminal
     # credit: https://tinyurl.com/3h7nr24a
     print("****************************************************************\n")
@@ -144,6 +150,16 @@ def print_sales():
         else:
             print(Fore.RED + "Invalid input, please try again.")
             continue
+
+'''
+def update_sales_list():
+    """
+    Update Sales sheet with new baked items headers
+    """
+    typePrint("Enter new Sales items, six items, separated by commas.\n")
+'''
+
+
 
 
 def validate_sales(values):
@@ -173,18 +189,24 @@ def sales_input():
     """
     clearScreen()
     print(Back.MAGENTA + Fore.WHITE + "*** SALES INPUT ***\n")
-    typePrint("Enter date & sales figures "
-              "(DD,MM,YYYY, sales figures, separated by commas).\n")
-    sales_figs = typeInput("Enter sales here: \n")
+    typePrint("Enter date & baked items "
+              "(DD,MM,YYYY, six baked items, separated by commas).\n")
+    sales_figs = typeInput("Enter here: \n")
     sales_data = sales_figs.split(",")
-    validate_sales(sales_data)
     sales_str = ','.join(sales_data)
-    print(Fore.GREEN + f"You have entered : {sales_str}\n")
+    typePrint("Enter date & sales numbers "
+              "(DD,MM,YYYY, six sales numbers, separated by commas).\n")
+    sales_nums = typeInput("Enter here: \n")
+    sales_num_data = sales_nums.split(",")
+    validate_sales(sales_num_data)
+    sales_num_str = ','.join(sales_num_data)
+    print(Fore.GREEN + f"You have entered : {sales_str, sales_num_str}\n")
     while True:
         choice = typeInput("Please confirm: Y or N.\n")
         if choice == 'Y' or choice == 'y':
             sales_sheet = SHEET.worksheet("sales")
             sales_sheet.append_row(sales_data)
+            sales_sheet.append_row(sales_num_data)
             typePrint("The sales figures have been recorded.\n")
             time.sleep(1)
             print("\n")
@@ -212,7 +234,7 @@ def clear_sales():
             sales_sheet = SHEET.worksheet("sales")
             # Clear a certain range
             # Credit: https://tinyurl.com/y3dfpe5v
-            sales_sheet.batch_clear(["A2:J10000"])
+            # sales_sheet.batch_clear(["A2:J10000"])
             time.sleep(1)
             print(Fore.GREEN + "Sales sheet successfully cleared.")
             day_sales()
@@ -246,8 +268,9 @@ def day_sales():
         print(Fore.CYAN + """
             1. View sales data\n
             2. Add days sales\n
-            3. Clear data\n
-            4. Main menu
+            3. Update sales items\n
+            4. Clear data\n
+            5. Main menu
             """)
         try:
             choice = int(typeInput("Please choose from menu.\n"))
@@ -260,7 +283,10 @@ def day_sales():
             elif choice == 3:
                 clear_sales()
                 break
-            elif choice == 4:
+            elif choice == 3:
+                clear_sales()
+                break
+            elif choice == 5:
                 clearScreen()
                 main()
                 break
