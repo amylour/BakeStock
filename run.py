@@ -270,6 +270,31 @@ def day_sales():
             continue
 
 
+def add_batch_item():
+    """
+    Add new batch item and quantity and update Google Sheet.
+    """
+    batch_sheet = SHEET.worksheet("batch")
+    new_batch = input("Enter a new batch item to record (eg: Mint Choc): \n")
+    new_batch_q = input("Enter new batch quantity"
+                      " (numerical value only): \n")
+    batch_sheet.append_row([new_batch, new_batch_q])
+
+
+def change_batch_item():
+    """
+    Change item name in batch record and update Google Sheet.
+    """
+    batch_sheet = SHEET.worksheet("inventory")
+    batch_o = input("Enter batch name as displayed above: \n")
+    batch_n = input("Enter the new batch item: \n")
+    values = batch_sheet.col_values(1)
+    for i, value in enumerate(values):
+        if value == batch_o:
+            batch_sheet.update_cell(i+1, 1, batch_n)
+
+
+
 def user_update_batch():
     """
     Allow user input to update next day batch levels
@@ -320,6 +345,13 @@ def user_update_batch():
         if not record_found:
             print(Fore.RED + "Flavour not found in inventory.\n")
             continue
+
+
+def batch_options():
+    """
+    Menu to choose between adding new batch item, changing batch name
+    or updating quantity.
+    """
 
 
 def check_batch():
