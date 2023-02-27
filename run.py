@@ -462,6 +462,29 @@ def check_batch():
     return_main()
 
 
+def return_invt_menu():
+    """
+    Print updated inventory data for user and
+    provide input choices
+    """
+    invt_sheet = SHEET.worksheet("inventory")
+    invt_list = invt_sheet.col_values(1)
+    ing_list = invt_sheet.col_values(2)
+    pairs = list(zip(invt_list, ing_list))
+    for pair in pairs:
+        print(Fore.CYAN + '- ', pair[0], Fore.CYAN + ': ', pair[1])
+    print("\n")
+    while True:
+        user_input = input("Update inventory? Enter Y or N.\n")
+        if user_input == 'Y' or user_input == 'y':
+            print("\n")
+            invt_options()
+            break
+        elif user_input == 'N' or user_input == 'n':
+            return_main()
+            break
+
+
 def add_ingredient():
     """
     Add new ingredient to inventory and update google sheet
@@ -472,7 +495,8 @@ def add_ingredient():
     new_ing_v = input("Enter new ingredients quantity"
                       " (numerical value only): \n")
     invt_sheet.append_row([new_ing, new_ing_v])
-
+    print(Fore.GREEN + "Inventory successfully updated.\n")
+    return_invt_menu()
 
 
 def user_update_ing():
@@ -513,7 +537,7 @@ def user_update_ing():
             continue
 
 
-def change_inv_item():
+def change_invt_item():
     """
     Change item in inventory.
     """
@@ -524,6 +548,22 @@ def change_inv_item():
     for i, value in enumerate(values):
         if value == ing_o:
             invt_sheet.update_cell(i+1, 1, ing_n)
+    print(Fore.GREEN + "Inventory successfully updated.\n")
+    return_invt_menu()
+
+
+def clear_invt_item():
+    """
+    Clear inventory item completely from records
+    """
+    invt_sheet = SHEET.worksheet("inventory")
+    ing_del = input("Enter ingredient name as displayed above: \n")
+    cells_needed = invt_sheet.findall(ing_del, in_column=1)
+    rows_to_clear = [cell.row for cell in cells_needed]
+    for row in rows_to_clear:
+        invt_sheet.delete_rows(row)
+    print(Fore.GREEN + "Records updated successfully.\n")
+    return_batch_menu()
 
 
 def invt_options():
@@ -531,6 +571,36 @@ def invt_options():
     Menu to choose between adding ingredient, changing ingredient name
     or updating quantity.
     """
+    print(Back.MAGENTA + Fore.WHITE + "*** INVENTORY MENU ***")
+    print("\n")
+    print(Fore.CYAN + "1. Add new ingredient\n")
+    print(Fore.CYAN + "2. Change ingredient\n")
+    print(Fore.CYAN + "3. Update ingredient quantity\n")
+    print(Fore.CYAN + "4. Clear ingredient item\n")
+    print(Fore.CYAN + "5. Return to main menu\n")
+    while True:
+        try:
+            choice = int(input("Please choose from the menu: \n"))
+            if choice == 1:
+                add_ingredient()
+                break
+            elif choice == 2:
+                change_invt_item()
+                break
+            elif choice == 3:
+                user_update_ing()
+                break
+            elif choice == 4:
+                clear_invt_item()
+                break
+            elif choice == 5:
+                clearScreen()
+                main()
+                break
+        except ValueError:
+            print(Fore.RED + "Invalid input. Enter number for menu choice.\n")
+            time.sleep(1)
+            continue
        
 
 def check_invt():
@@ -555,7 +625,7 @@ def check_invt():
         try:
             u_input = input("Would you like to update an item? Enter Y or N\n")
             if u_input == 'Y' or u_input == 'y':
-                add_ingredient()
+                invt_options()
                 break
             elif u_input == 'N' or u_input == 'n':
                 return_main()
