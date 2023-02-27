@@ -306,9 +306,16 @@ def add_batch_item():
     new_batch = input("Enter a new batch item to record (eg: Mint Choc): \n")
     new_batch_q = input("Enter new batch quantity"
                         " (numerical value only): \n")
-    batch_sheet.append_row([new_batch, new_batch_q])
-    print(Fore.GREEN + "Batch records successfully updated.\n")
-    return_batch_menu()
+    rows_used = len(batch_sheet.col_values(1))
+    if rows_used < 7:
+        batch_sheet.append_row([new_batch, new_batch_q])
+        print(Fore.GREEN + "Batch records successfully updated.\n")
+        return_batch_menu()
+    else:
+        print(Fore.YELLOW + "Sorry, Batch records full."
+                            " Max 6 batch item types.\n")
+        time.sleep(2)
+        return_batch_menu()
 
 
 def change_batch_item():
@@ -379,7 +386,7 @@ def user_update_batch():
                         choice = input("Update another flavour?"
                                        " Enter Y or N.\n")
                         if choice == 'Y' or choice == 'y':
-                            user_update_batch()
+                             return_batch_menu()
                         elif choice == 'N' or choice == 'n':
                             return_main()
                     except ValueError:
@@ -506,7 +513,8 @@ def user_update_ing():
     invt_sheet = SHEET.worksheet("inventory")
     records = invt_sheet.get_all_records()
     while True:
-        ing_c = input("Enter ingredient name as displayed above: \n")
+        ing_c = input("Enter ingredient name as displayed"
+                      " above (include unit eg: (g)): \n")
         record_found = False
         for record in records:
             if record["Ingredient"] == ing_c:
@@ -523,7 +531,7 @@ def user_update_ing():
                         cho = input("Update another ingredient? Enter Y or N.")
                         print("\n")
                         if cho == 'Y' or cho == 'y':
-                            user_update_ing()
+                            return_invt_menu()
                         elif cho == 'N' or cho == 'n':
                             return_main()
                         else:
@@ -542,7 +550,8 @@ def change_invt_item():
     Change item in inventory.
     """
     invt_sheet = SHEET.worksheet("inventory")
-    ing_o = input("Enter ingredient name as displayed above: \n")
+    ing_o = input("Enter ingredient name as displayed"
+                  " above (include unit eg: (g)): \n")
     ing_n = input("Enter the new ingredient: \n")
     values = invt_sheet.col_values(1)
     for i, value in enumerate(values):
@@ -557,7 +566,8 @@ def clear_invt_item():
     Clear inventory item completely from records
     """
     invt_sheet = SHEET.worksheet("inventory")
-    ing_del = input("Enter ingredient name as displayed above: \n")
+    ing_del = input("Enter ingredient name as displayed"
+                    " above (include unit eg: (g)): \n")
     cells_needed = invt_sheet.findall(ing_del, in_column=1)
     rows_to_clear = [cell.row for cell in cells_needed]
     for row in rows_to_clear:
