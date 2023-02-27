@@ -140,6 +140,8 @@ def print_sales():
     print("\n")
     print("****************************************************************\n")
     print("\n")
+    if len(sales_sheet) == 0:
+        print(Fore.YELLOW + "No Sales Data available.\n")
     while True:
         choice = typeInput("To return to Sales Menu, please enter 'S'.\n")
         if choice == 'S' or choice == 's':
@@ -179,14 +181,14 @@ def sales_input():
     """
     clearScreen()
     print(Back.MAGENTA + Fore.WHITE + "*** SALES INPUT ***\n")
-    typePrint("Enter date & abbreviated baked items (max 4 letters) "
+    typePrint("Enter date & abbreviated baked items (max 4 letters), "
               "(DD,MM,YYYY, six baked items, separated by commas).\n")
-    sales_figs = typeInput("Enter here: \n")
+    sales_figs = input(Fore.YELLOW + "Enter here: \n")
     sales_data = sales_figs.split(",")
     sales_str = ','.join(sales_data)
     typePrint("Enter date & sales numbers "
               "(DD,MM,YYYY, six sales numbers, separated by commas).\n")
-    sales_nums = typeInput("Enter here: \n")
+    sales_nums = input(Fore.YELLOW + "Enter here: \n")
     sales_num_data = sales_nums.split(",")
     validate_sales(sales_num_data)
     sales_num_str = ','.join(sales_num_data)
@@ -259,9 +261,8 @@ def day_sales():
         print(Fore.CYAN + """
             1. View sales data\n
             2. Add days sales\n
-            3. Update sales items\n
-            4. Clear data\n
-            5. Main menu
+            3. Clear data\n
+            4. Main menu
             """)
         try:
             choice = int(typeInput("Please choose from menu.\n"))
@@ -274,11 +275,7 @@ def day_sales():
             elif choice == 3:
                 clear_sales()
                 break
-            elif choice == 3:
-                clear_sales()
-                break
-            elif choice == 5:
-                clearScreen()
+            elif choice == 4:
                 main()
                 break
         except ValueError:
