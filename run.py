@@ -354,6 +354,12 @@ def check_batch():
     return_main()
 
 
+def add_ingredient():
+    """
+    Add new ingredient to inventory and update google sheet
+    """
+
+
 def user_update_ing():
     """
     Allow user input to update inventory levels
@@ -404,6 +410,12 @@ def change_inv_item():
         if value == ing_o:
             invt_sheet.update_cell(i+1, 1, ing_n)
 
+
+def invt_options():
+    """
+    Menu to choose between adding ingredient, changing ingredient name
+    or updating quantity.
+    """
        
 
 def check_invt():
