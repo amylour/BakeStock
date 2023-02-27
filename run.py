@@ -261,13 +261,41 @@ def day_sales():
                 clear_sales()
                 break
             elif choice == 4:
-                return_main()
+                clearScreen()
+                main()
                 break
         except ValueError:
             typePrint("Invalid input. Please choose a numbered menu item.")
             time.sleep(1.5)
             clearScreen()
             continue
+
+
+def return_batch_menu():
+    """
+    Print updated batch number data for user and
+    provide input choices
+    """
+    batch_sheet = SHEET.worksheet("batch")
+    batch_list = batch_sheet.col_values(1)
+    q_list = batch_sheet.col_values(2)
+    # list/zip for parallel iteration
+    # credit: https://realpython.com/python-zip-function/
+    # credit: Tech with Tim-https://www.youtube.com/watch?v=-MZiQaNI0QA
+    pairs = list(zip(batch_list, q_list))
+    for pair in pairs:
+        print(Fore.CYAN + '- ', pair[0], Fore.CYAN + ': ', pair[1])
+    print("\n")
+    print(Fore.YELLOW + "ATTN: Batch = 12 cupcakes.\n")
+    while True:
+        user_input = input("Would you like to update batches? Enter Y or N.\n")
+        if user_input == 'Y' or user_input == 'y':
+            print("\n")
+            batch_options()
+            break
+        elif user_input == 'N' or user_input == 'n':
+            return_main()
+            break
 
 
 def add_batch_item():
@@ -277,22 +305,39 @@ def add_batch_item():
     batch_sheet = SHEET.worksheet("batch")
     new_batch = input("Enter a new batch item to record (eg: Mint Choc): \n")
     new_batch_q = input("Enter new batch quantity"
-                      " (numerical value only): \n")
+                        " (numerical value only): \n")
     batch_sheet.append_row([new_batch, new_batch_q])
+    print(Fore.GREEN + "Batch records successfully updated.\n")
+    return_batch_menu()
 
 
 def change_batch_item():
     """
     Change item name in batch record and update Google Sheet.
     """
-    batch_sheet = SHEET.worksheet("inventory")
+    batch_sheet = SHEET.worksheet("batch")
     batch_o = input("Enter batch name as displayed above: \n")
     batch_n = input("Enter the new batch item: \n")
     values = batch_sheet.col_values(1)
     for i, value in enumerate(values):
         if value == batch_o:
             batch_sheet.update_cell(i+1, 1, batch_n)
+    print(Fore.GREEN + "Batch records successfully updated.\n")
+    return_batch_menu()
 
+
+def clear_batch_item():
+    """
+    Clear batch item completely from records
+    """
+    batch_sheet = SHEET.worksheet("batch")
+    batch_del = input("Enter batch name as displayed above: \n")
+    cells_needed = batch_sheet.findall(batch_del, in_column=1)
+    rows_to_clear = [cell.row for cell in cells_needed]
+    for row in rows_to_clear:
+        batch_sheet.delete_rows(row)
+    print(Fore.GREEN + "Records updated successfully.\n")
+    return_batch_menu()
 
 
 def user_update_batch():
@@ -317,7 +362,7 @@ def user_update_batch():
                         # https://www.youtube.com/watch?v=-MZiQaNI0QA
                         for i, record in enumerate(records, start=2):
                             batch_sheet.update_cell(i, 2, record["Quantity"])
-                        print(Fore.GREEN + "Inventory successfully updated.\n")
+                        print(Fore.GREEN + "Batches successfully updated.\n")
                         batch_sheet = SHEET.worksheet("batch")
                         batch_list = batch_sheet.col_values(1)
                         q_list = batch_sheet.col_values(2)
@@ -352,6 +397,36 @@ def batch_options():
     Menu to choose between adding new batch item, changing batch name
     or updating quantity.
     """
+    print(Back.MAGENTA + Fore.WHITE + "*** BATCH MENU ***")
+    print("\n")
+    print(Fore.CYAN + "1. Add new batch item\n")
+    print(Fore.CYAN + "2. Change batch item name\n")
+    print(Fore.CYAN + "3. Update batch number\n")
+    print(Fore.CYAN + "4. Clear batch item\n")
+    print(Fore.CYAN + "5. Return to main menu\n")
+    while True:
+        try:
+            choice = int(input("Please choose from the menu: \n"))
+            if choice == 1:
+                add_batch_item()
+                break
+            elif choice == 2:
+                change_batch_item()
+                break
+            elif choice == 3:
+                user_update_batch()
+                break
+            elif choice == 4:
+                clear_batch_item()
+                break
+            elif choice == 5:
+                clearScreen()
+                main()
+                break
+        except ValueError:
+            print(Fore.RED + "Invalid input. Enter number for menu choice.\n")
+            time.sleep(1)
+            continue
 
 
 def check_batch():
@@ -377,7 +452,8 @@ def check_batch():
     while True:
         user_input = input("Would you like to update batches? Enter Y or N.\n")
         if user_input == 'Y' or user_input == 'y':
-            user_update_batch()
+            print("\n")
+            batch_options()
             break
         elif user_input == 'N' or user_input == 'n':
             return_main()
