@@ -151,16 +151,6 @@ def print_sales():
             print(Fore.RED + "Invalid input, please try again.")
             continue
 
-'''
-def update_sales_list():
-    """
-    Update Sales sheet with new baked items headers
-    """
-    typePrint("Enter new Sales items, six items, separated by commas.\n")
-'''
-
-
-
 
 def validate_sales(values):
     """
@@ -189,7 +179,7 @@ def sales_input():
     """
     clearScreen()
     print(Back.MAGENTA + Fore.WHITE + "*** SALES INPUT ***\n")
-    typePrint("Enter date & baked items "
+    typePrint("Enter date & abbreviated baked items (max 4 letters) "
               "(DD,MM,YYYY, six baked items, separated by commas).\n")
     sales_figs = typeInput("Enter here: \n")
     sales_data = sales_figs.split(",")
@@ -217,6 +207,7 @@ def sales_input():
             break
         else:
             print(Fore.RED + "Invalid input, please try again.")
+            time.sleep(1)
             continue
 
 
