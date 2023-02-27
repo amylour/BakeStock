@@ -86,7 +86,7 @@ def prog_start():
     ''')
     print("\n")
     print(Fore.CYAN + "             Sales & Inventory Management "
-          "for Micro Bakeries.\n")
+          "for Hobby Bakers.\n")
     time.sleep(1)
     print(Fore.CYAN + "      (Created for Educational Purposes -"
           " Copyright: Amy Richardson '23)")
@@ -358,6 +358,13 @@ def add_ingredient():
     """
     Add new ingredient to inventory and update google sheet
     """
+    invt_sheet = SHEET.worksheet("inventory")
+    new_ing = input("Enter a new ingredient to add to the"
+                    " inventory (include unit eg: Cocoa Powder(g)): \n")
+    new_ing_v = input("Enter new ingredients quantity"
+                      " (numerical value only): \n")
+    invt_sheet.append_row([new_ing, new_ing_v])
+
 
 
 def user_update_ing():
@@ -440,7 +447,7 @@ def check_invt():
         try:
             u_input = input("Would you like to update an item? Enter Y or N\n")
             if u_input == 'Y' or u_input == 'y':
-                change_inv_item()
+                add_ingredient()
                 break
             elif u_input == 'N' or u_input == 'n':
                 return_main()
