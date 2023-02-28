@@ -117,20 +117,6 @@ def print_sales():
     """
     clearScreen()
     sales_sheet = SHEET.worksheet("sales").get_all_values()
-    '''
-    batch_sheet = SHEET.worksheet("batch")
-    batch_list = batch_sheet.col_values(1)
-    batch_one = batch_sheet.cell(2,1).value
-    print(Back.MAGENTA + Fore.WHITE + "*** SALES FIGURES BY DATE ***\n")
-    time.sleep(1)
-    print(Fore.CYAN + f"""
-                        - FLAVOURS LIST -
-                        *****************
-            Van  ->  {batch_one}      Red V  ->  Red Velvet
-            Choc ->  Chocolate     Strawb ->  Strawberry
-            Cara ->  Caramel       C&C    ->  Cookies & Cream
-          """)
-    '''
     print(Back.MAGENTA + Fore.WHITE + "*** SALES FIGURES BY DATE ***\n")
     # \t to format and display sales data from gsheet into terminal
     # credit: https://tinyurl.com/3h7nr24a
@@ -402,7 +388,7 @@ def user_update_batch():
                         choice = input("Update another flavour?"
                                        " Enter Y or N.\n")
                         if choice == 'Y' or choice == 'y':
-                             return_batch_menu()
+                            return_batch_menu()
                         elif choice == 'N' or choice == 'n':
                             return_main()
                     except ValueError:
@@ -627,7 +613,7 @@ def invt_options():
             print(Fore.RED + "Invalid input. Enter number for menu choice.\n")
             time.sleep(1)
             continue
-       
+
 
 def check_invt():
     """
