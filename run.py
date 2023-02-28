@@ -121,6 +121,7 @@ def print_sales():
     # \t to format and display sales data from gsheet into terminal
     # credit: https://tinyurl.com/3h7nr24a
     print("****************************************************************\n")
+    print("-Day-  -Month-  -Year-            -Baked Items-\n")
     for row in sales_sheet:
         print('\t'.join(row))
     print("\n")
@@ -167,12 +168,12 @@ def sales_input():
     """
     clearScreen()
     print(Back.MAGENTA + Fore.WHITE + "*** SALES INPUT ***\n")
-    typePrint("Enter date & abbreviated baked items (max 4 letters)\n")
+    print(Fore.CYAN + "Enter date & abbreviated baked items (max 4 letters):")
     typePrint("(DD,MM,YYYY, six baked items, separated by commas).\n")
     sales_figs = input(Fore.YELLOW + "Enter here: \n")
     sales_data = sales_figs.split(",")
     sales_str = ','.join(sales_data)
-    typePrint("Enter date & sales numbers\n")
+    print(Fore.CYAN + "Enter date & sales numbers:")
     typePrint("(DD,MM,YYYY, six sales numbers, separated by commas).\n")
     sales_nums = input(Fore.YELLOW + "Enter here: \n")
     sales_num_data = sales_nums.split(",")
@@ -186,8 +187,9 @@ def sales_input():
             sales_sheet = SHEET.worksheet("sales")
             sales_sheet.append_row(sales_data)
             sales_sheet.append_row(sales_num_data)
-            typePrint("The sales figures have been recorded.\n")
-            time.sleep(1)
+            typePrint("The sales figures have been recorded."
+                      " Returning to Sales Menu...\n")
+            time.sleep(1.5)
             print("\n")
             day_sales()
             break
@@ -575,7 +577,7 @@ def clear_invt_item():
     for row in rows_to_clear:
         invt_sheet.delete_rows(row)
     print(Fore.GREEN + "Records updated successfully.\n")
-    return_batch_menu()
+    return_invt_menu()
 
 
 def invt_options():
