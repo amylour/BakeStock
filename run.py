@@ -121,7 +121,7 @@ def print_sales():
     # \t to format and display sales data from gsheet into terminal
     # credit: https://tinyurl.com/3h7nr24a
     print("****************************************************************\n")
-    print("-Day-  -Month-  -Year-            -Baked Items-\n")
+    print("-Day-  -Month-  -Year-               -Baked Items-\n")
     for row in sales_sheet:
         print('\t'.join(row))
     print("\n")
@@ -155,6 +155,7 @@ def validate_sales(values):
             )
     except ValueError:
         print(Fore.RED + "Input invalid, please try again.\n")
+        time.sleep(1)
         sales_input()
         return False
 
@@ -198,7 +199,7 @@ def sales_input():
             break
         else:
             print(Fore.RED + "Invalid input, please try again.")
-            time.sleep(1)
+            time.sleep(1.5)
             continue
 
 
@@ -235,9 +236,10 @@ def clear_sales():
         elif check_c == 'X' or check_c == 'x':
             day_sales()
         else:
-            print(Fore.RED + "Invalid input. Returning to main menu.")
+            print(Fore.RED + "Invalid input. Returning to Main Menu.")
             time.sleep(1.5)
-            return_main()
+            clearScreen()
+            main()
 
 
 def day_sales():
@@ -271,7 +273,7 @@ def day_sales():
         except ValueError:
             typePrint("Invalid input. Please choose a numbered menu item.")
             time.sleep(1.5)
-            clearScreen()
+            day_sales()
             continue
 
 
@@ -308,8 +310,13 @@ def add_batch_item():
     """
     batch_sheet = SHEET.worksheet("batch")
     new_batch = input("Enter a new batch item to record (eg: Mint Choc): \n")
-    new_batch_q = input("Enter new batch quantity"
-                        " (numerical value only): \n")
+    while True:
+        try:
+            new_batch_q = int(input("Enter new batch quantity"
+                                    " (numerical value only): \n"))
+            break
+        except ValueError:
+            print(Fore.RED + "Invalid input, numerical value needed.\n")
     rows_used = len(batch_sheet.col_values(1))
     if rows_used < 7:
         batch_sheet.append_row([new_batch, new_batch_q])
@@ -327,14 +334,17 @@ def change_batch_item():
     Change item name in batch record and update Google Sheet.
     """
     batch_sheet = SHEET.worksheet("batch")
+    col_vals = batch_sheet.col_values(1)
     batch_o = input("Enter batch name as displayed above: \n")
-    batch_n = input("Enter the new batch item: \n")
-    values = batch_sheet.col_values(1)
-    for i, value in enumerate(values):
-        if value == batch_o:
-            batch_sheet.update_cell(i+1, 1, batch_n)
-    print(Fore.GREEN + "Batch records successfully updated.\n")
-    return_batch_menu()
+    if batch_o in col_vals:
+        cell = batch_sheet.find(batch_o)
+        batch_n = input("Enter the new batch item: \n")
+        batch_sheet.update_cell(cell.row, cell.col, batch_n)
+        print(Fore.GREEN + "Batch records successfully updated.\n")
+        return_batch_menu()
+    else:
+        print(Fore.RED + "Item not found in batches.\n")
+        change_batch_item()
 
 
 def clear_batch_item():
@@ -655,6 +665,7 @@ def exit():
     """
     return to program start screen
     """
+    typePrint("Thank you for using BakeStock.\n")
     typePrint("Returning to program start...")
     time.sleep(2)
     print("\n")
