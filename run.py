@@ -70,7 +70,7 @@ def prog_start():
     Run opening screen for user and display menu options for user
     """
     print("\n")
-    print(Fore.CYAN + '''
+    print(Fore.CYAN + Style.BRIGHT + '''
     **********************************************************************
     *                                                                    *
     888888b.          88              .d888b.   88                  88
