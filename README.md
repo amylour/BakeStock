@@ -1,13 +1,14 @@
 # **BakeStock**
   
 
-![bakestock ascii art](assets/readme_images/bakestock_ascii.png)  
+![bakestock ascii art](assets/readme_images/main_image.png)  
 
 
-BakeStock is a Python command line interface (CLI) application designed to be used by small batch bakeries or 'micro-bakeries'. The application will allow the user to keep track of daily bakes and sales, calculate the next days bake batch numbers and keep track of ingredient inventory levels, alerting the user to any low ingredient levels.
+BakeStock is a Python command line interface (CLI) application designed to be used by hobby or 'small-batch' bakers. The application will allow the user to keep track of daily bakes and sales, batch numbers, and keep track of ingredient types and inventory levels. It is fully customisable and editable to allow the user to change their bakes and inventory items through multiple menus.
 
-You can view the live application here. **
-Sales, stock, inventory data here. **
+[View the live application here.](https://bakestock.herokuapp.com/)  
+
+[Sales, stock, inventory data here.](https://docs.google.com/spreadsheets/d/1ny_lvzMpPjMDCl1ET9uSyVTzBcJko1QDY6DXggS_y5s/edit?usp=sharing)
 
 
 ## Contents
@@ -25,7 +26,7 @@ Sales, stock, inventory data here. **
   * [How to Use](#how-to-use)
   * [Future Features](#future-features)
 * [**Technologies Used**](#technologies-used)
-* [**Python Packages**](#python-packages)
+* [**Python Libraries**](#python-libraries)
 * [**Testing**](#testing)
   * [Bugs](#bugs)
   * [Validator](#validator)
@@ -55,7 +56,7 @@ Sales, stock, inventory data here. **
   
 # Technologies Used  
   
-# Python Packages  
+# Python Libraries  
   
 # Testing  
   
@@ -65,6 +66,23 @@ Sales, stock, inventory data here. **
 ## Validator  
   
 # Deployment  
+
+### Forking the GitHub Repositiory
+
+A copy of the original repository can be made through GitHub. Please follow the below steps to fork this repository:  
+
+1. Navigate to GitHub and log in.  
+2. Once logged in, navigate to this repository using this link [BakeStock Repository](https://github.com/amylour/BakeStock).
+3. Above the repository file section and to the top, right of the page is the 'Fork' button, click on this to make a fork of this repository.
+4. You should now have access to a forked copy of this repository in your Github account.
+
+### Clone this GitHub Repository
+
+A local clone of thie repository can be made on GitHub. Please follow the below steps:
+
+1. Navigate to GitHub and log in.
+
+
   
 # Credits
 
