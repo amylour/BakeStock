@@ -6,14 +6,14 @@
 
 BakeStock is a Python command line interface (CLI) application designed to be used by hobby or 'small-batch' bakers. The application will allow the user to keep track of daily bakes and sales, batch numbers, and keep track of ingredient types and inventory levels. It is fully customisable and editable to allow the user to change their bakes and inventory items through multiple menus.
 
-[View the live application here.](https://bakestock.herokuapp.com/)  
+View the live application here: [BakeStock](https://bakestock.herokuapp.com/)  
 
-[Sales, stock, inventory data here.](https://docs.google.com/spreadsheets/d/1ny_lvzMpPjMDCl1ET9uSyVTzBcJko1QDY6DXggS_y5s/edit?usp=sharing)
+Google Sheets Sales, Batch, Inventory Data (view only) [here.](https://docs.google.com/spreadsheets/d/1ny_lvzMpPjMDCl1ET9uSyVTzBcJko1QDY6DXggS_y5s/edit?usp=sharing)
 
 
 ## Contents
 * [**User Experience - UX**](#user-experience-ux)
-  * [App Goals](#app-goals)
+  * [User Goals](#user-goals)
   * [User Stories](#user-stories)
 * [**Creation process**](#creation-process)
   * [Planning](#planning)
@@ -36,10 +36,33 @@ BakeStock is a Python command line interface (CLI) application designed to be us
   
 # User Experience (UX)  
   
-## App Goals
+## User Goals
+BakeStock has been designed like a 'digital notebook', a clear, interactive, safe way for a hobby baker to keep track of important data. Some key user goals that I have kept in mind during this project have been:  
+
+  - It must be easy to navigate, with clear Menu options.
+  - An attractive, bright UI to engage the user.
+  - Clear instructions are made available for correct data input.
+  - Data must be completely editable for different baked items to be recorded.
+  - The option to clear data if needed.
+  - No dead ends to trap the user at the end of a function.
+
 ## User Stories  
+  1. As a User, I want an attractive, engaging application. 
+  2. As a User, I want to be provided with clear instructions throughout the application.
+  3. As a User, I want to be able to record my Sales neatly, even if my baked items are different everyday.
+  4. As a User, I want to be able to view my Sales records.
+  5. As a User, I want to be able to clear my Sales data, should I need to.
+  6. As a User, I want to be able to navigate back to the Main Menu.
+  7. As a User, I want to be able to create and remove Batch records.
+  8. As a User, I want to be able to view the Batches that I have left to bake.
+  9. As a User, I want to be able to update my Batch records by item when a bake is complete.
+  10. As a User, I want to be able to view my Ingredient Inventory.
+  11. As a User, I want to be able to delete an Ingredient or Quantity.
+  12. As a User, I want to be able to be able to update an Ingredient or Quantity.
   
-# Creation Process
+
+# Creation Process  
+
   
 ## Flowcharts  
 ## Google API SetUp
