@@ -121,7 +121,7 @@ def print_sales():
     # \t to format and display sales data from gsheet into terminal
     # credit: https://tinyurl.com/3h7nr24a
     print("****************************************************************\n")
-    print("-Day-  -Month-  -Year-               -Baked Items-\n")
+    print("-Day- -Month- -Year-                -Baked Items-\n")
     for row in sales_sheet:
         print('\t'.join(row))
     print("\n")
@@ -352,13 +352,16 @@ def clear_batch_item():
     Clear batch item completely from records
     """
     batch_sheet = SHEET.worksheet("batch")
+    col_vals = batch_sheet.col_values(1)
     batch_del = input("Enter batch name as displayed above: \n")
-    cells_needed = batch_sheet.findall(batch_del, in_column=1)
-    rows_to_clear = [cell.row for cell in cells_needed]
-    for row in rows_to_clear:
-        batch_sheet.delete_rows(row)
-    print(Fore.GREEN + "Records updated successfully.\n")
-    return_batch_menu()
+    if batch_del in col_vals:
+        cell = batch_sheet.find(batch_del)
+        batch_sheet.delete_rows(cell.row)
+        print(Fore.GREEN + "Records updated successfully.\n")
+        return_batch_menu()
+    else:
+        print(Fore.RED + "Item not found in batches.\n")
+        clear_batch_item()
 
 
 def user_update_batch():
@@ -409,7 +412,7 @@ def user_update_batch():
                     else:
                         return update_q
         if not record_found:
-            print(Fore.RED + "Flavour not found in inventory.\n")
+            print(Fore.RED + "Flavour not found in batches.\n")
             continue
 
 
@@ -508,16 +511,23 @@ def return_invt_menu():
 
 def add_ingredient():
     """
-    Add new ingredient to inventory and update google sheet
+    Add new ingredient by user input to inventory
+    and update Google Sheet
     """
     invt_sheet = SHEET.worksheet("inventory")
     new_ing = input("Enter a new ingredient to add to the"
                     " inventory (include unit eg: Cocoa Powder(g)): \n")
-    new_ing_v = input("Enter new ingredients quantity"
-                      " (numerical value only): \n")
-    invt_sheet.append_row([new_ing, new_ing_v])
-    print(Fore.GREEN + "Inventory successfully updated.\n")
-    return_invt_menu()
+    while True:
+        try:
+            new_ing_v = int(input("Enter new ingredients quantity"
+                                  " (numerical value only): \n"))
+            invt_sheet.append_row([new_ing, new_ing_v])
+            print(Fore.GREEN + "Inventory successfully updated.\n")
+            return_invt_menu()
+            break
+        except ValueError:
+            print(Fore.RED + "Invalid input, numerical value needed.\n")
+            add_ingredient()
 
 
 def user_update_ing():
@@ -545,6 +555,10 @@ def user_update_ing():
                         cho = input("Update another ingredient? Enter Y or N.")
                         print("\n")
                         if cho == 'Y' or cho == 'y':
+                            clearScreen()
+                            print(Back.MAGENTA + Fore.WHITE +
+                                  "*** CURRENT INVENTORY LEVELS ***\n")
+                            time.sleep(.5)
                             return_invt_menu()
                         elif cho == 'N' or cho == 'n':
                             return_main()
@@ -561,33 +575,40 @@ def user_update_ing():
 
 def change_invt_item():
     """
-    Change item in inventory.
+    Change item in inventory records and update
+    Google Sheets
     """
     invt_sheet = SHEET.worksheet("inventory")
-    ing_o = input("Enter ingredient name as displayed"
+    col_vals = invt_sheet.col_values(1)
+    ing_o = input("Enter Ingredient name as displayed"
                   " above (include unit eg: (g)): \n")
-    ing_n = input("Enter the new ingredient: \n")
-    values = invt_sheet.col_values(1)
-    for i, value in enumerate(values):
-        if value == ing_o:
-            invt_sheet.update_cell(i+1, 1, ing_n)
-    print(Fore.GREEN + "Inventory successfully updated.\n")
-    return_invt_menu()
+    if ing_o in col_vals:
+        cell = invt_sheet.find(ing_o)
+        ing_n = input("Enter the new Ingredient: \n")    
+        invt_sheet.update_cell(cell.row, cell.col, ing_n)
+        print(Fore.GREEN + "Inventory successfully updated.\n")
+        return_invt_menu()
+    else:
+        print(Fore.RED + "Item not found in Inventory.\n")
+        change_invt_item()
 
 
 def clear_invt_item():
     """
-    Clear inventory item completely from records
+    Clear inventory item completely from Google Sheet records
     """
     invt_sheet = SHEET.worksheet("inventory")
+    col_vals = invt_sheet.col_values(1)
     ing_del = input("Enter ingredient name as displayed"
                     " above (include unit eg: (g)): \n")
-    cells_needed = invt_sheet.findall(ing_del, in_column=1)
-    rows_to_clear = [cell.row for cell in cells_needed]
-    for row in rows_to_clear:
-        invt_sheet.delete_rows(row)
-    print(Fore.GREEN + "Records updated successfully.\n")
-    return_invt_menu()
+    if ing_del in col_vals:
+        cell = invt_sheet.find(ing_del)
+        invt_sheet.delete_rows(cell.row)
+        print(Fore.GREEN + "Records updated successfully.\n")
+        return_invt_menu()
+    else:
+        print(Fore.RED + "Ingredient not found in Inventory.\n")
+        clear_invt_item()  
 
 
 def invt_options():
@@ -618,6 +639,8 @@ def invt_options():
                 clear_invt_item()
                 break
             elif choice == 5:
+                typePrint("Returning to Main Menu...")
+                time.sleep(1)
                 clearScreen()
                 main()
                 break
