@@ -122,7 +122,7 @@ def print_sales():
     # \t to format and display sales data from gsheet into terminal
     # credit: https://tinyurl.com/3h7nr24a
     print("****************************************************************\n")
-    print("-Day- -Month- -Year-                -Baked Items-\n")
+    print("-Day- -Month-  -Year-                -Baked Items-\n")
     for row in sales_sheet:
         print('\t'.join(row))
     print("\n")
@@ -279,7 +279,7 @@ def day_sales():
                 main()
                 break
         except ValueError:
-            print(Fore.RED + 
+            print(Fore.RED +
                   "Invalid input. Please choose a numbered menu item.")
             time.sleep(1.5)
             day_sales()
@@ -595,7 +595,7 @@ def change_invt_item():
                   " above (include unit eg: (g)): \n")
     if ing_o in col_vals:
         cell = invt_sheet.find(ing_o)
-        ing_n = input("Enter the new Ingredient: \n")    
+        ing_n = input("Enter the new Ingredient: \n")
         invt_sheet.update_cell(cell.row, cell.col, ing_n)
         print(Fore.GREEN + "Inventory successfully updated.\n")
         return_invt_menu()
@@ -619,7 +619,7 @@ def clear_invt_item():
         return_invt_menu()
     else:
         print(Fore.RED + "Ingredient not found in Inventory.\n")
-        clear_invt_item()  
+        clear_invt_item()
 
 
 def invt_options():
@@ -754,7 +754,7 @@ def main():
      "~@@@'  ]@@@'        __      )@n@bza@-"
        `-@zzz@@@L        )@@z     ]@@=%-"
          "~~@@@@@bz_    _a@@@@z___a@K
-             "~-@@@@@@@@@@@@@@@@@@~"  
+             "~-@@@@@@@@@@@@@@@@@@~"
                 `~~~-@~~-@@~~~~~'
                       """)
                 print(Fore.CYAN + Style.BRIGHT + "  Here's a yummy Croissant.")
