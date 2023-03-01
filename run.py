@@ -85,10 +85,10 @@ def prog_start():
     **********************************************************************
     ''')
     print("\n")
-    print(Fore.CYAN + "             Sales & Inventory Management "
+    print(Fore.CYAN + Style.BRIGHT + "           Sales & Inventory Management "
           "for Hobby Bakers.\n")
     time.sleep(1)
-    print(Fore.CYAN + "      (Created for Educational Purposes -"
+    print(Fore.CYAN + Style.BRIGHT + "      (Created for Educational Purposes -"
           " Copyright: Amy Richardson '23)")
     time.sleep(3)
     clearScreen()
@@ -96,7 +96,7 @@ def prog_start():
 
 def return_main():
     """
-    Return to main menu
+    Return to main menu option for user input
     """
     while True:
         print("\n")
@@ -707,9 +707,9 @@ def main():
     typePrint("Please choose from the menu below.\n")
     time.sleep(1)
     print("\n")
-    print(Fore.CYAN + "1. Sales menu\n")
-    print(Fore.CYAN + "2. Batch numbers\n")
-    print(Fore.CYAN + "3. Ingredients inventory\n")
+    print(Fore.CYAN + "1. Sales Menu\n")
+    print(Fore.CYAN + "2. Batch Numbers\n")
+    print(Fore.CYAN + "3. Ingredients Inventory\n")
     print(Fore.CYAN + "4. Exit\n")
     while True:
         try:
@@ -726,6 +726,27 @@ def main():
             elif choice == 4:
                 exit()
                 break
+            elif choice == 6:
+                print(Fore.CYAN + Style.BRIGHT + """
+   ____                                    ?~~bL
+  z@~ b                                    |  `U,
+ ]@[  |                                   ]'  z@'
+ d@~' `|, .__     _----L___----, __, .  _t'   `@j
+`@L_,   "-~ `--"~-a,           `C.  ~""O_    ._`@
+ q@~'   ]P       ]@[             `Y=,  `H+z_  `a@
+ `@L  _z@        d@    *     *    Ya     `-@b,_a'
+  `-@d@a'       )@[               `VL      `a@@'
+    aa~'   ],  .a@'       __       qqL  ), ./~
+    @@_  _z~  _d@[                 .V@  .L_d'
+     "~@@@'  ]@@@'        __      )@n@bza@-"
+       `-@zzz@@@L        )@@z     ]@@=%-"
+         "~~@@@@@bz_    _a@@@@z___a@K
+             "~-@@@@@@@@@@@@@@@@@@~"  
+                `~~~-@~~-@@~~~~~'
+                      """)
+                print(Fore.CYAN + Style.BRIGHT + "   Here's a yummy Croissant.")
+                time.sleep(1.5)
+                return_main()
         except ValueError:
             print(Fore.RED + "Invalid input. Enter number for menu choice.\n")
             time.sleep(1)
