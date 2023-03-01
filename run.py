@@ -88,7 +88,7 @@ def prog_start():
     print(Fore.CYAN + Style.BRIGHT + "           Sales & Inventory Management "
           "for Hobby Bakers.\n")
     time.sleep(1)
-    print(Fore.CYAN + Style.BRIGHT + "      (Created for Educational Purposes -"
+    print(Fore.CYAN + Style.BRIGHT + "     (Created for Educational Purposes -"
           " Copyright: Amy Richardson '23)")
     time.sleep(3)
     clearScreen()
@@ -117,7 +117,8 @@ def print_sales():
     """
     clearScreen()
     sales_sheet = SHEET.worksheet("sales").get_all_values()
-    print(Back.MAGENTA + Fore.WHITE + "*** SALES FIGURES BY DATE ***\n")
+    print(Back.MAGENTA + Fore.WHITE + Style.BRIGHT +
+          "*** SALES FIGURES BY DATE ***\n")
     # \t to format and display sales data from gsheet into terminal
     # credit: https://tinyurl.com/3h7nr24a
     print("****************************************************************\n")
@@ -128,7 +129,7 @@ def print_sales():
     print("****************************************************************\n")
     print("\n")
     if len(sales_sheet) == 0:
-        print(Fore.YELLOW + "No Sales Data available.\n")
+        print(Fore.YELLOW + Style.BRIGHT + "No Sales Data available.\n")
     while True:
         choice = typeInput("To return to Sales Menu, please enter 'S'.\n")
         if choice == 'S' or choice == 's':
@@ -168,15 +169,16 @@ def sales_input():
     and used to update sales worksheet.
     """
     clearScreen()
-    print(Back.MAGENTA + Fore.WHITE + "*** SALES INPUT ***\n")
-    print(Fore.CYAN + "Enter date & abbreviated baked items (max 4 letters):")
-    typePrint("(DD,MM,YYYY, six baked items, separated by commas).\n")
-    sales_figs = input(Fore.YELLOW + "Enter here: \n")
+    print(Back.MAGENTA + Fore.WHITE + Style.BRIGHT +
+          "*** SALES INPUT ***\n")
+    print(Fore.CYAN + "Enter Date & abbreviated Baked items (max 4 letters):")
+    typePrint("(DD,MM,YYYY, six Baked items, separated by commas).\n")
+    sales_figs = input(Fore.YELLOW + Style.BRIGHT + "Enter here: \n")
     sales_data = sales_figs.split(",")
     sales_str = ','.join(sales_data)
-    print(Fore.CYAN + "Enter date & sales numbers:")
-    typePrint("(DD,MM,YYYY, six sales numbers, separated by commas).\n")
-    sales_nums = input(Fore.YELLOW + "Enter here: \n")
+    print(Fore.CYAN + Style.BRIGHT + "Enter Date & Sales numbers:")
+    typePrint("(DD,MM,YYYY, six Sales numbers, separated by commas).\n")
+    sales_nums = input(Fore.YELLOW + Style.BRIGHT + "Enter here: \n")
     sales_num_data = sales_nums.split(",")
     validate_sales(sales_num_data)
     sales_num_str = ','.join(sales_num_data)
@@ -188,7 +190,7 @@ def sales_input():
             sales_sheet = SHEET.worksheet("sales")
             sales_sheet.append_row(sales_data)
             sales_sheet.append_row(sales_num_data)
-            typePrint("The sales figures have been recorded."
+            typePrint("The Sales figures have been recorded."
                       " Returning to Sales Menu...\n")
             time.sleep(1.5)
             print("\n")
@@ -208,8 +210,9 @@ def clear_sales():
     Clear all sales data from sales worksheet
     """
     clearScreen()
-    print(Back.MAGENTA + Fore.WHITE + "*** CLEAR ALL SALES DATA ***\n")
-    choice = typeInput("To clear all Sales Data please enter 'CLEAR DATA'.\n")
+    print(Back.MAGENTA + Fore.WHITE + Style.BRIGHT +
+          "*** CLEAR ALL SALES DATA ***\n")
+    choice = typeInput("To clear all Sales data please enter 'CLEAR DATA'.\n")
     if choice == 'CLEAR DATA':
         typePrint("Please confirm Y or N to clear all data:\n")
         final_c = typeInput("Enter choice here: \n")
@@ -222,7 +225,7 @@ def clear_sales():
             print(Fore.GREEN + "Sales sheet successfully cleared.")
             day_sales()
         elif final_c == 'N' or final_c == 'n':
-            print(Fore.YELLOW + "Abort data delete.")
+            print(Fore.YELLOW + Style.BRIGHT + "Abort data delete.")
             day_sales()
         else:
             print(Fore.RED + "Invalid input. Returning to Sales menu.")
@@ -247,16 +250,16 @@ def day_sales():
     Go to sales menu
     """
     clearScreen()
-    print(Back.MAGENTA + Fore.WHITE + "*** SALES MENU ***")
+    print(Back.MAGENTA + Fore.WHITE + Style.BRIGHT + "*** SALES MENU ***")
     while True:
-        print(Fore.CYAN + """
-            1. View sales data\n
-            2. Add days sales\n
-            3. Clear data\n
-            4. Main menu
+        print(Fore.CYAN + Style.BRIGHT + """
+            1. View Sales data\n
+            2. Add Days Sales\n
+            3. Clear Data\n
+            4. Main Menu
             """)
         try:
-            choice = int(typeInput("Please choose from menu.\n"))
+            choice = int(typeInput("Please choose from Menu.\n"))
             if choice == 1:
                 print_sales()
                 break
@@ -271,7 +274,8 @@ def day_sales():
                 main()
                 break
         except ValueError:
-            typePrint("Invalid input. Please choose a numbered menu item.")
+            print(Fore.RED + 
+                  "Invalid input. Please choose a numbered menu item.")
             time.sleep(1.5)
             day_sales()
             continue
@@ -292,9 +296,9 @@ def return_batch_menu():
     for pair in pairs:
         print(Fore.CYAN + '- ', pair[0], Fore.CYAN + ': ', pair[1])
     print("\n")
-    print(Fore.YELLOW + "ATTN: Batch = 12 cupcakes.\n")
+    print(Fore.YELLOW + Style.BRIGHT + "ATTN: Batch = 12 cupcakes.\n")
     while True:
-        user_input = input("Would you like to update batches? Enter Y or N.\n")
+        user_input = input("Would you like to update Batches? Enter Y or N.\n")
         if user_input == 'Y' or user_input == 'y':
             print("\n")
             batch_options()
@@ -309,10 +313,10 @@ def add_batch_item():
     Add new batch item and quantity and update Google Sheet.
     """
     batch_sheet = SHEET.worksheet("batch")
-    new_batch = input("Enter a new batch item to record (eg: Mint Choc): \n")
+    new_batch = input("Enter a new Batch item to record (eg: Mint Choc): \n")
     while True:
         try:
-            new_batch_q = int(input("Enter new batch quantity"
+            new_batch_q = int(input("Enter new Batch quantity"
                                     " (numerical value only): \n"))
             break
         except ValueError:
@@ -323,8 +327,8 @@ def add_batch_item():
         print(Fore.GREEN + "Batch records successfully updated.\n")
         return_batch_menu()
     else:
-        print(Fore.YELLOW + "Sorry, Batch records full."
-                            " Max 6 batch item types.\n")
+        print(Fore.YELLOW + Style.BRIGHT + "Sorry, Batch records full."
+              " Max 6 Batch item types.\n")
         time.sleep(2)
         return_batch_menu()
 
@@ -335,7 +339,7 @@ def change_batch_item():
     """
     batch_sheet = SHEET.worksheet("batch")
     col_vals = batch_sheet.col_values(1)
-    batch_o = input("Enter batch name as displayed above: \n")
+    batch_o = input("Enter Batch name as displayed above: \n")
     if batch_o in col_vals:
         cell = batch_sheet.find(batch_o)
         batch_n = input("Enter the new batch item: \n")
@@ -343,7 +347,7 @@ def change_batch_item():
         print(Fore.GREEN + "Batch records successfully updated.\n")
         return_batch_menu()
     else:
-        print(Fore.RED + "Item not found in batches.\n")
+        print(Fore.RED + "Item not found in Batches.\n")
         change_batch_item()
 
 
@@ -353,14 +357,14 @@ def clear_batch_item():
     """
     batch_sheet = SHEET.worksheet("batch")
     col_vals = batch_sheet.col_values(1)
-    batch_del = input("Enter batch name as displayed above: \n")
+    batch_del = input("Enter Batch name as displayed above: \n")
     if batch_del in col_vals:
         cell = batch_sheet.find(batch_del)
         batch_sheet.delete_rows(cell.row)
         print(Fore.GREEN + "Records updated successfully.\n")
         return_batch_menu()
     else:
-        print(Fore.RED + "Item not found in batches.\n")
+        print(Fore.RED + "Item not found in Batches.\n")
         clear_batch_item()
 
 
@@ -371,7 +375,7 @@ def user_update_batch():
     batch_sheet = SHEET.worksheet("batch")
     records = batch_sheet.get_all_records()
     while True:
-        flav = input("Enter flavour as displayed above: \n")
+        flav = input("Enter Flavour as displayed above: \n")
         record_found = False
         for record in records:
             if record["Flavour"] == flav:
@@ -399,7 +403,8 @@ def user_update_batch():
                             print(Fore.CYAN + '- ', pair[0],
                                   Fore.CYAN + ': ', pair[1])
                         print("\n")
-                        print(Fore.YELLOW + "ATTN: Batch = 12 cupcakes.\n")
+                        print(Fore.YELLOW + Style.BRIGHT +
+                              "ATTN: Batch = 12 cupcakes.\n")
                         choice = input("Update another flavour?"
                                        " Enter Y or N.\n")
                         if choice == 'Y' or choice == 'y':
@@ -412,7 +417,7 @@ def user_update_batch():
                     else:
                         return update_q
         if not record_found:
-            print(Fore.RED + "Flavour not found in batches.\n")
+            print(Fore.RED + "Flavour not found in Batches.\n")
             continue
 
 
@@ -421,16 +426,16 @@ def batch_options():
     Menu to choose between adding new batch item, changing batch name
     or updating quantity.
     """
-    print(Back.MAGENTA + Fore.WHITE + "*** BATCH MENU ***")
+    print(Back.MAGENTA + Fore.WHITE + Style.BRIGHT + "*** BATCH MENU ***")
     print("\n")
-    print(Fore.CYAN + "1. Add new batch item\n")
-    print(Fore.CYAN + "2. Change batch item name\n")
-    print(Fore.CYAN + "3. Update batch number\n")
-    print(Fore.CYAN + "4. Clear batch item\n")
-    print(Fore.CYAN + "5. Return to main menu\n")
+    print(Fore.CYAN + Style.BRIGHT + "1. Add New Batch Item\n")
+    print(Fore.CYAN + Style.BRIGHT + "2. Change Batch Item Name\n")
+    print(Fore.CYAN + Style.BRIGHT + "3. Update Batch Number\n")
+    print(Fore.CYAN + Style.BRIGHT + "4. Clear Batch Item\n")
+    print(Fore.CYAN + Style.BRIGHT + "5. Return to Main Menu\n")
     while True:
         try:
-            choice = int(input("Please choose from the menu: \n"))
+            choice = int(input("Please choose from the Menu: \n"))
             if choice == 1:
                 add_batch_item()
                 break
@@ -448,7 +453,7 @@ def batch_options():
                 main()
                 break
         except ValueError:
-            print(Fore.RED + "Invalid input. Enter number for menu choice.\n")
+            print(Fore.RED + "Invalid input. Enter number for Menu choice.\n")
             time.sleep(1)
             continue
 
@@ -458,10 +463,11 @@ def check_batch():
     Pull batch data from batch google sheet and allow
     user to update quantity and amend worksheet
     """
-    typePrint("Fetching batch numbers for today...")
+    typePrint("Fetching Batch numbers for today...")
     time.sleep(1.5)
     clearScreen()
-    print(Back.MAGENTA + Fore.WHITE + "** TODAYS BATCH NUMBERS **\n")
+    print(Back.MAGENTA + Fore.WHITE + Style.BRIGHT +
+          "** TODAYS BATCH NUMBERS **\n")
     batch_sheet = SHEET.worksheet("batch")
     batch_list = batch_sheet.col_values(1)
     q_list = batch_sheet.col_values(2)
@@ -472,9 +478,9 @@ def check_batch():
     for pair in pairs:
         print(Fore.CYAN + '- ', pair[0], Fore.CYAN + ': ', pair[1])
     print("\n")
-    print(Fore.YELLOW + "ATTN: Batch = 12 cupcakes.\n")
+    print(Fore.YELLOW + Style.BRIGHT + "ATTN: Batch = 12 cupcakes.\n")
     while True:
-        user_input = input("Would you like to update batches? Enter Y or N.\n")
+        user_input = input("Would you like to update Batches? Enter Y or N.\n")
         if user_input == 'Y' or user_input == 'y':
             print("\n")
             batch_options()
@@ -499,7 +505,7 @@ def return_invt_menu():
         print(Fore.CYAN + '- ', pair[0], Fore.CYAN + ': ', pair[1])
     print("\n")
     while True:
-        user_input = input("Update inventory? Enter Y or N.\n")
+        user_input = input("Update Inventory? Enter Y or N.\n")
         if user_input == 'Y' or user_input == 'y':
             print("\n")
             invt_options()
@@ -515,11 +521,11 @@ def add_ingredient():
     and update Google Sheet
     """
     invt_sheet = SHEET.worksheet("inventory")
-    new_ing = input("Enter a new ingredient to add to the"
-                    " inventory (include unit eg: Cocoa Powder(g)): \n")
+    new_ing = input("Enter a new Ingredient to add to the"
+                    " Inventory (include unit eg: Cocoa Powder(g)): \n")
     while True:
         try:
-            new_ing_v = int(input("Enter new ingredients quantity"
+            new_ing_v = int(input("Enter new Ingredients Quantity"
                                   " (numerical value only): \n"))
             invt_sheet.append_row([new_ing, new_ing_v])
             print(Fore.GREEN + "Inventory successfully updated.\n")
@@ -537,7 +543,7 @@ def user_update_ing():
     invt_sheet = SHEET.worksheet("inventory")
     records = invt_sheet.get_all_records()
     while True:
-        ing_c = input("Enter ingredient name as displayed"
+        ing_c = input("Enter Ingredient name as displayed"
                       " above (include unit eg: (g)): \n")
         record_found = False
         for record in records:
@@ -552,11 +558,11 @@ def user_update_ing():
                         for i, record in enumerate(records, start=2):
                             invt_sheet.update_cell(i, 2, record["Quantity"])
                         print(Fore.GREEN + "Inventory successfully updated.\n")
-                        cho = input("Update another ingredient? Enter Y or N.")
+                        cho = input("Update another Ingredient? Enter Y or N.")
                         print("\n")
                         if cho == 'Y' or cho == 'y':
                             clearScreen()
-                            print(Back.MAGENTA + Fore.WHITE +
+                            print(Back.MAGENTA + Fore.WHITE + Style.BRIGHT +
                                   "*** CURRENT INVENTORY LEVELS ***\n")
                             time.sleep(.5)
                             return_invt_menu()
@@ -599,7 +605,7 @@ def clear_invt_item():
     """
     invt_sheet = SHEET.worksheet("inventory")
     col_vals = invt_sheet.col_values(1)
-    ing_del = input("Enter ingredient name as displayed"
+    ing_del = input("Enter Ingredient name as displayed"
                     " above (include unit eg: (g)): \n")
     if ing_del in col_vals:
         cell = invt_sheet.find(ing_del)
@@ -616,16 +622,16 @@ def invt_options():
     Menu to choose between adding ingredient, changing ingredient name
     or updating quantity.
     """
-    print(Back.MAGENTA + Fore.WHITE + "*** INVENTORY MENU ***")
+    print(Back.MAGENTA + Fore.WHITE + Style.BRIGHT + "*** INVENTORY MENU ***")
     print("\n")
-    print(Fore.CYAN + "1. Add new ingredient\n")
-    print(Fore.CYAN + "2. Change ingredient\n")
-    print(Fore.CYAN + "3. Update ingredient quantity\n")
-    print(Fore.CYAN + "4. Clear ingredient item\n")
-    print(Fore.CYAN + "5. Return to main menu\n")
+    print(Fore.CYAN + Style.BRIGHT + "1. Add New Ingredient\n")
+    print(Fore.CYAN + Style.BRIGHT + "2. Change Ingredient\n")
+    print(Fore.CYAN + Style.BRIGHT + "3. Update Ingredient Quantity\n")
+    print(Fore.CYAN + Style.BRIGHT + "4. Clear Ingredient Item\n")
+    print(Fore.CYAN + Style.BRIGHT + "5. Return to Main Menu\n")
     while True:
         try:
-            choice = int(input("Please choose from the menu: \n"))
+            choice = int(input("Please choose from the Menu: \n"))
             if choice == 1:
                 add_ingredient()
                 break
@@ -645,7 +651,7 @@ def invt_options():
                 main()
                 break
         except ValueError:
-            print(Fore.RED + "Invalid input. Enter number for menu choice.\n")
+            print(Fore.RED + "Invalid input. Enter number for Menu choice.\n")
             time.sleep(1)
             continue
 
@@ -655,10 +661,11 @@ def check_invt():
     Pull inventory data from inventory google sheet and allow
     user to update levels and amend worksheet
     """
-    typePrint("Checking inventory levels...")
+    typePrint("Checking Inventory levels...")
     time.sleep(1)
     clearScreen()
-    print(Back.MAGENTA + Fore.WHITE + "*** CURRENT INVENTORY LEVELS ***\n")
+    print(Back.MAGENTA + Fore.WHITE + Style.BRIGHT +
+          "*** CURRENT INVENTORY LEVELS ***\n")
     invt_sheet = SHEET.worksheet("inventory")
     ing_list = invt_sheet.col_values(1)
     q_list = invt_sheet.col_values(2)
@@ -702,15 +709,16 @@ def main():
     """
     Menu is displayed with options for user input
     """
-    print(Back.MAGENTA + Fore.WHITE + "*** WELCOME TO BAKESTOCK ***\n")
+    print(Back.MAGENTA + Fore.WHITE + Style.BRIGHT +
+          "*** WELCOME TO BAKESTOCK ***\n")
     time.sleep(1)
-    typePrint("Please choose from the menu below.\n")
+    typePrint("Please choose from the Menu below.\n")
     time.sleep(1)
     print("\n")
-    print(Fore.CYAN + "1. Sales Menu\n")
-    print(Fore.CYAN + "2. Batch Numbers\n")
-    print(Fore.CYAN + "3. Ingredients Inventory\n")
-    print(Fore.CYAN + "4. Exit\n")
+    print(Fore.CYAN + Style.BRIGHT + "1. Sales Menu\n")
+    print(Fore.CYAN + Style.BRIGHT + "2. Batch Numbers\n")
+    print(Fore.CYAN + Style.BRIGHT + "3. Ingredients Inventory\n")
+    print(Fore.CYAN + Style.BRIGHT + "4. Exit\n")
     while True:
         try:
             choice = int(typeInput("Please enter your choice: \n"))
@@ -735,8 +743,8 @@ def main():
 `@L_,   "-~ `--"~-a,           `C.  ~""O_    ._`@
  q@~'   ]P       ]@[             `Y=,  `H+z_  `a@
  `@L  _z@        d@    *     *    Ya     `-@b,_a'
-  `-@d@a'       )@[               `VL      `a@@'
-    aa~'   ],  .a@'       __       qqL  ), ./~
+  `-@d@a'       )@[        o      `VL      `a@@'
+    aa~'   ],  .a@'                qqL  ), ./~
     @@_  _z~  _d@[                 .V@  .L_d'
      "~@@@'  ]@@@'        __      )@n@bza@-"
        `-@zzz@@@L        )@@z     ]@@=%-"
@@ -744,11 +752,11 @@ def main():
              "~-@@@@@@@@@@@@@@@@@@~"  
                 `~~~-@~~-@@~~~~~'
                       """)
-                print(Fore.CYAN + Style.BRIGHT + "   Here's a yummy Croissant.")
+                print(Fore.CYAN + Style.BRIGHT + "  Here's a yummy Croissant.")
                 time.sleep(1.5)
                 return_main()
         except ValueError:
-            print(Fore.RED + "Invalid input. Enter number for menu choice.\n")
+            print(Fore.RED + "Invalid input. Enter number for Menu choice.\n")
             time.sleep(1)
             continue
 
