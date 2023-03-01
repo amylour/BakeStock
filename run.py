@@ -175,6 +175,11 @@ def sales_input():
     typePrint("(DD,MM,YYYY, six Baked items, separated by commas).\n")
     sales_figs = input(Fore.YELLOW + Style.BRIGHT + "Enter here: \n")
     sales_data = sales_figs.split(",")
+    sales_sheet = SHEET.worksheet("sales")
+    if len(sales_data) > 9:
+        print(Fore.RED + "Too many values. Please re-enter Date & Items.\n")
+        time.sleep(2)
+        sales_input()
     sales_str = ','.join(sales_data)
     print(Fore.CYAN + Style.BRIGHT + "Enter Date & Sales numbers:")
     typePrint("(DD,MM,YYYY, six Sales numbers, separated by commas).\n")
@@ -253,7 +258,7 @@ def day_sales():
     print(Back.MAGENTA + Fore.WHITE + Style.BRIGHT + "*** SALES MENU ***")
     while True:
         print(Fore.CYAN + Style.BRIGHT + """
-            1. View Sales data\n
+            1. View Sales Data\n
             2. Add Days Sales\n
             3. Clear Data\n
             4. Main Menu
