@@ -1,7 +1,7 @@
 # **BakeStock**
   
 
-![bakestock ascii art](assets/readme_images/main_image.png)  
+![bakestock ascii art](documentation/readme/main_image.png)  
 
 
 BakeStock is a Python command line interface (CLI) application designed to be used by hobby or 'small-batch' bakers. The application will allow the user to keep track of daily bakes and sales, batch numbers, and keep track of ingredient types and inventory levels. It is fully customisable and editable to allow the user to change their bakes and inventory items through multiple menus.
