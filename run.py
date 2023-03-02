@@ -153,7 +153,7 @@ def validate_sales(values):
     """
     Convert string values into integers and raise ValueError if
     strings cannot be converted into int. Check for 6 values.
-    Credit: Code Institute Love Sandwiches project 
+    Credit: Code Institute Love Sandwiches project
     https://codeinstitute.net/ie/
     """
     try:
