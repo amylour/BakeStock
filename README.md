@@ -31,7 +31,7 @@ Google Sheets Sales, Batch, Inventory Data (view only) [here.](https://docs.goog
   * [Bugs](#bugs)
   * [Validator](#validator)
 * [**Creation & Deployment**](#creation--deployment)
-* [**Credits**](#credits)  
+* [**Credits**](#credits) 
 
   
 # User Experience (UX)  
@@ -89,6 +89,12 @@ The Colorama python library was used to create a bright, engaging UI for the use
     <img src = "documentation/readme/sales_menu.png">
     </details>
     
+  - Any prompted input that the user provides, that does not validate, will receive an 'Error' message printed in RED. This is give the user feedback to pay particular attention to their input as invalid data will not allow them to proceed with the operations.  
+     <details>
+    <summary>RED for invalid input display</summary>
+    <img src = "documentation/readme/invalid_red.png">
+    </details>  
+      
   - 
   
 # Features
@@ -113,8 +119,13 @@ The Colorama python library was used to create a bright, engaging UI for the use
   
 ## Bugs
 - Colorama not working [Install pip colorama](https://tinyurl.com/msk3uknk)
-- Colorama preventing app working in Heroku [requirements.txt](https://tinyurl.com/3bxmr4kj)
+- Colorama preventing app working in Heroku [requirements.txt](https://tinyurl.com/3bxmr4kj)  
+  
+
 ## Validator  
+
+
+
   
 # Creation & Deployment    
   
