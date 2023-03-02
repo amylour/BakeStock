@@ -137,6 +137,14 @@ To access the data in a Google Sheets worksheet using Python code, an API is req
 ### Connecting the Python project to Google Sheets
 <details>
 <summary>Steps to connect Python and Google Sheets</summary>
+  
+1. In the new Gitpod workspace you've created with the Python Essentials template, click and drag the json file that you created in the above steps, into the Gitpod workspace.  
+2. Rename it to CREDS.json, if you wish, and open the file. Find the client_email address you previously entered, copy it without the quotes around it.
+3. In the Google Sheets file that you have created for this project, click the 'Share' button and paste the email address into the field, choose 'Editor', untick 'Notify People' and click 'Share'. This allows our project access to the spreadsheet.
+4. To ensure the private credentials that you have created do not make their way to the cloud for others to view, add the `creds.json` file to your `gitignore` file before you commit any changes to your repository, and push them to the cloud.
+5. Use the command `git status` to check that the `creds.json` file is not staged to be committed.
+
+
 </details>
   
 
