@@ -48,6 +48,7 @@ def clearScreen():
 # typing effect function with delay effect for print and input
 # print() replaced with typePrint() and input() replaced with typeInput()
 # time.sleep() used as a pause effect with seconds parameter
+# clearScreen() to reset screen for new text
 # credit: https://www.101computing.net/python-typing-text-effect/
 def typePrint(text):
     for character in text:
@@ -152,7 +153,8 @@ def validate_sales(values):
     """
     Convert string values into integers and raise ValueError if
     strings cannot be converted into int. Check for 6 values.
-    Credit: Code Institute Love Sandwiches project.
+    Credit: Code Institute Love Sandwiches project 
+    https://codeinstitute.net/ie/
     """
     try:
         [int(value) for value in values]
@@ -199,6 +201,8 @@ def sales_input():
     print(Fore.GREEN + Style.BRIGHT + f"You have entered : {sales_str}\n")
     print(Fore.GREEN + Style.BRIGHT + f"You have entered : {sales_num_str}\n")
     # Asks user to confirm their entered data to ensure accuracy
+    # Google Sheet data manipulation refernce material
+    # https://docs.gspread.org/en/latest/index.html
     while True:
         choice = typeInput("Please confirm: Y or N.\n")
         if choice == 'Y' or choice == 'y':
@@ -236,8 +240,6 @@ def clear_sales():
         final_c = typeInput("Enter choice here: \n")
         if final_c == 'Y' or final_c == 'y':
             sales_sheet = SHEET.worksheet("sales")
-            # Clear a certain range
-            # Credit: https://tinyurl.com/y3dfpe5v
             sales_sheet.clear()
             time.sleep(1)
             print(Fore.GREEN + "Sales sheet successfully cleared.")
@@ -312,7 +314,6 @@ def return_batch_menu():
     q_list = batch_sheet.col_values(2)
     # list/zip for parallel iteration
     # credit: https://realpython.com/python-zip-function/
-    # credit: Tech with Tim-https://www.youtube.com/watch?v=-MZiQaNI0QA
     pairs = list(zip(batch_list, q_list))
     for pair in pairs:
         print(Fore.CYAN + '- ', pair[0], Fore.CYAN + ': ', pair[1])
@@ -425,10 +426,8 @@ def user_update_batch():
                         batch_sheet = SHEET.worksheet("batch")
                         batch_list = batch_sheet.col_values(1)
                         q_list = batch_sheet.col_values(2)
-                        # list/zip for parallel iteration
+                        # list/zip for parallel iteration of batch items
                         # credit: https://realpython.com/python-zip-function/
-                        # credit: Tech with Tim
-                        # https://www.youtube.com/watch?v=-MZiQaNI0QA
                         pairs = list(zip(batch_list, q_list))
                         for pair in pairs:
                             print(Fore.CYAN + '- ', pair[0],
@@ -504,7 +503,6 @@ def check_batch():
     q_list = batch_sheet.col_values(2)
     # list/zip for parallel iteration
     # credit: https://realpython.com/python-zip-function/
-    # credit: Tech with Tim-https://www.youtube.com/watch?v=-MZiQaNI0QA
     pairs = list(zip(batch_list, q_list))
     for pair in pairs:
         print(Fore.CYAN + '- ', pair[0], Fore.CYAN + ': ', pair[1])
