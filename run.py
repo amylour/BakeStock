@@ -196,8 +196,8 @@ def sales_input():
     sales_num_data = sales_nums.split(",")
     validate_sales(sales_num_data)
     sales_num_str = ','.join(sales_num_data)
-    print(Fore.GREEN + f"You have entered : {sales_str}\n")
-    print(Fore.GREEN + f"You have entered : {sales_num_str}\n")
+    print(Fore.GREEN + Style.BRIGHT + f"You have entered : {sales_str}\n")
+    print(Fore.GREEN + Style.BRIGHT + f"You have entered : {sales_num_str}\n")
     # Asks user to confirm their entered data to ensure accuracy
     while True:
         choice = typeInput("Please confirm: Y or N.\n")
