@@ -28,8 +28,6 @@ Google Sheets Sales, Batch, Inventory Data (view only) [here.](https://docs.goog
 * [**Technologies Used**](#technologies-used)
 * [**Python Libraries**](#python-libraries)
 * [**Testing**](#testing)
-  * [Bugs](#bugs)
-  * [Validator](#validator)
 * [**Creation & Deployment**](#creation--deployment)
 * [**Credits**](#credits) 
 
@@ -67,7 +65,7 @@ BakeStock has been designed like a 'digital notebook', a clear, interactive, saf
 
 
   
-## Flowcharts  
+## Flowchart  
 ## Google API SetUp
 ## Python Logic
 ## Design Choices      
@@ -147,15 +145,6 @@ The Colorama python library was used to create a bright, engaging UI for the use
 # Python Libraries  
   
 # Testing  
-  
-## Bugs
-- Colorama not working [Install pip colorama](https://tinyurl.com/msk3uknk)
-- Colorama preventing app working in Heroku [requirements.txt](https://tinyurl.com/3bxmr4kj)  
-  
-
-## Validator  
-
-
 
   
 # Creation & Deployment    
