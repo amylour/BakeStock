@@ -30,7 +30,7 @@ Google Sheets Sales, Batch, Inventory Data (view only) [here.](https://docs.goog
 * [**Testing**](#testing)
   * [Bugs](#bugs)
   * [Validator](#validator)
-* [**Deployment**](#deployment)
+* [**Creation & Deployment**](#creation--deployment)
 * [**Credits**](#credits)  
 
   
@@ -88,11 +88,13 @@ BakeStock has been designed like a 'digital notebook', a clear, interactive, saf
 - Colorama preventing app working in Heroku [requirements.txt](https://tinyurl.com/3bxmr4kj)
 ## Validator  
   
-# Deployment  
+# Creation & Deployment  
 
 ### Deploying to Heroku  
 
-To allow for accurate testing, I deployed the project to Heroku early on using Automatic Deployment to update the program everytime new code was pushed to my GitHub repository. Here are the steps that I followed to set my project up, guidance was provided by the [Code Institute's](https://codeinstitute.net/ie/) 'Love Sandwiches' project. 
+To allow for accurate testing, I deployed the project to Heroku early on using Automatic Deployment to update the program everytime new code was pushed to my GitHub repository. Here are the steps that I followed to set my project up, guidance was provided by the [Code Institute's](https://codeinstitute.net/ie/) 'Love Sandwiches' project.   
+  
+
 
 1. Log in to [Heroku](https://id.heroku.com/login) or create an account if you are a new user.
 2. Once logged in, in the Heroku Dashboard, navigate to the 'New' button in the top, right corner, and select 'Create New App'.
@@ -109,15 +111,17 @@ To allow for accurate testing, I deployed the project to Heroku early on using A
   
 4. In the Deploy tab, click on the 'Settings', reach the 'Config Vars' section and click on 'Reveal Config Vars'. Here you will enter KEY:VALUE pairs for the app to run successfully. In KEY enter `CREDS`, in VALUE, paste in the text content of your `CREDS.json` file. Select 'Add'.  
 5. Repeat this process with a KEY:VALUE pair of `PORT` and `8000`.
-6. In the Settings tab, in the 'Buildpack' section, click 'Add Buildpack'. One at a time, choose the 'Python' pack, save changes, then choose the 'NodeJS' buildpack and save changes. **NB: thePython buildpack _must_ be above the NodeJS buildpack.**
+6. In the Settings tab, in the 'Buildpack' section, click 'Add Buildpack', located near the bottom, right of the refreshed screen. One at a time, choose the 'Python' pack, save changes, then choose the 'NodeJS' buildpack and save changes. **NB: thePython buildpack _must_ be above the NodeJS buildpack.**
   
 <details>
 <summary>Choose Buildpacks</summary>
 <img src ="documentation/readme/heroku_bp.png">
-</details>
-
-
-
+</details>  
+  
+7. Go to the 'Deploy' tab and choose GitHub as the Deployment method.
+8. Search for the repository name, select the branch that you would like to build from, and connect it via the 'Connect' button.
+9. Choose from 'Automatic' or 'Manual' deployment options, I chose the 'Automatic' deployment method. Click 'Deploy Branch'.
+10. Once the waiting period for the app to build has finished, click the 'View' link to bring you to your newly deployed site.
 
 
 ### Forking the GitHub Repositiory
