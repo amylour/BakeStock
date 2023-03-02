@@ -77,7 +77,17 @@ BakeStock has been designed like a 'digital notebook', a clear, interactive, saf
 ## How to Use
 ## Future Features
   
-# Technologies Used  
+# Technologies Used 
+   - HTML5
+   - CSS3
+   - JavaScript
+   - Python
+
+### Cloud Platforms
+   - GitHub
+   - Gitpod
+   - Google Cloud Platform 
+   - Heroku 
   
 # Python Libraries  
   
@@ -90,11 +100,49 @@ BakeStock has been designed like a 'digital notebook', a clear, interactive, saf
   
 # Creation & Deployment  
 
-### Deploying to Heroku  
+### Creating a new repository 
+<details>
+<summary>Steps to create a new repository</summary>  
 
-To allow for accurate testing, I deployed the project to Heroku early on using Automatic Deployment to update the program everytime new code was pushed to my GitHub repository. Here are the steps that I followed to set my project up, guidance was provided by the [Code Institute's](https://codeinstitute.net/ie/) 'Love Sandwiches' project.   
+The [Code Institute's Python Essential Template](https://github.com/Code-Institute-Org/python-essentials-template) was used to create a terminal for my Python file to generate it's output.To use this template, please follow these steps:
+1. Log in to [GitHub](https://github.com/) or create a new account.
+2. Navigate to the above Python template repository.
+3. Click 'Use this template' -> 'Create a new repository'.
+4. Choose a new repository name and click 'Create repository from template'.
+5. In your new repository space, click the green 'Gitpod' button to generate a new workspace.   
+
+</details> 
+  
+  
+### Activating the Google Drive & Sheets API
+<details>
+<summary>Steps to activate the APIs</summary>
+To access the data in a Google Sheets worksheet using Python code, an API is required. Please follow these steps to set up your API:  
+
+1. Navigate to the [Google Cloud Platform](https://cloud.google.com), using an email address/Google account that is registered to you alone.
+2. In the Google Cloud Platform Dashboard, create a new project by clicking on the 'Select a Project' button and choosing the 'New Project' option. Give your new project a name and click 'Create'. (Your access credentials are unique to each project, so create a new project for every project that you build.) 
+3. Click 'Select Project' in the blue banner to bring you to your project page.
+4. Select 'APIs and Services' from the left side menu, then select 'Library'.
+5. Use the search bar to search for the two APIs needed for this project, Google Drive API and Google Sheets API. One at time, choose the APIs from the search and click 'Enable' on their main page. Follow the below steps for the Google Drive API, but only click 'Enable' for the Google Sheets API. There is no need to download credentials again for it.
+6. On the API overview page, click 'Create Credentials' to generate some credentials which will allow us access to our Google Drive from our Python code.
+7. Fill out the forms fields and dropdown menus with the information that is relevant to your project. For mine, I chose **Google Drive API -> Application Data -> No, I'm not using them** (regarding using Kubernetes, App Engine etc)
+8. Under Service Account Details, choose a Service Account name and click 'Create'.
+9. In the Role Dropdown box choose Basic -> Editor then press Continue. Click 'Done' to finish the form if you do not need to grant users access to the service account if it is a personal project.
+10. On the next page, click on your new Service Account that has been created, then click on the 'Keys' tab to 'Add Key'. Select 'Create New Key'.
+11. Select JSON and 'Create'. Your json file containing your API credentials will be downloaded to your machine.
+
+</details>
+
+    
+### Connecting the Python project to Google Sheets
+<details>
+<summary>Steps to connect Python and Google Sheets</summary>
+</details>
   
 
+### Deploying to Heroku  
+
+Heroku has been used to deploy this project as Python is used as a back-end language. To allow for accurate testing, I deployed the project to Heroku early on using Automatic Deployment to update the program everytime new code was pushed to my GitHub repository. Here are the steps that I followed to set my project up, guidance was provided by the [Code Institute's](https://codeinstitute.net/ie/) 'Love Sandwiches' project.     
 
 1. Log in to [Heroku](https://id.heroku.com/login) or create an account if you are a new user.
 2. Once logged in, in the Heroku Dashboard, navigate to the 'New' button in the top, right corner, and select 'Create New App'.
@@ -111,7 +159,7 @@ To allow for accurate testing, I deployed the project to Heroku early on using A
   
 4. In the Deploy tab, click on the 'Settings', reach the 'Config Vars' section and click on 'Reveal Config Vars'. Here you will enter KEY:VALUE pairs for the app to run successfully. In KEY enter `CREDS`, in VALUE, paste in the text content of your `CREDS.json` file. Select 'Add'.  
 5. Repeat this process with a KEY:VALUE pair of `PORT` and `8000`.
-6. In the Settings tab, in the 'Buildpack' section, click 'Add Buildpack', located near the bottom, right of the refreshed screen. One at a time, choose the 'Python' pack, save changes, then choose the 'NodeJS' buildpack and save changes. **NB: thePython buildpack _must_ be above the NodeJS buildpack.**
+6. In the Settings tab, in the 'Buildpack' section, click 'Add Buildpack', located near the bottom, right of the refreshed screen. One at a time, choose the 'Python' pack, save changes, then choose the 'NodeJS' buildpack and save changes. **NB: the Python buildpack _must_ be above the NodeJS buildpack.**
   
 <details>
 <summary>Choose Buildpacks</summary>
@@ -123,6 +171,7 @@ To allow for accurate testing, I deployed the project to Heroku early on using A
 9. Choose from 'Automatic' or 'Manual' deployment options, I chose the 'Automatic' deployment method. Click 'Deploy Branch'.
 10. Once the waiting period for the app to build has finished, click the 'View' link to bring you to your newly deployed site.
 
+  
 
 ### Forking the GitHub Repositiory
 
@@ -134,6 +183,8 @@ A copy of the original repository can be made through GitHub. Please follow the 
 4. You should now have access to a forked copy of this repository in your Github account.
 
 [GitHub Repository Forking Steps]()
+  
+  
 
 ### Clone this GitHub Repository
 
