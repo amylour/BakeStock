@@ -37,7 +37,7 @@ Google Sheets Sales, Batch, Inventory Data (view only) [here.](https://docs.goog
 # User Experience (UX)  
   
 ## User Goals
-BakeStock has been designed like a 'digital notebook', a clear, interactive, safe way for a hobby baker to keep track of important data. Some key user goals that I have kept in mind during this project have been:  
+BakeStock has been designed like a 'digital notebook', a clear, interactive, safe way for a hobby baker to keep track of important data. The data will be viewable via the CLI (Command Line Interface) but stored in a connected, secure, Google worksheet which is not directly accessible to the user. Some key user goals that I have kept in mind during this project have been:  
 
   - It must be easy to navigate, with clear Menu options.
   - An attractive, bright UI to engage the user.
@@ -61,16 +61,35 @@ BakeStock has been designed like a 'digital notebook', a clear, interactive, saf
   12. As a User, I want to be able to be able to update an Ingredient or Quantity.
   
 
-# Creation Process  
+# Creation Process    
+  
+## Project Planning  
+
 
   
 ## Flowcharts  
 ## Google API SetUp
 ## Python Logic
-## Design Choices   
-   - [ASCII banner maker](https://manytools.org/hacker-tools/ascii-banner/) : The BakeStock banner was created using the 'Colossal' font.  
-     
-![bakestock banner image](assets/readme_images/bakestock_ascii.png)
+## Design Choices      
+As this project was focusing on back-end programming, there was no front-end production by myself, a student of the [Code Institute](https://codeinstitute.net/ie/). The CLI code was provided through the use the the CI's [Python Essentials template](https://github.com/Code-Institute-Org/python-essentials-template) and I did not alter the HTML or JavaScript code, choosing to remain with the original view of the interface. _(Please refer to the [Creation & Deployment](#creation--deployment) section of this README to learn how to recreate this project yourself.)_
+  
+ASCII art was used with a text banner for the Main program intro page and a hidden easter egg for the user...
+ - [ASCII banner maker](https://manytools.org/hacker-tools/ascii-banner/) : The BakeStock banner was created using the 'Colossal' font.  
+<details>
+<summary>ASCII art for BakeStock banner</summary>
+<img src = "documentation/readme/main_image.png">
+</details>  
+
+  
+The Colorama python library was used to create a bright, engaging UI for the user to receive some form of feedback for their input choices:  
+
+  - The Opening Screen and Program Menus are displayed in the CYAN colour with the BRIGHT setting to make the options easier for he user to read against the black CLI background.  
+    <details>
+    <summary>CYAN for Menu display</summary>
+    <img src = "documentation/readme/sales_menu.png">
+    </details>
+    
+  - 
   
 # Features
 
@@ -79,7 +98,6 @@ BakeStock has been designed like a 'digital notebook', a clear, interactive, saf
   
 # Technologies Used 
    - HTML5
-   - CSS3
    - JavaScript
    - Python
 
@@ -98,7 +116,9 @@ BakeStock has been designed like a 'digital notebook', a clear, interactive, saf
 - Colorama preventing app working in Heroku [requirements.txt](https://tinyurl.com/3bxmr4kj)
 ## Validator  
   
-# Creation & Deployment  
+# Creation & Deployment    
+  
+The below steps to creating and setting up our new Python workspace and API credentials has been guided by and adapted from the [Code Institute's](https://codeinstitute.net/ie/) Python walkthrough project 'Love Sandwiches'. Please check each step is relevant to your project needs and change the data entered to suit it.
 
 ### Creating a new repository 
 <details>
@@ -134,15 +154,24 @@ To access the data in a Google Sheets worksheet using Python code, an API is req
 </details>
 
     
-### Connecting the Python project to Google Sheets
+### Setting up the Gitpod workspace for the APIs
 <details>
-<summary>Steps to connect Python and Google Sheets</summary>
+<summary>Steps for workspace setup</summary>
   
 1. In the new Gitpod workspace you've created with the Python Essentials template, click and drag the json file that you created in the above steps, into the Gitpod workspace.  
 2. Rename it to CREDS.json, if you wish, and open the file. Find the client_email address you previously entered, copy it without the quotes around it.
 3. In the Google Sheets file that you have created for this project, click the 'Share' button and paste the email address into the field, choose 'Editor', untick 'Notify People' and click 'Share'. This allows our project access to the spreadsheet.
 4. To ensure the private credentials that you have created do not make their way to the cloud for others to view, add the `creds.json` file to your `gitignore` file before you commit any changes to your repository, and push them to the cloud.
 5. Use the command `git status` to check that the `creds.json` file is not staged to be committed.
+
+</details>  
+  
+    
+### Initial Code for connecting to our API with Python
+<details>
+<summary>Steps to including the Python/API connectin code</summary>
+  
+
 
 
 </details>
