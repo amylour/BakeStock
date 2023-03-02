@@ -80,23 +80,54 @@ ASCII art was used with a text banner for the Main program intro page and a hidd
 <img src = "documentation/readme/main_image.png">
 </details>  
 
-  
-The Colorama python library was used to create a bright, engaging UI for the user to receive some form of feedback for their input choices:  
+### Colorama  
+
+![Colorama Colour Library](documentation/readme/colorama_col.png)  
+
+_Colorama colour and display selection - Credit: [PyPi](https://pypi.org/project/colorama/)_  
+
+The Colorama python library was used to create a bright, engaging UI for the user to receive some form of feedback for their input choices. The library is limited to 8 colours with three display options of 'DIM,NORMAL,BRIGHT', and three formatting options of 'Back,Fore, Style'. There is a difference in how the colours are displayed in the Gitpod workspace and the deployed application, so it is important to regularly compare the outputs to ensure the desired design impact has been reached.
 
   - The Opening Screen and Program Menus are displayed in the CYAN colour with the BRIGHT setting to make the options easier for he user to read against the black CLI background.  
-    <details>
+    <details open>
     <summary>CYAN for Menu display</summary>
     <img src = "documentation/readme/sales_menu.png">
     </details>
-    
+      
+  <br>  
+
   - Any prompted input that the user provides, that does not validate, will receive an 'Error' message printed in RED. This is give the user feedback to pay particular attention to their input as invalid data will not allow them to proceed with the operations.  
-     <details>
+    <details open>
     <summary>RED for invalid input display</summary>
     <img src = "documentation/readme/invalid_red.png">
     </details>  
-      
-  - 
   
+  <br>
+      
+  - Successful input to data update in the Google Sheets provides positive feedback to the user with a GREEN message, informing the user that the data that they have entered has been validated and added to the relevant worksheet.
+    <details>
+    <summary>GREEN for validation and successful input</summary>
+    <img src = "documentation/readme/validate_green.png">
+    </details>  
+    
+  <br>
+
+  - To draw the users attention to important information that is not connected to input validation is the colour YELLOW. It is used to inform the user that a Batch consists of 12 baked items, and if the maximum amount of baked items recorded has been reached.
+    <details>
+    <summary>YELLOW for information that requires attention</summary>
+    <img src = "documentation/readme/attn_yellow.png">
+    </details>
+
+  <br>
+    
+  - Menu, Batch and Inventory headers are highlighted with a background of MAGENTA, WHITE text and capitalisation to ensure clear legibility for the user. The limited colour palette available in the Colorama library works well together to give a simple and striking UI.
+    <details>
+    <summary>MAGENTA and WHITE for informative headers</summary>
+    <img src = "documentation/readme/header_magenta.png">
+    
+  <br>  
+    
+
 # Features
 
 ## How to Use
@@ -265,6 +296,7 @@ A local clone of this repository can be made on GitHub. Please follow the below 
 Additional reading materials:
    - [Analytics Vidhya](https://www.analyticsvidhya.com/blog/2020/07/read-and-update-google-spreadsheets-with-python/) for more information about Google Sheets and Python Automation.
    - [GitHub Docs](https://docs.github.com/en) for information on cloning and forking the repository.
+   - [Geeks for Geeks](https://www.geeksforgeeks.org/python-programming-language/?ref=ghm) for additional Python learning.
 
 ## Literature
 I used the below book as extra learning material and reference material during the project:  
