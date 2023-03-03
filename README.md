@@ -23,7 +23,7 @@ Google Sheets Sales, Batch, Inventory Data (view only) [here.](https://docs.goog
   * [Python Logic](#python-logic)
   * [Design Choices](#design-choices)
 * [**Features**](#features)
-  * [How to Use](#how-to-use)
+  * [How to Use BakeStock](#how-to-use-bakestock)
   * [Future Features](#future-features)
 * [**Technologies Used**](#technologies-used)
 * [**Libraries & Packages**](#libraries--packages)
@@ -80,7 +80,6 @@ I had decided to use Google Sheets to store any data that was entered or edited 
 ## Flowchart   
 
 <br>  
-
 
 ## Google API SetUp   
 Prior to starting any program function code, the relevant Credentials and API set up needed to take place. This process is detailed in the [Creation & Deployment](#creation--deployment) section. Security was an important factor with the connecting of a Google Account (one that I created solely for the project) to access the Google Sheets worksheet. Steps were followed carefully to ensure that no important files like, `CREDS.json`, were pushed to the cloud for the public to view. Guidance for the setting up of these authorisations and credentials, was provided through the Code Institute's Full Stack Software Development course.
@@ -164,78 +163,96 @@ The Colorama python library was used to create a bright, engaging UI for the use
 
 # Features
 
-## How to Use  
+## How to Use BakeStock 
 
-### Main Menu
+### Main Menu  
+After the opening screen of BakeStock ASCII art, the user is greeted by the below menu. Users may enter the number displayed beside the menu options. Any input not connected to the menu choices will be confirmed as invalid and the user is prompted to enter a numbered menu option.
 ![Main Menu screenshot](documentation/readme/main_menu_f.png)  
   
     
-### Sales Menu
+### Sales Menu    
+Similar to the opening menu, the user is prompted to enter their menu option choice. Th user is informed of any invalid input and prompted to try again.
 ![Sales menu screenshot](documentation/readme/sales_menu_f.png)
   
   
-### Sales Figures  
-![SAles figures screenshot](documentation/readme/sales_figs_f.png)  
+### Sales Figures   
+Sales figures are printed to the terminal and are as current as the data that is stored in the Google Sheet. The data will refresh during the user session if they choose to add any sales figures at the end of the day. If the Sales Worksheet is refreshed, then a Yellow text warning is displayed to the user informing them of 'No data' available, incase the user is thinks that the program has stalled in its data display. The user can return to the Sales Menu by following the instructions to enter 's'.
+![Sales figures screenshot](documentation/readme/sales_figs_f.png)  
   
     
-### Records Sales Figures
-<details>
+### Records Sales Figures  
+The user is prompted to enter the Sales figures by first entering the date and the abbreviated baked items. This is done so that the Sales table will display correctly in the terminal and allows different baked items to be recorded daily. Further learning of data formatting, for future versions, will allow me to remove the abbreviated restriction for the user so that the data displays with full words. Data entry is restricted to 9 columns within the worksheet to assist in the Sales display. The user is informed of this if they exceed the value restriction.
+<details open>
 <summary>Records Sales Figures Feature</summary>
-<img src = "documentation/readme/sales_figs_f.png">
+<img src = "documentation/readme/record_sales_f.png">
 </details>  
   
-### Clear Sales Data
+### Clear Sales Data  
+The user is prompted to enter the words 'CLEAR DATA' exactly as displayed if they wish to clear the Sales worksheet. Again, user input validation has been very important here to ensure no actions are executed if the user did not intend for them. Several steps of input are required to ensure no mistakes are made.
 <details>
 <summary>Clear Sales Figures Feature</summary>
 <img src = "documentation/readme/clear_f.png">
 </details>  
 
-### Batch Numbers
+### Batch Numbers  
+Batch numbers are displayed beneath the Batch menu banner. A yellow text warning alerts the user that the batch quantity consists of 12 items. 
 <details>
 <summary>View Batch Numbers Feature</summary>
 <img src = "documentation/readme/batch_nums_f.png">
 </details>   
 
-### View Batch Menu
+### View Batch Menu  
+Users are greeted with the Batch Menu providing several options.
 <details>
 <summary>Batch Menu Feature</summary>
 <img src = "documentation/readme/batch_menu_f.png">
 </details>   
  
-### Add Item, Change Item, Update Item, Clear Item in Batches
+### Add Item, Change Item, Update Item, Clear Item in Batches  
+ Multiple options are provided to allow for customisation by the user. The Flavours/Items section is editable by the user to allow for different baked items everyday. Similar to making a to-do list in a notebook, the baker/user can update the required batch numbers at the end of the day, ready for the next baking day. When they complete a batch, these numbers can be edited back to zero to reflect this. This gives the baker real-time information on what is left to do every time they view the batch numbers.
 <details>
 <summary>Add, Change, Update, Clear Batch Item</summary>
 <img src = "documentation/readme/enter_newb_f.png">
 <img src = "documentation/readme/change_batch.png">
 </details>
 
-### Ingredient Inventory
+### Ingredient Inventory  
+Following a similar UI from the earlier Menu options, the Inventory displays the current stock levels. 
 <details>
 <summary>Ingredient Inventory Feature</summary>
 <img src = "documentation/readme/ing_view_f.png">
 </details>   
 
-### Inventory Menu
+### Inventory Menu  
+Users are greeted by an Inventory Menu providing several options.
 <details>
 <summary>Inventory Menu Feature</summary>
 <img src = "documentation/readme/ing_menu.png">
 </details> 
   
-### Add Item, Change Item, Update Item, Clear Item in Inventory
+### Add Item, Change Item, Update Item, Clear Item in Inventory  
+These items are customisable with an 'Ingredient' section for displaying the ingredient name and unit in brackets. The 'Quantity' value is numerical only and may be updated when bakes have been processed. Similar to the Batch menu, the UX prompts, validates and acts on user input.
 <details>
 <summary>Add, Change, Update, Clear Inventory Item</summary>
 <img src = "documentation/readme/add_ing.png">
 <img src = "documentation/readme/change_ing.png">
 </details>  
-  
 
+### Exit  
+Some users may like to have an option to feel that they exited the program. Although it's function is very minor, I felt that it was important to include and to thank the user for using BakeStock.
+<details>
+<summary>Program Exit</summary>
+<img src = "documentation/readme/exit_f.png">
+</details>   
 
+<br>
 
 ## Future Features  
 There are a few features that I feel could benefit from additions in the future:
 - The Sales Menu could benefit from a way of tracking business income in and out. I had hoped to include a Profits tracker, but through it's planning I realised that were a lot more moving pieces when money is involved and my Python skills need to develop further to meet this Scope.
 - I would like to add a Recipe section that keeps a digital record of the baker's most used recipes, for easy reference.
 - Through further learning I would like to provide a better way to display the Sales figures, perhaps through the library 'tabulate', to make it easier for the user to view the data.
+- I would like to revisit this project after I have graduated from the course and have more experience with Python, to refactor the code and apply the DRY(Don't Repeat Yourself) principle to reduce the length of my code.
 
   
 # Technologies Used 
@@ -372,9 +389,6 @@ A copy of the original repository can be made through GitHub. Please follow the 
 3. Above the repository file section and to the top, right of the page is the '**Fork**' button, click on this to make a fork of this repository.
 4. You should now have access to a forked copy of this repository in your Github account.
 
-[GitHub Repository Forking Steps]()
-  
-  
 
 ### Clone this GitHub Repository
 
@@ -388,10 +402,9 @@ A local clone of this repository can be made on GitHub. Please follow the below 
 6. Change the current working directory to the location you want the cloned directory to be made.
 7. Type `git clone` and paste in the copied URL from step 4.
 8. Press '**Enter**' for the local clone to be created.
-
-[GitHub Repository Clone Steps]()
-
   
+<br>
+ 
 # Credits
 
 ## Content References
