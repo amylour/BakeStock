@@ -64,7 +64,13 @@ BakeStock has been designed like a 'digital notebook', a clear, interactive, saf
 ## Project Planning  
 I wished to apply some previous experience to my Python project to create a real-world application. Having had a Hobby Baker business in the past, I imagined what tools I would have liked to have used had I grown the business at that time. The most used tool was my notebook, which contained all of the details that I needed to fulfil customer's orders. Had I grown the business to participate in regular Food Markets, I would have upgraded to keeping digital records.  
  
-BakeStock was created from this idea and fully planned out using [Lucidchart](https://www.lucidchart.com/) to create a flowchart which represented my end goals. Once I had investigated the terminal that would run this application, I made sure to stay within it's restrictions and referred back to my flowchart frequently.  
+BakeStock was created from this idea and fully planned out using [Lucidchart](https://www.lucidchart.com/) to create a flowchart which represented my end goals. Once I had investigated the terminal that would run this application, I made sure to stay within it's restrictions and referred back to my flowchart frequently. My main goals for the application were:  
+
+- Provide options for the user to access different areas of the application.
+- Pull user data from the worksheets and display the data legibly.
+- Take user input, text and numerical, and validate the input.
+- Update the Google Sheets worksheets with the user data.
+- Aim for an application that allows a user to create, edit, view and delete data.
 
 I tackled each section by dividing the tasks up equally and following a production line of writing my code, continuously testing my code and testing the user's input to ensure accurate valiation. As there are a few different Menus in this application, it was vital that the user did not meet any dead ends.  
   
@@ -80,10 +86,18 @@ Google Sheets was used to store any entered user data and called upon when data 
 Clear instructions are printed in the terminal instructing the user in how to enter the data, so that it may be displayed correctly on its output, within the scope of this project. For future development, I would wish to dive further into the learning of the Python Data Analysis Library - [Pandas](https://pandas.pydata.org/) to upgrade the UX/UI of the project.
 
 ## Python Logic  
+With this being my first Python project, my main goal was to create an application that accessed, displayed and edited data successfully from Google Sheets worksheets; to simulate a database. I will admit that my Scope for this project was regularly adjusted when my simulataneous learning of the gspread library reached it's limits in what I could create. Reminding myself to consider the MVP kept me on track.
+
+I began by creating simple functions which pushed the flow of user input through the application. Menus were created using if/elif statements and user input was validated using while loops and try/except statements. 
+
+From these initial menus, smaller functions were added that controlled the movement and manipulation of data. Functions containing enumerate() were essential in pulling the data from specific matched locations in the worksheets, once the user's input was validated to be present within the worksheets. I constantly tested the validation functions throughout the project build so that I would not be left with gaps in the flow of the application. 
+
+Once I confirmed one section's function to be successful, I investigated whether the code could be reused in other sections with similar purposes. In some instances it could, once the data handling remained the same. In other situations, code was personalised for the individual function, particulary in how the data was displayed. Parallel iteration using the python zip() function was needed in displaying Batch and Inventory data, whilst Sales Data was displayed using the Python '\t' whitespace character. This gave space between each item in the Sales Data sheet, when represented in the terminal.  
+  
 
 
 ## Design Choices      
-As this project was focusing on back-end programming, there was no front-end production by myself, a student of the [Code Institute](https://codeinstitute.net/ie/). The CLI code was provided through the use the the CI's [Python Essentials template](https://github.com/Code-Institute-Org/python-essentials-template) and I did not alter the HTML or JavaScript code, choosing to remain with the original view of the interface. _(Please refer to the [Creation & Deployment](#creation--deployment) section of this README to learn how to recreate this project yourself.)_
+As this project was focusing on back-end programming, there was no front-end production by myself, a student of the [Code Institute](https://codeinstitute.net/ie/). The CLI code was provided through the use the the CI's [Python Essentials template](https://github.com/Code-Institute-Org/python-essentials-template) and I did not alter the HTML or JavaScript code, choosing to remain with the original view of the interface. The CLI application allowed a display window of 80 characters, and a vertical scrollbar. _(Please refer to the [Creation & Deployment](#creation--deployment) section of this README to learn how to recreate this project yourself.)_
   
 ASCII art was used with a text banner for the Main program intro page and a hidden easter egg for the user...
  - [ASCII banner maker](https://manytools.org/hacker-tools/ascii-banner/) : The BakeStock banner was created using the 'Colossal' font.  
