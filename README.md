@@ -16,11 +16,11 @@ Google Sheets Sales, Batch, Inventory Data (view only) [here.](https://docs.goog
   * [User Goals](#user-goals)
   * [User Stories](#user-stories)
 * [**Creation process**](#creation-process)
-  * [Planning](#planning)
-  * [Flowcharts](#flowcharts)
+  * [Project Planning](#project-planning)
+  * [Flowchart](#flowchart)
   * [Google API SetUp](#google-api-setup)
-  * [Google Sheets Data](#google-sheets-data)
   * [Python Logic](#python-logic)
+  * [Data Model - Google Sheets](#data-model---google-sheets)
   * [Design Choices](#design-choices)
 * [**Features**](#features)
   * [How to Use BakeStock](#how-to-use-bakestock)
@@ -62,7 +62,7 @@ BakeStock has been designed like a 'digital notebook', a clear, interactive, saf
 # Creation Process    
   
 ## Project Planning  
-I wished to apply some previous experience to my Python project to create a real-world application. Having had a Hobby Baker business in the past, I imagined what tools I would have liked to have used had I grown the business at that time. The most used tool was my notebook, which contained all of the details that I needed to fulfil customer's orders. Had I grown the business to participate in regular Food Markets, I would have upgraded to keeping digital records.  
+I wished to apply some previous experience to my Python project to create a real-world application. Having had a Hobby Baker business in the past, I imagined what tools I would have liked to have used had I grown the business at that time. The most used tool was my notebook, which contained all of the details that I needed to fulfill customer's orders. Had I grown the business to participate in regular Food Markets, I would have upgraded to keeping digital records.  
  
 BakeStock was created from this idea and fully planned out using [Lucidchart](https://www.lucidchart.com/) to create a flowchart which represented my end goals. Once I had investigated the terminal that would run this application, I made sure to stay within it's restrictions and referred back to my flowchart frequently. My main goals for the application were:  
 
@@ -95,13 +95,31 @@ Clear instructions are printed in the terminal instructing the user in how to en
 <br>  
 
 ## Python Logic  
-With this being my first Python project, my main goal was to create an application that accessed, displayed and edited data successfully from Google Sheets worksheets; to simulate a database. I will admit that my Scope for this project was regularly adjusted when my simulataneous learning of the gspread library reached it's limits in what I could create. Reminding myself to consider the MVP kept me on track.
+With this being my first Python project, my main goal was to create an application that accessed, displayed and edited data successfully from Google Sheets worksheets; to simulate a database. I will admit that my Scope for this project was regularly adjusted when my simultaneous learning of the gspread library reached it's limits in what I could create. Reminding myself to consider the MVP kept me on track.
 
 I began by creating simple functions which pushed the flow of user input through the application. Menus were created using if/elif statements and user input was validated using while loops and try/except statements. 
 
 From these initial menus, smaller functions were added that controlled the movement and manipulation of data. Functions containing enumerate() were essential in pulling the data from specific matched locations in the worksheets, once the user's input was validated to be present within the worksheets. I constantly tested the validation functions throughout the project build so that I would not be left with gaps in the flow of the application. 
 
-Once I confirmed one section's function to be successful, I investigated whether the code could be reused in other sections with similar purposes. In some instances it could, once the data handling remained the same. In other situations, code was personalised for the individual function, particulary in how the data was displayed. Parallel iteration using the python zip() function was needed in displaying Batch and Inventory data, whilst Sales Data was displayed using the Python '\t' whitespace character. This gave space between each item in the Sales Data sheet, when represented in the terminal.  
+Once I confirmed one section's function to be successful, I investigated whether the code could be reused in other sections with similar purposes. In some instances it could, once the data handling remained the same. In other situations, code was personalised for the individual function, particularly in how the data was displayed. Parallel iteration using the python zip() function was needed in displaying Batch and Inventory data, whilst Sales Data was displayed using the Python '\t' whitespace character. This gave space between each item in the Sales Data sheet, when represented in the terminal.   
+
+<br>  
+
+## Data Model - Google Sheets
+The data provided by the user is inputted into the respective Google Sheets worksheets. The worksheet is accessed by myself as the only Editor but I will include a View only link to show the distribution of data for the project. [Google Worksheets](https://docs.google.com/spreadsheets/d/1ny_lvzMpPjMDCl1ET9uSyVTzBcJko1QDY6DXggS_y5s/edit?usp=sharing)  
+
+- The Sales worksheet contains the Dates and Baked Items entered by the user.  
+
+![Sales data](documentation/readme/sales_d.png)  
+ 
+- The Batch worksheet contains a permanent header of 'Flavour/Item' and 'Quantity'. The user may only enter six baked items and their quantities. This is to maintain the display provided in the 'View Sales Data' Option within the program.  
+
+![Batch data](documentation/readme/flav_d.png) 
+
+- The Inventory worksheet contains permanent headers of 'Ingredient' and 'Inventory'. There is no restriction to the vertical space of the worksheet and the user may enter as many Ingredients as needed. However, coming from a baking background, there will be no need to exceed the terminal's displayed space as a Hobby Baker.  
+  
+![Inventory data](documentation/readme/invt_d.png)
+   
 
 <br>  
 
@@ -175,7 +193,7 @@ After the opening screen of BakeStock ASCII art, the user is greeted by the belo
   
     
 ### Sales Menu    
-Similar to the opening menu, the user is prompted to enter their menu option choice. Th user is informed of any invalid input and prompted to try again.
+Similar to the opening menu, the user is prompted to enter their menu option choice. The user is informed of any invalid input and prompted to try again.
 ![Sales menu screenshot](documentation/readme/sales_menu_f.png)
   
   
@@ -248,26 +266,9 @@ Some users may like to have an option to feel that they have exited the program.
 <summary>Program Exit</summary>
 <img src = "documentation/readme/exit_f.png">
 </details>   
-    
-<br>  
+ 
 
 -----  
-
-## Data Model - Google Sheets
-The data provided by the user is inputted into the respective Google Sheets worksheets. The worksheet is accessed by myself as the only Editor but I will include a View only link to show the distribution of data for the project. [Google Worksheets](https://docs.google.com/spreadsheets/d/1ny_lvzMpPjMDCl1ET9uSyVTzBcJko1QDY6DXggS_y5s/edit?usp=sharing)  
-
-- The Sales worksheet contains the Dates and Baked Items entered by the user.  
-
-![Sales data](documentation/readme/sales_d.png)  
- 
-- The Batch worksheet contains a permanent header of 'Flavour/Item' and 'Quantity'. The user may only enter six baked items and their quantitites. This is to maintain the display provided in the 'View Sales Data' Option within the program.  
-
-![Batch data](documentation/readme/flav_d.png) 
-
-- The Inventory worksheet contains permanent headers of 'Ingredient' and 'Inventory'. There is no restriction to the vertical space of the worksheet and the user may enter as many Ingredients as needed. However, coming from a baking background, there will be no need to exceed the terminal's displayed space as a Hobby Baker.  
-  
-![Inventory data](documentation/readme/invt_d.png)
-  
 
 <br>
 
@@ -298,13 +299,13 @@ There are a few features that I feel could benefit from additions in the future:
 # Libraries & Packages 
    - **gspread** - gspread was imported and used to add, remove and manipulate data in the connected Google Sheets worksheets.  
 
-   - **google.oauth.service_account** - This library was used for the authentication needed to access the Google APIs for connecting the Service Account with the Credentials function. A `CREDS.json` file was generated from this with the details needed for the API to access my Google acccount which holds the Google Sheets worksheet containing the applications data. When deploying to Heroku, this information is then stored in the config var section to ensure the application will run.  
+   - **google.oauth.service_account** - This library was used for the authentication needed to access the Google APIs for connecting the Service Account with the Credentials function. A `CREDS.json` file was generated from this with the details needed for the API to access my Google account which holds the Google Sheets worksheet containing the applications data. When deploying to Heroku, this information is then stored in the config var section to ensure the application will run.  
 
    - **time & sys** -the time & sys libraries were used for the text-typing effect for typePrint and typeInput statements to create a visual effect 0f the text appearing on screen in real time.  
 
    - **os** - os library was used to add the clearScreen() function to assist in creating a neater flow from Menu options by clearing the screen for the user's choice from the Menu to be displayed. 
 
-   - **colorama** - colorama was inported to give the terminal text colour and style to create a bright and engaging UI and to provide some visual feedback when a user's input is validated.
+   - **colorama** - colorama was imported to give the terminal text colour and style to create a bright and engaging UI and to provide some visual feedback when a user's input is validated.
 
   
 # Testing  
@@ -410,7 +411,7 @@ Heroku has been used to deploy this project as Python is used as a back-end lang
   
 -----  
 
-### Forking the GitHub Repositiory
+### Forking the GitHub Repository
 
 A copy of the original repository can be made through GitHub. Please follow the below steps to fork this repository:  
 
