@@ -16,6 +16,40 @@ The code was validated using the [Code Institute's](https://pep8ci.herokuapp.com
     
 All user input has been validated regularly to ensure no dead ends for the user or acceptance of invalid user input. Opportunity for incorrect input should only be present when the user is prompted to record Sales, Batch or Inventory Data, which requires human precision to enter the new data. Any error in input is out of the control of the application and the clear input prompts which are printed for the user to see. This is discussed further in the [Manual Testing](#manual-testing) section below.
 
+As the HTML and JavaScript has not been created by me, but has been provided through a specific template, I have not validated the terminals template code. 
+
+Although not required for this project, out of curiousity and for creating good habits, I ran a Lighthouse assessment on it to receive these scores:
+
+![Lighthouse scores](documentation/readme/lighthouse.png)
+
+<br>
+ 
+## User Input Validation  
+User input validation was carried out throughout the project build. It was very important that the user could navigate easily through the program and that their entered Sales, Batch and Inventory data was handled appropriately into the respective Google Sheets. Loss of important data and incorrect data input could frustrate the user and I wanted to avoid this completely. When testing user input, I have a specific set of values that I enter repeatedly to ensure the task runs accurately. I tested every user input point with three values: 'Enter button only', 'cat' and '1111'.  
+  
+| Feature                    | Tested?  | User Feedback Provided      |
+|----------------------------|----------|-----------------------------|
+| Main Menu                  | Yes      | Invalid input. Enter number for Menu choice|
+| Sales Menu                 | Yes      | Invalid input. Please choose a numbered menu item|
+| View Sales Figures         | Yes      | Invalid input, please try again|
+| Add Sales Data             | Yes - extra data added in specific data request| Too many values. Please re-enter Date & Items|
+| Confirm Sales Data         | Yes      | Invalid input, please try again|
+| Clear Data                 | Yes      | Repeated incorrect input returns user to Main Menu to protect accidental data deletion|
+| Exit                       | Yes      | Invalid input. Enter number for Menu choice|
+| Update Batch numbers       | Yes      | Repeats Y or N until correct input|
+| Batch Menu                 | Yes      | Invalid input. Enter number for Menu choice|
+| Add New Batch              | Yes - extra item added to test Batch item limit| Invalid input, numerical value needed/ Sorry, Batch records full. Max 6 Batch item types|
+| Change Batch Item          | Yes      | Item not found in Batches|
+| Update Batch Numbers       | Yes      | Flavour/Item not found in Batches / Value must be numerical|
+| Clear Batch Item               | Yes      | Item not found in Batches|
+| Ingredient Inventory Updtate Item?| Yes   | Repeats Y or N until correct input|
+| Add New Ingredient         | Yes      | Invalid input, numerical value needed|
+| Change Ingredient          | Yes      | Item not found in Inventory|
+| Update Ingredient Quantity | Yes      | Invalid input/ Value must be numerical/ Ingredient not found in Inventory|
+| Clear Ingredient Item      | Yes      | Ingredient not found in Inventory| 
+
+----- 
+
 ## Browser Testing  
 BakeStock was tested through the Heroku app website on the following browsers with no issues arising:  
 - Google Chrome (Version 110.0.5481.105)
@@ -93,8 +127,14 @@ Although I tested whether BakeStock would run on Android, which it did, there wa
   12. As a User, I want to be able to be able to update an Ingredient or Quantity.  
 
     - Ingredients and their Quantities can be updated by following the instructions provided in the 'Update Inventory' menu option.
-    
+
+
+
+
 ## Bugs
-- Colorama not working [Install pip colorama](https://tinyurl.com/msk3uknk)
-- Colorama preventing app working in Heroku [requirements.txt](https://tinyurl.com/3bxmr4kj)    
+- Colorama not working [Install pip colorama](https://tinyurl.com/msk3uknk) 
+- Colorama preventing app working in Heroku [requirements.txt](https://tinyurl.com/3bxmr4kj)  
+
+### Known Bugs  
+After rigorous testing, there are no known bugs in the code.
   
