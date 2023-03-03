@@ -195,11 +195,34 @@ The Colorama python library was used to create a bright, engaging UI for the use
 <img src = "documentation/readme/batch_menu_f.png">
 </details>   
  
-### Add Batch Item
+### Add Item, Change Item, Update Item, Clear Item in Batches
 <details>
-<summary>Add Batch Item Feature</summary>
+<summary>Add, Change, Update, Clear Batch Item</summary>
 <img src = "documentation/readme/enter_newb_f.png">
+<img src = "documentation/readme/change_batch.png">
+</details>
+
+### Ingredient Inventory
+<details>
+<summary>Ingredient Inventory Feature</summary>
+<img src = "documentation/readme/ing_view_f.png">
+</details>   
+
+### Inventory Menu
+<details>
+<summary>Inventory Menu Feature</summary>
+<img src = "documentation/readme/ing_menu.png">
 </details> 
+  
+### Add Item, Change Item, Update Item, Clear Item in Inventory
+<details>
+<summary>Add, Change, Update, Clear Inventory Item</summary>
+<img src = "documentation/readme/add_ing.png">
+<img src = "documentation/readme/change_ing.png">
+</details>  
+  
+
+
 
 ## Future Features
 
