@@ -19,6 +19,8 @@ from colorama import Fore, Back, Style
 colorama.init(autoreset=True)
 
 # Scope for Google IAM auth for API program access
+# Guidance for setting up the APIs was provided by the Code Institute's
+# course material
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive.file",
