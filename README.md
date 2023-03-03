@@ -150,14 +150,59 @@ The Colorama python library was used to create a bright, engaging UI for the use
     <details>
     <summary>MAGENTA and WHITE for informative headers</summary>
     <img src = "documentation/readme/header_magenta.png">
-    
+    </details>  
+  
   <br>  
     
 
 # Features
 
-## How to Use
+## How to Use  
+
+### Main Menu
+![Main Menu screenshot](documentation/readme/main_menu_f.png)  
+  
+    
+### Sales Menu
+![Sales menu screenshot](documentation/readme/sales_menu_f.png)
+  
+  
+### Sales Figures  
+![SAles figures screenshot](documentation/readme/sales_figs_f.png)  
+  
+    
+### Records Sales Figures
+<details>
+<summary>Records Sales Figures Feature</summary>
+<img src = "documentation/readme/sales_figs_f.png">
+</details>  
+  
+### Clear Sales Data
+<details>
+<summary>Clear Sales Figures Feature</summary>
+<img src = "documentation/readme/clear_f.png">
+</details>  
+
+### Batch Numbers
+<details>
+<summary>View Batch Numbers Feature</summary>
+<img src = "documentation/readme/batch_nums_f.png">
+</details>   
+
+### View Batch Menu
+<details>
+<summary>Batch Menu Feature</summary>
+<img src = "documentation/readme/batch_menu_f.png">
+</details>   
+ 
+### Add Batch Item
+<details>
+<summary>Add Batch Item Feature</summary>
+<img src = "documentation/readme/enter_newb_f.png">
+</details> 
+
 ## Future Features
+
   
 # Technologies Used 
    - HTML5 - provide within the Code Institute's [Python Essentials template](https://github.com/Code-Institute-Org/python-essentials-template) 
