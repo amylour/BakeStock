@@ -12,7 +12,7 @@ Google Sheets Sales, Batch, Inventory Data (view only) [here.](https://docs.goog
 
 
 ## Contents
-* [**User Experience - UX**](#user-experience-ux)
+* [**User Experience/User Interface (UX/UI)**](#user-experienceuser-interface-uxui)
   * [User Goals](#user-goals)
   * [User Stories](#user-stories)
 * [**Creation process**](#creation-process)
@@ -32,7 +32,7 @@ Google Sheets Sales, Batch, Inventory Data (view only) [here.](https://docs.goog
 * [**Credits**](#credits) 
 
   
-# User Experience (UX)  
+# User Experience/User Interface (UX/UI)  
   
 ## User Goals
 BakeStock has been designed like a 'digital notebook', a clear, interactive, safe way for a hobby baker to keep track of important data. The data will be viewable via the CLI (Command Line Interface) but stored in a connected, secure, Google worksheet which is not directly accessible to the user. Some key user goals that I have kept in mind during this project have been:  
@@ -62,12 +62,26 @@ BakeStock has been designed like a 'digital notebook', a clear, interactive, saf
 # Creation Process    
   
 ## Project Planning  
+I wished to apply some previous experience to my Python project to create a real-world application. Having had a Hobby Baker business in the past, I imagined what tools I would have liked to have used had I grown the business at that time. The most used tool was my notebook, which contained all of the details that I needed to fulfil customer's orders. Had I grown the business to participate in regular Food Markets, I would have upgraded to keeping digital records.  
+ 
+BakeStock was created from this idea and fully planned out using [Lucidchart](https://www.lucidchart.com/) to create a flowchart which represented my end goals. Once I had investigated the terminal that would run this application, I made sure to stay within it's restrictions and referred back to my flowchart frequently.  
 
+I tackled each section by dividing the tasks up equally and following a production line of writing my code, continuously testing my code and testing the user's input to ensure accurate valiation. As there are a few different Menus in this application, it was vital that the user did not meet any dead ends.  
+  
+I had decided to use Google Sheets to store any data that was entered or edited from the terminal. This required extra learning to ensure that I could manage the data appropriately.Learning resources are credited in the [Credits](#credits) section. Many learning curves were present in this journey, with writing code to call certain cells and ranges, but I am glad that I pushed myself to incorporate using APIs in this project to fulfill the needs of the application.
 
   
 ## Flowchart  
-## Google API SetUp
-## Python Logic
+## Google API SetUp   
+Prior to starting any program function code, the relevant Credentials and API set up needed to tke place. This process is detailed in the [Creation & Deployment](#creation--deployment) section. Security was an important factor with the connecting of a Google Account (one that I created solely for the project) to access the Google Sheets worksheet. Steps were followed carefully to ensure that no important files like, `CREDS.json`, were pushed to the cloud for the public to view. Guidance for the setting up of these authorisations and credentials, was provided through the Code Institute's Full Stack Software Development course.
+
+Google Sheets was used to store any entered user data and called upon when data was manipulated and updated. It was used to simulate a database, as the user will have no direct interaction with the actual worksheets. All data entry and manipulation takes place within the terminal. 
+
+Clear instructions are printed in the terminal instructing the user in how to enter the data, so that it may be displayed correctly on its output, within the scope of this project. For future development, I would wish to dive further into the learning of the Python Data Analysis Library - [Pandas](https://pandas.pydata.org/) to upgrade the UX/UI of the project.
+
+## Python Logic  
+
+
 ## Design Choices      
 As this project was focusing on back-end programming, there was no front-end production by myself, a student of the [Code Institute](https://codeinstitute.net/ie/). The CLI code was provided through the use the the CI's [Python Essentials template](https://github.com/Code-Institute-Org/python-essentials-template) and I did not alter the HTML or JavaScript code, choosing to remain with the original view of the interface. _(Please refer to the [Creation & Deployment](#creation--deployment) section of this README to learn how to recreate this project yourself.)_
   
@@ -143,10 +157,8 @@ The Colorama python library was used to create a bright, engaging UI for the use
    - [Heroku](https://heroku.com/apps) - used for deploying the project.
    - [PEP8 Validator](https://pep8ci.herokuapp.com/#) - used for validating the Python code.
 
-   
-  
-  
-  
+<br>  
+
 # Libraries  
    - **gspread** - gspread was imported and used to add, remove and manipulate data in the connected Google Sheets worksheets.  
 
