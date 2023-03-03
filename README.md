@@ -132,21 +132,32 @@ The Colorama python library was used to create a bright, engaging UI for the use
 ## Future Features
   
 # Technologies Used 
-   - HTML5
-   - JavaScript
-   - Python
-
-### Cloud Platforms
-   - GitHub
-   - Gitpod
+   - HTML5 - provide within the Code Institute's [Python Essentials template](https://github.com/Code-Institute-Org/python-essentials-template) 
+   - JavaScript - as above.
+   - Python - Python code written is my own unless referenced in the source code or the below Credits section.
+   - [Lucidchart](https://www.lucidchart.com/pages/) - used to create the flowchart needed during project planning.
+   - [GitHub](https://github.com/) - used for hosting the program's source code.
+   - [Gitpod](https://www.gitpod.io/) - used as a workspace for developing the code and testing the program.
+   - Git - used for version control.
    - Google Cloud Platform 
-   - Heroku 
+   - [Heroku](https://heroku.com/apps) - used for deploying the project.
+   - [PEP8 Validator](https://pep8ci.herokuapp.com/#) - used for validating the Python code.
+
+   
+  
+  
   
 # Libraries  
-   - **gspread** - gspread was imported and used to add, remove and manipulate data in the connected Google Sheets worksheets.
-   - **time & sys** -the time & sys libraries were used for the text-typing effect for typePrint and typeInput statements to create a visual effect 0f the text appearing on screen in real time.
-   - **os** - os was used to add the clearScreen() function to assist in creating a neater flow from Menu options into the user's choice from the Menu.
+   - **gspread** - gspread was imported and used to add, remove and manipulate data in the connected Google Sheets worksheets.  
+
+   - **google.oauth.service_account** - This library was used for the authentication needed to access the Google APIs for connecting the Service Account with the Credentials function. A `CREDS.json` file was generated from this with the details needed for the API to access my Google acccount which holds the Google Sheets worksheet containing the applications data. When deploying to Heroku, this informtation is then stored in the config var section to ensure the application will run.  
+
+   - **time & sys** -the time & sys libraries were used for the text-typing effect for typePrint and typeInput statements to create a visual effect 0f the text appearing on screen in real time.  
+
+   - **os** - os was used to add the clearScreen() function to assist in creating a neater flow from Menu options into the user's choice from the Menu.  
+
    - **colorama** - colorama was inported to give the terminal text colour and style to create a bright and engaging UI and to provide some visual feedback when a user's input is validated.
+
   
 # Testing  
 I have created an additional file for my Manual Testing and Validation this can be found here: [TESTING.md](/TESTING.md)
