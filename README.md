@@ -78,6 +78,10 @@ I had decided to use Google Sheets to store any data that was entered or edited 
 
   
 ## Flowchart   
+To help with planning my project, I used Lucidchart to produce a flowchart of my expected functions and their flow.
+
+![BakeStock FlowChart](documentation/readme/bakestock_flowchart.png)  
+
 
 <br>  
 
@@ -267,6 +271,7 @@ There are a few features that I feel could benefit from additions in the future:
    - [Google Cloud Platform](https://cloud.google.com/) - used to provide the APIs for connecting the data sheets with the Python code.
    - [Heroku](https://heroku.com/apps) - used for deploying the project.
    - [PEP8 Validator](https://pep8ci.herokuapp.com/#) - used for validating the Python code.
+   - [Tiny PNG](https://tinypng.com/) - used to compress images.
 
 <br>  
 
@@ -302,7 +307,8 @@ The [Code Institute's Python Essential Template](https://github.com/Code-Institu
 
 </details> 
   
-  
+-----  
+
 ### Activating the Google Drive & Sheets API
 <details>
 <summary>Steps to activate the APIs</summary>
@@ -322,7 +328,8 @@ To access the data in a Google Sheets worksheet using Python code, an API is req
 
 </details>
 
-    
+-----  
+
 ### Setting up the Gitpod workspace for the APIs
 <details>
 <summary>Steps for workspace setup</summary>
@@ -335,7 +342,8 @@ To access the data in a Google Sheets worksheet using Python code, an API is req
 
 </details>  
   
-    
+-----  
+
 ### Initial Code for connecting to our API with Python
 <details>
 <summary>Steps to including the Python/API connection code</summary>
@@ -346,6 +354,7 @@ To access the data in a Google Sheets worksheet using Python code, an API is req
 
 </details>
   
+-----  
 
 ### Deploying to Heroku  
 
@@ -379,6 +388,7 @@ Heroku has been used to deploy this project as Python is used as a back-end lang
 10. Once the waiting period for the app to build has finished, click the '**View**' link to bring you to your newly deployed site.
 
   
+-----  
 
 ### Forking the GitHub Repositiory
 
@@ -389,6 +399,7 @@ A copy of the original repository can be made through GitHub. Please follow the 
 3. Above the repository file section and to the top, right of the page is the '**Fork**' button, click on this to make a fork of this repository.
 4. You should now have access to a forked copy of this repository in your Github account.
 
+-----  
 
 ### Clone this GitHub Repository
 
@@ -404,7 +415,7 @@ A local clone of this repository can be made on GitHub. Please follow the below 
 8. Press '**Enter**' for the local clone to be created.
   
 <br>
- 
+
 # Credits
 
 ## Content References
