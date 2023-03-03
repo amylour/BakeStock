@@ -26,7 +26,7 @@ Google Sheets Sales, Batch, Inventory Data (view only) [here.](https://docs.goog
   * [How to Use](#how-to-use)
   * [Future Features](#future-features)
 * [**Technologies Used**](#technologies-used)
-* [**Libraries**](#libraries)
+* [**Libraries & Packages**](#libraries--packages)
 * [**Testing**](#testing)
 * [**Creation & Deployment**](#creation--deployment)
 * [**Credits**](#credits) 
@@ -72,18 +72,24 @@ BakeStock was created from this idea and fully planned out using [Lucidchart](ht
 - Update the Google Sheets worksheets with the user data.
 - Aim for an application that allows a user to create, edit, view and delete data.
 
-I tackled each section by dividing the tasks up equally and following a production line of writing my code, continuously testing my code and testing the user's input to ensure accurate valiation. As there are a few different Menus in this application, it was vital that the user did not meet any dead ends.  
+I tackled each section by dividing the tasks up equally and following a production line of writing my code, continuously testing my code and testing the user's input to ensure accurate validation. As there are a few different Menus in this application, it was vital that the user did not meet any dead ends.  
   
-I had decided to use Google Sheets to store any data that was entered or edited from the terminal. This required extra learning to ensure that I could manage the data appropriately.Learning resources are credited in the [Credits](#credits) section. Many learning curves were present in this journey, with writing code to call certain cells and ranges, but I am glad that I pushed myself to incorporate using APIs in this project to fulfill the needs of the application.
+I had decided to use Google Sheets to store any data that was entered or edited from the terminal. This required extra learning to ensure that I could manage the data appropriately. Learning resources are credited in the [Credits](#credits) section. Many learning curves were present in this journey, with writing code to calling certain cells and ranges, but I am glad that I pushed myself to incorporate using APIs in this project to fulfill the needs of the application.
 
   
-## Flowchart  
+## Flowchart   
+
+<br>  
+
+
 ## Google API SetUp   
-Prior to starting any program function code, the relevant Credentials and API set up needed to tke place. This process is detailed in the [Creation & Deployment](#creation--deployment) section. Security was an important factor with the connecting of a Google Account (one that I created solely for the project) to access the Google Sheets worksheet. Steps were followed carefully to ensure that no important files like, `CREDS.json`, were pushed to the cloud for the public to view. Guidance for the setting up of these authorisations and credentials, was provided through the Code Institute's Full Stack Software Development course.
+Prior to starting any program function code, the relevant Credentials and API set up needed to take place. This process is detailed in the [Creation & Deployment](#creation--deployment) section. Security was an important factor with the connecting of a Google Account (one that I created solely for the project) to access the Google Sheets worksheet. Steps were followed carefully to ensure that no important files like, `CREDS.json`, were pushed to the cloud for the public to view. Guidance for the setting up of these authorisations and credentials, was provided through the Code Institute's Full Stack Software Development course.
 
 Google Sheets was used to store any entered user data and called upon when data was manipulated and updated. It was used to simulate a database, as the user will have no direct interaction with the actual worksheets. All data entry and manipulation takes place within the terminal. 
 
-Clear instructions are printed in the terminal instructing the user in how to enter the data, so that it may be displayed correctly on its output, within the scope of this project. For future development, I would wish to dive further into the learning of the Python Data Analysis Library - [Pandas](https://pandas.pydata.org/) to upgrade the UX/UI of the project.
+Clear instructions are printed in the terminal instructing the user in how to enter the data, so that it may be displayed correctly on its output, within the scope of this project. For future development, I would wish to dive further into the learning of the Python Data Analysis Library - [Pandas](https://pandas.pydata.org/) to upgrade the UX/UI of the project.  
+
+<br>  
 
 ## Python Logic  
 With this being my first Python project, my main goal was to create an application that accessed, displayed and edited data successfully from Google Sheets worksheets; to simulate a database. I will admit that my Scope for this project was regularly adjusted when my simulataneous learning of the gspread library reached it's limits in what I could create. Reminding myself to consider the MVP kept me on track.
@@ -93,14 +99,14 @@ I began by creating simple functions which pushed the flow of user input through
 From these initial menus, smaller functions were added that controlled the movement and manipulation of data. Functions containing enumerate() were essential in pulling the data from specific matched locations in the worksheets, once the user's input was validated to be present within the worksheets. I constantly tested the validation functions throughout the project build so that I would not be left with gaps in the flow of the application. 
 
 Once I confirmed one section's function to be successful, I investigated whether the code could be reused in other sections with similar purposes. In some instances it could, once the data handling remained the same. In other situations, code was personalised for the individual function, particulary in how the data was displayed. Parallel iteration using the python zip() function was needed in displaying Batch and Inventory data, whilst Sales Data was displayed using the Python '\t' whitespace character. This gave space between each item in the Sales Data sheet, when represented in the terminal.  
-  
 
+<br>  
 
 ## Design Choices      
 As this project was focusing on back-end programming, there was no front-end production by myself, a student of the [Code Institute](https://codeinstitute.net/ie/). The CLI code was provided through the use the the CI's [Python Essentials template](https://github.com/Code-Institute-Org/python-essentials-template) and I did not alter the HTML or JavaScript code, choosing to remain with the original view of the interface. The CLI application allowed a display window of 80 characters, and a vertical scrollbar. _(Please refer to the [Creation & Deployment](#creation--deployment) section of this README to learn how to recreate this project yourself.)_
   
 ASCII art was used with a text banner for the Main program intro page and a hidden easter egg for the user...
- - [ASCII banner maker](https://manytools.org/hacker-tools/ascii-banner/) : The BakeStock banner was created using the 'Colossal' font.  
+ [ASCII banner maker](https://manytools.org/hacker-tools/ascii-banner/) : The BakeStock banner was created using the 'Colossal' font.  
 <details>
 <summary>ASCII art for BakeStock banner</summary>
 <img src = "documentation/readme/main_image.png">
@@ -108,13 +114,14 @@ ASCII art was used with a text banner for the Main program intro page and a hidd
 
 ### Colorama  
 
+
 ![Colorama Colour Library](documentation/readme/colorama_col.png)  
 
 _Colorama colour and display selection - Credit: [PyPi](https://pypi.org/project/colorama/)_  
 
-The Colorama python library was used to create a bright, engaging UI for the user to receive some form of feedback for their input choices. The library is limited to 8 colours with three display options of 'DIM,NORMAL,BRIGHT', and three formatting options of 'Back,Fore, Style'. There is a difference in how the colours are displayed in the Gitpod workspace and the deployed application, so it is important to regularly compare the outputs to ensure the desired design impact has been reached.
+The Colorama python library was used to create a bright, engaging UI for the user to receive some form of feedback for their input choices. The library is limited to 8 colours with three display options of 'DIM, NORMAL, BRIGHT', and three formatting options of 'Back, Fore, Style'. There is a difference in how the colours are displayed in the Gitpod workspace and the deployed application, so it is important to regularly compare the outputs to ensure the desired design impact has been reached.
 
-  - The Opening Screen and Program Menus are displayed in the CYAN colour with the BRIGHT setting to make the options easier for he user to read against the black CLI background.  
+  - The Opening Screen and Program Menus are displayed in the CYAN colour with the BRIGHT setting to make the menu options easier for the user to read against the black CLI background.  
     <details open>
     <summary>CYAN for Menu display</summary>
     <img src = "documentation/readme/sales_menu.png">
@@ -122,7 +129,7 @@ The Colorama python library was used to create a bright, engaging UI for the use
       
   <br>  
 
-  - Any prompted input that the user provides, that does not validate, will receive an 'Error' message printed in RED. This is give the user feedback to pay particular attention to their input as invalid data will not allow them to proceed with the operations.  
+  - Any prompted input that the user provides, that does not validate, will receive an 'Error' message printed in RED. This gives the user feedback to pay particular attention to their input as invalid data will not allow them to proceed with the operations.  
     <details open>
     <summary>RED for invalid input display</summary>
     <img src = "documentation/readme/invalid_red.png">
@@ -131,7 +138,7 @@ The Colorama python library was used to create a bright, engaging UI for the use
   <br>
       
   - Successful input to data update in the Google Sheets provides positive feedback to the user with a GREEN message, informing the user that the data that they have entered has been validated and added to the relevant worksheet.
-    <details>
+    <details open>
     <summary>GREEN for validation and successful input</summary>
     <img src = "documentation/readme/validate_green.png">
     </details>  
@@ -224,7 +231,11 @@ The Colorama python library was used to create a bright, engaging UI for the use
 
 
 
-## Future Features
+## Future Features  
+There are a few features that I feel could benefit from additions in the future:
+- The Sales Menu could benefit from a way of tracking business income in and out. I had hoped to include a Profits tracker, but through it's planning I realised that were a lot more moving pieces when money is involved and my Python skills need to develop further to meet this Scope.
+- I would like to add a Recipe section that keeps a digital record of the baker's most used recipes, for easy reference.
+- Through further learning I would like to provide a better way to display the Sales figures, perhaps through the library 'tabulate', to make it easier for the user to view the data.
 
   
 # Technologies Used 
@@ -235,20 +246,21 @@ The Colorama python library was used to create a bright, engaging UI for the use
    - [GitHub](https://github.com/) - used for hosting the program's source code.
    - [Gitpod](https://www.gitpod.io/) - used as a workspace for developing the code and testing the program.
    - Git - used for version control.
-   - Google Cloud Platform 
+   - [Google Sheets](https://docs.google.com/spreadsheets/) - used for storing edited and saved user data.
+   - [Google Cloud Platform](https://cloud.google.com/) - used to provide the APIs for connecting the data sheets with the Python code.
    - [Heroku](https://heroku.com/apps) - used for deploying the project.
    - [PEP8 Validator](https://pep8ci.herokuapp.com/#) - used for validating the Python code.
 
 <br>  
 
-# Libraries  
+# Libraries & Packages 
    - **gspread** - gspread was imported and used to add, remove and manipulate data in the connected Google Sheets worksheets.  
 
-   - **google.oauth.service_account** - This library was used for the authentication needed to access the Google APIs for connecting the Service Account with the Credentials function. A `CREDS.json` file was generated from this with the details needed for the API to access my Google acccount which holds the Google Sheets worksheet containing the applications data. When deploying to Heroku, this informtation is then stored in the config var section to ensure the application will run.  
+   - **google.oauth.service_account** - This library was used for the authentication needed to access the Google APIs for connecting the Service Account with the Credentials function. A `CREDS.json` file was generated from this with the details needed for the API to access my Google acccount which holds the Google Sheets worksheet containing the applications data. When deploying to Heroku, this information is then stored in the config var section to ensure the application will run.  
 
    - **time & sys** -the time & sys libraries were used for the text-typing effect for typePrint and typeInput statements to create a visual effect 0f the text appearing on screen in real time.  
 
-   - **os** - os was used to add the clearScreen() function to assist in creating a neater flow from Menu options into the user's choice from the Menu.  
+   - **os** - os library was used to add the clearScreen() function to assist in creating a neater flow from Menu options by clearing the screen for the user's choice from the Menu to be displayed. 
 
    - **colorama** - colorama was inported to give the terminal text colour and style to create a bright and engaging UI and to provide some visual feedback when a user's input is validated.
 
@@ -261,10 +273,10 @@ I have created an additional file for my Manual Testing and Validation this can 
 The below steps to creating and setting up a new Python workspace and API credentials has been guided by and adapted from the [Code Institute's](https://codeinstitute.net/ie/) Python walkthrough project 'Love Sandwiches'. Please check each step is relevant to your project needs and change the data entered to suit it.
 
 ### Creating a new repository 
-<details>
+<details open>
 <summary>Steps to create a new repository.</summary>  
 
-The [Code Institute's Python Essential Template](https://github.com/Code-Institute-Org/python-essentials-template) was used to create a terminal for my Python file to generate it's output.To use this template, please follow these steps:
+The [Code Institute's Python Essential Template](https://github.com/Code-Institute-Org/python-essentials-template) was used to create a terminal for my Python file to generate it's output. To use this template, please follow these steps:
 1. Log in to [GitHub](https://github.com/) or create a new account.
 2. Navigate to the above Python template repository.
 3. Click '**Use this template**' -> '**Create a new repository**'.
@@ -310,9 +322,10 @@ To access the data in a Google Sheets worksheet using Python code, an API is req
 ### Initial Code for connecting to our API with Python
 <details>
 <summary>Steps to including the Python/API connection code</summary>
-  
 
-
+1. The code needed to ensure your APIs connect correctly can be found at the top of the `run.py` file connected to this project. It is important that you remember to pass the exact same name as your spreadsheet to the `SHEET = GSPREAD_CLIENT.opn('your-filename-here')` code, or else gspread will throw an error.
+2. The command `pip3 install gspread google-auth` is needed to install the gspread package for handling the worksheet data and the google-auth package to allow access to the Google Sheets account via the Credentials we downloaded earlier. Use the above command in the Gitbash terminal to install.
+3. Please refer to the `run.py` file for the `import, SCOPE, CREDS, SCOPED CREDS, GSPREAD CLIENT, SHEET` code that is needed to connect the APIs and change any data that is personal to your project.
 
 </details>
   
