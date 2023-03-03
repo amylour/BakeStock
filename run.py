@@ -194,7 +194,7 @@ def sales_input():
         time.sleep(2)
         sales_input()
     sales_str = ','.join(sales_data)
-    print(Fore.CYAN + Style.BRIGHT + "Enter Date & Sales numbers:")
+    print(Fore.CYAN + "Enter Date & Sales numbers:")
     typePrint("(DD,MM,YYYY, six Sales numbers, separated by commas).\n")
     sales_nums = input(Fore.YELLOW + Style.BRIGHT + "Enter here: \n")
     sales_num_data = sales_nums.split(",")
