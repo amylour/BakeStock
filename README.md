@@ -26,7 +26,7 @@ Google Sheets Sales, Batch, Inventory Data (view only) [here.](https://docs.goog
   * [How to Use](#how-to-use)
   * [Future Features](#future-features)
 * [**Technologies Used**](#technologies-used)
-* [**Python Libraries**](#python-libraries)
+* [**Libraries**](#libraries)
 * [**Testing**](#testing)
 * [**Creation & Deployment**](#creation--deployment)
 * [**Credits**](#credits) 
@@ -142,10 +142,14 @@ The Colorama python library was used to create a bright, engaging UI for the use
    - Google Cloud Platform 
    - Heroku 
   
-# Python Libraries  
+# Libraries  
+   - **gspread** - gspread was imported and used to add, remove and manipulate data in the connected Google Sheets worksheets.
+   - **time & sys** -the time & sys libraries were used for the text-typing effect for typePrint and typeInput statements to create a visual effect 0f the text appearing on screen in real time.
+   - **os** - os was used to add the clearScreen() function to assist in creating a neater flow from Menu options into the user's choice from the Menu.
+   - **colorama** - colorama was inported to give the terminal text colour and style to create a bright and engaging UI and to provide some visual feedback when a user's input is validated.
   
 # Testing  
-
+I have created an additional file for my Manual Testing and Validation this can be found here: [TESTING.md](/TESTING.md)
   
 # Creation & Deployment    
   
